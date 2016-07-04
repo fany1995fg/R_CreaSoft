@@ -13,8 +13,8 @@ import com.placamas.beans.UsuarioRight;
 import com.placamas.conexion.ConexionDB;
 
 public class UsuarioControlador {
-	
-	//ACTUALIZARA?
+
+
 
 	public UsuarioBean valida(String login, String clave) {
 		UsuarioBean bean = null;
