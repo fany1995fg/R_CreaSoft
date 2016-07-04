@@ -1,6 +1,8 @@
 package com.placamas.beans;
 
 public class ColoresBean {
+	
+	//Probando Alex
 
 	private String idColor;
 	private String Descripcion;
