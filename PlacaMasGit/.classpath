@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="librerias/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="librerias/mysql-connector-java-5.0.8-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="librerias/CLASES/commons-beanutils-1.8.2.jar"/>
+	<classpathentry kind="lib" path="librerias/CLASES/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="librerias/CLASES/commons-digester-1.7.jar"/>
+	<classpathentry kind="lib" path="librerias/CLASES/commons-javaflow-20060411.jar"/>
+	<classpathentry kind="lib" path="librerias/CLASES/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="librerias/CLASES/groovy-all-1.7.5.jar"/>
+	<classpathentry kind="lib" path="librerias/CLASES/iText-2.1.7.jar"/>
+	<classpathentry kind="lib" path="librerias/CLASES/jasperreports-4.0.0.jar"/>
+	<classpathentry kind="lib" path="librerias/CLASES/jasperreports-fonts-4.0.0.jar"/>
+	<classpathentry kind="lib" path="librerias/CLASES/jcalendar-1.3.3.jar"/>
+	<classpathentry kind="lib" path="librerias/CLASES/liquidlnf.jar"/>
+	<classpathentry kind="lib" path="librerias/CLASES/mysql-connector-java-5.1.6-bin.jar"/>
+	<classpathentry kind="lib" path="librerias/CLASES/png-encoder-1.5.jar"/>
+	<classpathentry kind="lib" path="librerias/CLASES/poi-3.6-20091214.jar"/>
+	<classpathentry kind="lib" path="librerias/forms-1.3.0.jar"/>
+	<classpathentry kind="lib" path="librerias/iText-5.0.5.jar"/>
+	<classpathentry kind="lib" path="librerias/java-rt-jar-stubs-1.5.0.jar"/>
+	<classpathentry kind="lib" path="librerias/javax-crypto.jar"/>
+	<classpathentry kind="lib" path="librerias/jcalendar-1.3.3.jar"/>
+	<classpathentry kind="lib" path="librerias/JTattoo-1.6.9.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
