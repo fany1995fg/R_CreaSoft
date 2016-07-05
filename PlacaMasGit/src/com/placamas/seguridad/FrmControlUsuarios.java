@@ -28,6 +28,7 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import com.placamas.beans.LocalBean;
 import com.placamas.beans.MarcasBean;
@@ -43,6 +44,9 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.JCheckBox;
+
+import org.apache.poi.hssf.record.formula.TblPtg;
+import org.omg.CORBA.OBJ_ADAPTER;
 
 public class FrmControlUsuarios extends JInternalFrame implements ActionListener, MouseListener {
 	
@@ -96,7 +100,7 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/gui/img/banners/pruebaBanner2.jpg")));
-		label.setBounds(20, 32, 1082, 157);
+		label.setBounds(20, 32, 1078, 157);
 		control.add(label);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -177,7 +181,6 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 			}
 		});
 		tableul.setModel(modelo);
-		
 		
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
@@ -411,9 +414,21 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		}
 	}
 	
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent arg0) {	
 		
+		TableModel modelo1 = table.getModel();
 
+		int[] indexs = table.getSelectedRows();
+		Object[] row = new Object[2];
+		DefaultTableModel modelo2 = (DefaultTableModel) tableul.getModel();
+		
+		for (int i = 0; i < indexs.length; i++) {
+			row[0] = modelo1.getValueAt(indexs[i], 0);
+			row[1] = modelo1.getValueAt(indexs[i], 1);
+			
+			modelo2.addRow(row);
+
+		}
 		
 	}
 	

@@ -264,11 +264,8 @@ public class FrmCambiar extends JInternalFrame implements ActionListener{
             mensaje("ERROR: Los campos no coinciden");
             
         }
-        
-         
+             
 	}
-			
-
 	
 }
 

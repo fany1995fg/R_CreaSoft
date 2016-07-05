@@ -79,10 +79,6 @@ public class Iniciar extends JFrame implements WindowListener, MouseListener{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-
 	}
 
 	public void windowOpened(WindowEvent e) {}
