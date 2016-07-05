@@ -134,28 +134,25 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 				}
 			}
 		});
-		txtIdMarca.setBounds(221, 206, 143, 20);
+		txtIdMarca.setBounds(221, 206, 81, 20);
 		txtIdMarca.setColumns(10);
 		txtIdMarca.setToolTipText("Escribe el Codigo de la Marca (3 Car)");
 		marcas.add(txtIdMarca);
 		
 		
 		txtDescripcion = new JTextField();
-		txtDescripcion.setBounds(221, 247, 317, 20);
+		txtDescripcion.setBounds(221, 247, 143, 20);
 		txtDescripcion.setColumns(10);
 		txtDescripcion.setToolTipText("Escribe una Descripción para la marca");
 		marcas.add(txtDescripcion);
-		
-		
-		
 		
 		
 		btnNuevo.setToolTipText("Nuevo Registro");
 		btnEliminar.setToolTipText("Eliminar");
 		btnGrabar.setToolTipText("Grabar");
 		
-		modelo.addColumn("codigo");
-		modelo.addColumn("descripcion");
+		modelo.addColumn("Codigo");
+		modelo.addColumn("Descripcion");
 		Listar();
 		
 		//setDefaultCloseOperation(DISPOSE_ON_CLOSE ); //Se oculte al cerrara
@@ -165,7 +162,7 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 		marcas.add(separator);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 342, 675, 220);
+		scrollPane.setBounds(57, 342, 362, 222);
 		marcas.add(scrollPane);		
 		
 		
@@ -222,9 +219,20 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 		//tbMarcas.requestFocus(true);
 		//tbMarcas.requestFocus();
 		
+		tamañoTablas();
 	
 	}
 	
+private void tamañoTablas() {
+		
+		int [] anchos = {30, 200, 50};
+		
+		for (int i = 0; i < tbMarcas.getColumnCount(); i++) {
+			tbMarcas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+		}
+				
+	}
+
 	
 	void mensaje(String m){
 		JOptionPane.showMessageDialog(null, m);

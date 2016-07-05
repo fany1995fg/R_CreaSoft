@@ -28,6 +28,7 @@ import com.placamas.beans.LocalBean;
 import com.placamas.beans.MarcasBean;
 import com.placamas.beans.MedidasBean;
 import com.placamas.controlador.MedidasControlador;
+import javax.swing.JCheckBox;
 
 public class FrmMedidas extends JInternalFrame implements ActionListener {
 
@@ -80,12 +81,12 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 		
 		JLabel lblIdMedidas = new JLabel("C\u00F3digo de Medidas:");
 		lblIdMedidas.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblIdMedidas.setBounds(49, 188, 146, 18);
+		lblIdMedidas.setBounds(57, 207, 146, 18);
 		medidas.add(lblIdMedidas);
 		
 		JLabel lblMedidas = new JLabel("Medida:");
 		lblMedidas.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblMedidas.setBounds(49, 235, 137, 15);
+		lblMedidas.setBounds(57, 254, 137, 15);
 		medidas.add(lblMedidas);
 		
 		txtIdMedidas= new JTextField();
@@ -101,19 +102,19 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 				}
 			}
 		});
-		txtIdMedidas.setBounds(205, 188, 128, 19);
+		txtIdMedidas.setBounds(213, 207, 80, 19);
 		medidas.add(txtIdMedidas);
 		txtIdMedidas.setColumns(10);
 		txtIdMedidas.setToolTipText("Escribe el Codigo de la Medida");
 		
 		txtMedidas = new JTextField();
-		txtMedidas.setBounds(205, 233, 253, 19);
+		txtMedidas.setBounds(213, 252, 80, 19);
 		medidas.add(txtMedidas);
 		txtMedidas.setColumns(10);
 		txtMedidas.setToolTipText("Escribe una Descripción para la medida");
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 342, 675, 220);
+		scrollPane.setBounds(57, 342, 323, 224);
 		medidas.add(scrollPane);		
 		
 		tbMedidas = new JTable();
@@ -194,8 +195,35 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 		lblListaDeMedidas.setBounds(57, 316, 153, 20);
 		medidas.add(lblListaDeMedidas);
 		
+		JCheckBox checkBox = new JCheckBox("Tapacanto", false);
+		checkBox.setBounds(408, 248, 97, 23);
+		medidas.add(checkBox);
+		
+		JCheckBox checkBox_1 = new JCheckBox("Tablero");
+		checkBox_1.setSelected(false);
+		checkBox_1.setMnemonic(KeyEvent.VK_1);
+		checkBox_1.setBounds(408, 216, 97, 23);
+		medidas.add(checkBox_1);
+		
+		JLabel label = new JLabel("Pertenece a :");
+		label.setFont(new Font("Tahoma", Font.BOLD, 12));
+		label.setBounds(398, 188, 153, 20);
+		medidas.add(label);
+		
+		
+		tamañoTablas();
+	
 	}
 	
+private void tamañoTablas() {
+		
+		int [] anchos = {40, 30, 20, 20};
+		
+		for (int i = 0; i < tbMedidas.getColumnCount(); i++) {
+			tbMedidas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+		}
+				
+	}
 	void mensaje(String m){
 		JOptionPane.showMessageDialog(null, m);
 	}

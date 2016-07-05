@@ -109,12 +109,12 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 				}
 			}
 		});
-		txtIdColores.setBounds(190, 232, 141, 20);
+		txtIdColores.setBounds(190, 232, 115, 20);
 		txtIdColores.setToolTipText("Escribe un id para el Color");
 		txtIdColores.setColumns(10);
 		
 		txtDescripcion = new JTextField();
-		txtDescripcion.setBounds(190, 264, 289, 20);
+		txtDescripcion.setBounds(190, 264, 178, 20);
 		txtDescripcion.setToolTipText("Escribe una descripción para el Color");
 		txtDescripcion.setColumns(10);
 
@@ -157,7 +157,7 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		getContentPane().add(label_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 342, 675, 220);
+		scrollPane.setBounds(57, 342, 414, 217);
 		
 		tbColores = new JTable();
 		tbColores.addKeyListener(new KeyAdapter() {
@@ -202,7 +202,6 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		lblEligeUnaOpcin.setBounds(519, 203, 153, 20);
 		colores.add(lblEligeUnaOpcin);
 		
-		
 		cb1= new JCheckBox("Tablero");
 		cb1.setBounds(529, 231, 97, 23);
 		cb1.setMnemonic(KeyEvent.VK_1);
@@ -216,11 +215,7 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		cb1.setMnemonic(KeyEvent.VK_1);
 		cb1.setSelected(false);
 		colores.add(cb2);
-		
-		
-		
-		
-		
+			
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnEliminarActionPerformed(arg0);
@@ -241,8 +236,20 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		txtIdColores.setText(""+tbColores.getValueAt(fila, 0));
 		txtDescripcion.setText(""+tbColores.getValueAt(fila, 1));
 		
+		
+		tamañoTablas();
+	
 	}
 	
+private void tamañoTablas() {
+		
+		int [] anchos = {40, 200, 20, 20};
+		
+		for (int i = 0; i < tbColores.getColumnCount(); i++) {
+			tbColores.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+		}
+				
+	}
 		
 	
 void mensaje(String m){

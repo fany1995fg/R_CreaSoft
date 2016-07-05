@@ -101,7 +101,7 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		txtIdLocal.setColumns(10);
 		
 		txtLoc_Nomb = new JTextField();
-		txtLoc_Nomb.setBounds(190, 264, 262, 20);
+		txtLoc_Nomb.setBounds(190, 264, 194, 20);
 		txtLoc_Nomb.setToolTipText("Escribe una descripción para el Local");
 		txtLoc_Nomb.setColumns(10);
 
@@ -138,7 +138,7 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		getContentPane().add(label_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 342, 675, 220);
+		scrollPane.setBounds(57, 342, 327, 220);
 		
 		tbLocales = new JTable();
 		tbLocales.addKeyListener(new KeyAdapter() {
@@ -167,14 +167,6 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		JLabel lblListaDeLocales = new JLabel("Lista de Locales:");
 		lblListaDeLocales.setBounds(57, 316, 153, 20);
 		lblListaDeLocales.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JRadioButton rdbtnTablero = new JRadioButton("Tablero");
-		rdbtnTablero.setBounds(545, 229, 69, 25);
-		rdbtnTablero.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
-		JRadioButton rdbtnTapacanto = new JRadioButton("TapaCanto");
-		rdbtnTapacanto.setBounds(545, 261, 88, 25);
-		rdbtnTapacanto.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		locales.setLayout(null);
 		locales.add(toolBar);
 		locales.add(separator);
@@ -185,13 +177,6 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		locales.add(txtLoc_Nomb);
 		locales.add(lblIdLocal);
 		locales.add(txtIdLocal);
-		locales.add(rdbtnTapacanto);
-		locales.add(rdbtnTablero);
-		
-		JLabel lblEligeUnaOpcin = new JLabel("Elige una opci\u00F3n:");
-		lblEligeUnaOpcin.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEligeUnaOpcin.setBounds(519, 203, 153, 20);
-		locales.add(lblEligeUnaOpcin);
 		
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -212,8 +197,20 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		txtIdLocal.setText(""+tbLocales.getValueAt(fila, 0));
 		txtLoc_Nomb.setText(""+tbLocales.getValueAt(fila, 1));
 		
+		
+		tamañoTablas();
+	
 	}
 	
+private void tamañoTablas() {
+		
+		int [] anchos = {40, 200, 50};
+		
+		for (int i = 0; i < tbLocales.getColumnCount(); i++) {
+			tbLocales.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+		}
+				
+	}
 	void mensaje(String m){
 		JOptionPane.showMessageDialog(null, m);
 }

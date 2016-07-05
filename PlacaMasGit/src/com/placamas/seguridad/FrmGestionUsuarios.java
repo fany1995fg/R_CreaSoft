@@ -54,6 +54,7 @@ public class FrmGestionUsuarios extends JInternalFrame implements ActionListener
 	public JPanel GesUsu;
 	private JSeparator separator_1;
 	private JLabel lblListaDeUsuario;
+	private JLabel lblNewLabel;
 	
 
 
@@ -80,7 +81,7 @@ public class FrmGestionUsuarios extends JInternalFrame implements ActionListener
 		GesUsu.setLayout(null);
 		
 		toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 1194, 35);
+		toolBar.setBounds(0, 0, 795, 35);
 		GesUsu.add(toolBar);
 		
 		
@@ -151,14 +152,11 @@ public class FrmGestionUsuarios extends JInternalFrame implements ActionListener
 		GesUsu.add(txtNomb_User);
 		
 		
-		
-		
-		
 		btnNuevo.setToolTipText("Nuevo Registro");
 		btnEliminar.setToolTipText("Eliminar");
 		btnGrabar.setToolTipText("Grabar");
 		
-		modelo.addColumn("Cod");
+		modelo.addColumn("Codigo");
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Contraseña");
 		Listar();
@@ -170,7 +168,7 @@ public class FrmGestionUsuarios extends JInternalFrame implements ActionListener
 		GesUsu.add(separator);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 342, 675, 220);
+		scrollPane.setBounds(57, 342, 380, 220);
 		GesUsu.add(scrollPane);		
 		
 		
@@ -222,6 +220,11 @@ public class FrmGestionUsuarios extends JInternalFrame implements ActionListener
 		GesUsu.add(txtPassword);
 		txtPassword.setColumns(10);
 		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(FrmGestionUsuarios.class.getResource("/gui/img/banners/Img_Banner_usuarios_.jpg")));
+		lblNewLabel.setBounds(10, 32, 775, 130);
+		GesUsu.add(lblNewLabel);
+		
 		
 		//tbMarcas.requestFocus();
 		//tbMarcas.changeSelection(0,0,true, true);
@@ -232,8 +235,19 @@ public class FrmGestionUsuarios extends JInternalFrame implements ActionListener
 		//tbMarcas.requestFocus(true);
 		//tbMarcas.requestFocus();
 		
-	
-	}
+		tamañoTablas();
+		
+		}
+		
+	private void tamañoTablas() {
+			
+			int [] anchos = {15, 40, 40};
+			
+			for (int i = 0; i < tbUsuario.getColumnCount(); i++) {
+				tbUsuario.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+			}
+					
+		}
 	
 	
 	void mensaje(String m){

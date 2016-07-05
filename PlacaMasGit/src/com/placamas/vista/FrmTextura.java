@@ -88,13 +88,13 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 		textura.add(lblDescripcion);
 		
 		txtIdTextura = new JTextField();
-		txtIdTextura.setBounds(270, 194, 128, 19);
+		txtIdTextura.setBounds(270, 194, 100, 19);
 		txtIdTextura.setToolTipText("Escribe el Codigo de la Marca (2 Car)");
 		textura.add(txtIdTextura);
 		txtIdTextura.setColumns(10);
 		
 		txtDescripcion = new JTextField();
-		txtDescripcion.setBounds(270, 225, 253, 19);
+		txtDescripcion.setBounds(270, 225, 146, 19);
 		textura.add(txtDescripcion);
 		txtDescripcion.setColumns(10);
 		
@@ -102,7 +102,7 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 342, 675, 220);
+		scrollPane.setBounds(57, 347, 359, 224);
 		textura.add(scrollPane);
 		
 		tbTextura = new JTable();
@@ -122,8 +122,8 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 		scrollPane.setViewportView(tbTextura);
 
 
-		modelo.addColumn("codigo");
-		modelo.addColumn("descripcion");
+		modelo.addColumn("Codigo");
+		modelo.addColumn("Descripcion");
 		tbTextura.setModel(modelo);
 		Listar();
 		setDefaultCloseOperation(HIDE_ON_CLOSE); //Se oculte al cerrara
@@ -178,8 +178,19 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 		lblListaDeTexturas.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblListaDeTexturas.setBounds(57, 316, 153, 20);
 		textura.add(lblListaDeTexturas);
+		
+		tamañoTablas();
 	}
 	
+private void tamañoTablas() {
+		
+		int [] anchos = {40, 200, 50};
+		
+		for (int i = 0; i < tbTextura.getColumnCount(); i++) {
+			tbTextura.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+		}
+				
+	}
 	void mensaje(String m){
 		JOptionPane.showMessageDialog(null, m);
 }

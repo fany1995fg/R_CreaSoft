@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import javax.swing.GroupLayout;
@@ -30,6 +31,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import com.lowagie.text.Table;
 import com.placamas.beans.LocalBean;
 import com.placamas.beans.MarcasBean;
 import com.placamas.beans.UsuarioBean;
@@ -56,8 +58,6 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 	public JTable tablelocal;
 	private JButton btnAgregar;
 	private JButton btnEliminar;
-	private JButton btnActualizar;
-	private JButton btnListar;
 	public JPanel control;
 	DefaultTableModel modelo=new DefaultTableModel();
 	private JToolBar toolBar;
@@ -115,29 +115,25 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 			new Object[][] {
 			},
 			new String[] {
-				"Codigo Usuario", "Nombre de Usuario"
+				"Codigo", "Nombre de Usuario"
 			}
 		));
 		
 		toolBar = new JToolBar();
-		toolBar.setBounds(10, 11, 358, 23);
+		toolBar.setBounds(0, 0, 358, 23);
 		control.add(toolBar);
 		
-		JButton btnConsultar = new JButton("Consultar");
+		JButton btnConsultar = new JButton("");
+		btnConsultar.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconosmodernos/1466476618_File.png")));
 		toolBar.add(btnConsultar);
 		
-		btnListar = new JButton("Listar");
-		toolBar.add(btnListar);
-		btnListar.addActionListener(this);
-		
-		btnAgregar = new JButton("Agregar");
+		btnAgregar = new JButton("");
+		btnAgregar.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconosmodernos/1466475388_save.png")));
 		toolBar.add(btnAgregar);
 		
-		btnEliminar = new JButton("Eliminar");
+		btnEliminar = new JButton("");
+		btnEliminar.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
 		toolBar.add(btnEliminar);
-		
-		btnActualizar = new JButton("Actualizar");
-		toolBar.add(btnActualizar);
 		
 		JButton btnVerOpciones = new JButton("Ver Opciones");
 		btnVerOpciones.addActionListener(new ActionListener() {
@@ -158,7 +154,7 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		control.add(separator);
 		
 		
-		modelo.addColumn("Cod_Usuario");
+		modelo.addColumn("Cod-Usuario");
 		modelo.addColumn("Local");
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -166,6 +162,7 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		control.add(scrollPane_1);
 		
 		tableul = new JTable();
+		tableul.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		scrollPane_1.setViewportView(tableul);
 		tableul.addKeyListener(new KeyAdapter() {
 			@Override
@@ -188,11 +185,12 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		control.add(scrollPane_2);
 		
 		tablelocal = new JTable();
+		tablelocal.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		tablelocal.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"Codigo Local", "Nombre de Local"
+				"Codigo", "Nombre de Local"
 			}
 		));
 		scrollPane_2.setViewportView(tablelocal);
@@ -305,22 +303,33 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		btnB.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconos/Down.gif")));
 		btnB.setBounds(800, 405, 33, 28);
 		control.add(btnB);
-		btnActualizar.addActionListener(this);
 		btnEliminar.addActionListener(this);
 		btnAgregar.addActionListener(this);
 		
 		listaLocales();
 		listarUsuarioLocales();
 		listaData();
-
+			
+		tamañoTablas();
+		
 	}
+	private void tamañoTablas() {
+		
+		int [] anchos = {30, 200, 50};
+		
+		for (int i = 0; i < table.getColumnCount(); i++) {
+			table.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+		}
+		for (int i = 0; i < tableul.getColumnCount(); i++) {
+			tableul.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+		}
+		for (int i = 0; i < tablelocal.getColumnCount(); i++) {
+			tablelocal.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+		}
+		
+	}
+
 	public void actionPerformed(ActionEvent arg0) {
-		if (arg0.getSource() == btnListar) {
-			do_btnListar_actionPerformed(arg0);
-		}
-		if (arg0.getSource() == btnActualizar) {
-			do_btnActualizar_actionPerformed(arg0);
-		}
 		if (arg0.getSource() == btnEliminar) {
 			do_btnEliminar_actionPerformed(arg0);
 		}
@@ -344,25 +353,6 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 			textField.setText("");
 			listaData();
 		}*/
-	}
-	protected void do_btnActualizar_actionPerformed(ActionEvent arg0) {
-		/*if( idCategoria!= -1){
-			String des = textField.getText().trim();
-			
-			CategoriaBean bean = new CategoriaBean();
-			bean.setIdCategoria(idCategoria);
-			bean.setDescripcion(des);
-			
-			c.actualiza(bean);
-			
-			listaData();
-		}*/
-	}
-	protected void do_btnListar_actionPerformed(ActionEvent arg0) {
-		listaData();
-		listarUsuarioLocales();
-		listaLocales();
-		
 	}
 	
 	private void listarUsuarioLocales() {
@@ -423,13 +413,29 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		DefaultTableModel modelo2 = (DefaultTableModel) tableul.getModel();
 		
 		for (int i = 0; i < indexs.length; i++) {
-			row[0] = modelo1.getValueAt(indexs[i], 0);
-			row[1] = modelo1.getValueAt(indexs[i], 1);
+//			row[0] = modelo1.getValueAt(indexs[i], 0);
+//			row[1] = modelo1.getValueAt(indexs[i], 1);
 			
-			modelo2.addRow(row);
+			if (table.getValueAt(i,0).equals(tableul.getValueAt(i, 0))){				
+				JOptionPane.showMessageDialog(null, "El DATO ya esta Seleccionado");
+			} else {
+				row[0] = modelo1.getValueAt(indexs[i], 0);
+				row[1] = modelo1.getValueAt(indexs[i], 1);
+				modelo2.addRow(row);
 
+			}
+		
 		}
 		
+		//limpiar();
+
+	}
+	public void limpiar(){
+
+		for (int i = 0; i < table.getRowCount(); i++) {
+			modelo.removeRow(i);
+			i =-1;
+		}
 	}
 	
 	public void mouseEntered(MouseEvent arg0) {

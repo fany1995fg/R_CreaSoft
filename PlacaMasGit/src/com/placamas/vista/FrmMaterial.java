@@ -105,7 +105,7 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 		txtDescripcion.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 342, 675, 220);
+		scrollPane.setBounds(57, 347, 411, 220);
 		material.add(scrollPane);
 		
 		tbMaterial = new JTable();
@@ -125,8 +125,8 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 		scrollPane.setViewportView(tbMaterial);
 
 
-		modelo.addColumn("codigo");
-		modelo.addColumn("descripcion");
+		modelo.addColumn("Codigo");
+		modelo.addColumn("Descripcion");
 		tbMaterial.setModel(modelo);
 		Listar();
 		setDefaultCloseOperation(HIDE_ON_CLOSE); //Se oculte al cerrara
@@ -191,8 +191,21 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 		lblListaDeMateriales.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblListaDeMateriales.setBounds(57, 316, 153, 20);
 		material.add(lblListaDeMateriales);
+
+		tamañoTablas();
+	
 	}
 	
+private void tamañoTablas() {
+		
+		int [] anchos = {40, 200, 50};
+		
+		for (int i = 0; i < tbMaterial.getColumnCount(); i++) {
+			tbMaterial.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+		}
+				
+	}
+		
 	void mensaje(String m){
 		JOptionPane.showMessageDialog(null, m);
 }
