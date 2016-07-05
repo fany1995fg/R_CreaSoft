@@ -4,6 +4,8 @@ public class ColoresBean {
 	
 	//Probando Alex
 	//Probando Francisco
+	
+	//Prueba coomit
 
 	private String idColor;
 	private String Descripcion;
