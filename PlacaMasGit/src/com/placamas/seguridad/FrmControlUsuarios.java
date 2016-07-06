@@ -422,9 +422,7 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 				row[0] = modelo1.getValueAt(indexs[i], 0);
 				row[1] = modelo1.getValueAt(indexs[i], 1);
 				modelo1.addRow(row);
-
-			}
-		
+			}	
 		}
 		
 		//limpiar();
