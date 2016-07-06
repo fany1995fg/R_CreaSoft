@@ -406,22 +406,22 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 	
 	public void mouseClicked(MouseEvent arg0) {	
 		
-		TableModel modelo1 = table.getModel();
+		TableModel modelo2 = tableul.getModel();
 
 		int[] indexs = table.getSelectedRows();
 		Object[] row = new Object[2];
-		DefaultTableModel modelo2 = (DefaultTableModel) tableul.getModel();
+		DefaultTableModel modelo1 = (DefaultTableModel) tableul.getModel();
 		
 		for (int i = 0; i < indexs.length; i++) {
 //			row[0] = modelo1.getValueAt(indexs[i], 0);
 //			row[1] = modelo1.getValueAt(indexs[i], 1);
 			
-			if (table.getValueAt(i,0).equals(tableul.getValueAt(i, 0))){				
+			if (modelo1.getValueAt(i,0).equals(modelo2.getValueAt(i, 0))){				
 				JOptionPane.showMessageDialog(null, "El DATO ya esta Seleccionado");
 			} else {
 				row[0] = modelo1.getValueAt(indexs[i], 0);
 				row[1] = modelo1.getValueAt(indexs[i], 1);
-				modelo2.addRow(row);
+				modelo1.addRow(row);
 
 			}
 		
