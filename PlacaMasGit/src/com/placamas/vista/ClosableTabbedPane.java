@@ -14,7 +14,10 @@ import javax.swing.JTabbedPane;
 
 public class ClosableTabbedPane extends JTabbedPane
 {
+	public ClosableTabbedPane() {
+	}
   private static final long serialVersionUID = 1L;
+ 
   private TabCloseUI closeUI = new TabCloseUI(this);
 
   public void paint(Graphics g) {
@@ -24,7 +27,7 @@ public class ClosableTabbedPane extends JTabbedPane
 
   public void addTab(String title, Component component) {
     super.addTab(title + "  ", component);
-  }
+    }
 
   public String getTabTitleAt(int index)
   {
@@ -58,9 +61,13 @@ public class ClosableTabbedPane extends JTabbedPane
     }
     public void mousePressed(MouseEvent me) {
     }
+    
     public void mouseClicked(MouseEvent me) {
     }
-    public void mouseDragged(MouseEvent me) {  } 
+    
+    public void mouseDragged(MouseEvent me) { 
+    } 
+    
     public void mouseReleased(MouseEvent me) { if (closeUnderMouse(me.getX(), me.getY())) {
         boolean isToCloseTab = ClosableTabbedPane.this.tabAboutToClose(this.selectedTab);
         if ((isToCloseTab) && (this.selectedTab > -1)) {//sirbe para que se puedan cerrar todas las ventanas
@@ -84,7 +91,8 @@ public class ClosableTabbedPane extends JTabbedPane
         if (closeUnderMouse(this.meX, this.meY)) {
           this.tabbedPane.setCursor(new Cursor(12));
           if (this.selectedTab > -1)
-            this.tabbedPane.setToolTipTextAt(this.selectedTab, "Close " + this.tabbedPane.getTitleAt(this.selectedTab));
+            this.tabbedPane.setToolTipTextAt(this.selectedTab, "Close " + 
+            this.tabbedPane.getTitleAt(this.selectedTab));
         }
         else {
           this.tabbedPane.setCursor(new Cursor(0));
@@ -151,4 +159,9 @@ public class ClosableTabbedPane extends JTabbedPane
       return false;
     }
   }
+
+public Component getTabbedBoundsAt(int i) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

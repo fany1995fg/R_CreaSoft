@@ -28,6 +28,7 @@ import com.placamas.vista.FrmLogin;
 import com.placamas.beans.UsuarioBean;
 
 import com.placamas.controlador.UsuarioControlador;
+import javax.swing.JCheckBox;
 
 
 
@@ -141,6 +142,10 @@ public class FrmCambiar extends JInternalFrame implements ActionListener{
 		});
 		btnCancelar.setBounds(251, 233, 89, 23);
 		usuario.add(btnCancelar);
+		
+		JLabel lblCambioDeContrasea = new JLabel("Cambio de Contrase\u00F1a");
+		lblCambioDeContrasea.setBounds(206, 11, 123, 26);
+		usuario.add(lblCambioDeContrasea);
 		
 		
 	}
@@ -266,7 +271,6 @@ public class FrmCambiar extends JInternalFrame implements ActionListener{
         }
              
 	}
-	
 }
 
 	

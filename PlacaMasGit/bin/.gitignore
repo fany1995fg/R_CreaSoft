@@ -1,6 +1,8 @@
 /iconos
-/Imagenes
 /Set
+/database_conexion.properties
+/database_sql.properties
+/gui
+/icon
+/Imagenes
 /com
-/FrmMantenimientoLP.class
-/listado

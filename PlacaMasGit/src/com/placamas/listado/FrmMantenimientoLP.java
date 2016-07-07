@@ -26,10 +26,9 @@ import javax.swing.JToolBar;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-import com.placamas.beans.LocalBean;
-import com.placamas.controlador.LocalesControlador;
-import com.placamas.vista.FrmLocales;
-import com.placamas.vista.FrmTextura;
+
+
+
 
 import javax.swing.border.TitledBorder;
 
@@ -55,13 +54,10 @@ import javax.swing.JEditorPane;
 
 public class FrmMantenimientoLP extends JInternalFrame implements ActionListener  {
 
-	LocalesControlador obj=new LocalesControlador();
+	//LocalesControlador obj=new LocalesControlador();
 	boolean estado=false;
 
 	DefaultTableModel modelo=new DefaultTableModel();
-	
-	
-	private JTextField txtIdLocal;
 	private JTextField txtLoc_Nomb;
 	private JButton btnGrabar;
 	private JButton btnCerrar;
@@ -69,7 +65,7 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 	private JButton btnNuevo;
 	private JToolBar toolBar;
 	private JLabel label_1;
-	JPanel mantenimiento;
+	public JPanel mantenimiento;
 	JTabbedPane tab;
 	JPanel Items;
 	JPanel Resumen;
@@ -77,10 +73,7 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 	JPanel Contacto;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JPanel PModo;
 	private JPanel panel;
-	private JPanel panel_1;
-	private JPanel panel_2;
 	private JPanel panel_3;
 	private JPanel panel_4;
 	private JPanel mante;
@@ -95,7 +88,6 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 	private JPanel panel_14;
 	private JPanel panel_15;
 	private JPanel panel_16;
-	private JPanel panel_17;
 	private JPanel panel_18;
 	private JLabel lblDigitador;
 	private JTextField textField_2;
@@ -128,7 +120,6 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 	private JTextField textField_23;
 	private JTextField textField_6;
 	private JTextField textField_24;
-	private JTextField textField_25;
 	private JScrollPane scrollPane_5;
 	private JScrollPane scrollPane_6;
 
@@ -154,29 +145,6 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 		getContentPane().setLayout(null);*/
 		
 		mantenimiento = new JPanel();
-		//locales.addMouseListener((MouseListener) this);
-		
-		JLabel lblIdLocal = new JLabel("Nombre :");
-		lblIdLocal.setBounds(282, 45, 78, 20);
-		lblIdLocal.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
-		txtIdLocal = new JTextField();
-		txtIdLocal.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent evt) {
-				
-				char c=evt.getKeyChar();
-				if(Character.isLowerCase(c)){
-					String cad=(""+c).toUpperCase();
-					c=cad.charAt(0);
-					evt.setKeyChar(c);
-				}
-			}
-		});
-		
-		txtIdLocal.setBounds(361, 46, 214, 20);
-		txtIdLocal.setToolTipText("Escribe un id para el Local");
-		txtIdLocal.setColumns(10);
 		
 		txtLoc_Nomb = new JTextField();
 		txtLoc_Nomb.setBounds(361, 69, 214, 20);
@@ -187,7 +155,7 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 		modelo.addColumn("codigo");
 		modelo.addColumn("nombre");
 		Listar();
-		Items.setBounds(10, 319, 1112, 135);
+		
 		
 		toolBar = new JToolBar();
 		toolBar.setBounds(0, 0, 1194, 35);
@@ -195,15 +163,15 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 		
 		btnNuevo = new JButton("");
 		toolBar.add(btnNuevo);
-		btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466476618_File.png")));
+		btnNuevo.setIcon(new ImageIcon(FrmMantenimientoLP.class.getResource("/iconosmodernos/1466476618_File.png")));
 		
 		btnGrabar = new JButton("");
 		toolBar.add(btnGrabar);
-		btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475388_save.png")));
+		btnGrabar.setIcon(new ImageIcon(FrmMantenimientoLP.class.getResource("/iconosmodernos/1466475388_save.png")));
 
 		btnEliminar = new JButton("");
 		toolBar.add(btnEliminar);
-		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
+		btnEliminar.setIcon(new ImageIcon(FrmMantenimientoLP.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
 		
         ///QUITANDOLE LOS BORDES A LOS BOTONES
 		
@@ -212,7 +180,7 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 		btnGrabar.setBorder(null);*/
 		
 		label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(FrmLocales.class.getResource("/gui/img/banners/loca3.png")));
+		label_1.setIcon(new ImageIcon(FrmMantenimientoLP.class.getResource("/gui/img/banners/loca3.png")));
 		label_1.setBounds(10, 24, 598, 108);
 		
 		mantenimiento.setLayout(null);
@@ -234,27 +202,9 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 		tab.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		mante.add(tab);
 		Items=new JPanel();
+		Items.setBounds(10, 319, 1200, 135);
 		tab.add(Items, "Items ");
 		Items.setLayout(null);
-		
-		JPanel panel_6 = new JPanel();
-		panel_6.setToolTipText("");
-		panel_6.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Calidad", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		panel_6.setBounds(173, 11, 291, 43);
-		Items.add(panel_6);
-		panel_6.setLayout(null);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Lista de Piezas");
-		rdbtnNewRadioButton.setBounds(6, 13, 95, 23);
-		panel_6.add(rdbtnNewRadioButton);
-		
-		JRadioButton rdbtnListaDeCorte = new JRadioButton("Lista de Corte");
-		rdbtnListaDeCorte.setBounds(101, 13, 93, 23);
-		panel_6.add(rdbtnListaDeCorte);
-		
-		JRadioButton radioButton = new JRadioButton("Lista de Corte");
-		radioButton.setBounds(196, 13, 93, 23);
-		panel_6.add(radioButton);
 		
 		JPanel panel_7 = new JPanel();
 		panel_7.setToolTipText("");
@@ -689,32 +639,6 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 		label_11.setBounds(248, 49, 41, 16);
 		panel_16.add(label_11);
 		
-		panel_17 = new JPanel();
-		panel_17.setToolTipText("");
-		panel_17.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "LP Origen", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		panel_17.setBounds(212, 312, 304, 79);
-		Seguimiento.add(panel_17);
-		panel_17.setLayout(null);
-		
-		JLabel lblNumero_1 = new JLabel("Numero:");
-		lblNumero_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNumero_1.setBounds(24, 52, 54, 16);
-		panel_17.add(lblNumero_1);
-		
-		JLabel lblVendedor = new JLabel("Vendedor:");
-		lblVendedor.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblVendedor.setBounds(24, 25, 54, 16);
-		panel_17.add(lblVendedor);
-		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(88, 23, 118, 20);
-		panel_17.add(comboBox_2);
-		
-		textField_25 = new JTextField();
-		textField_25.setColumns(10);
-		textField_25.setBounds(88, 50, 92, 20);
-		panel_17.add(textField_25);
-		
 		panel_18 = new JPanel();
 		panel_18.setToolTipText("");
 		panel_18.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "LP Origen", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 255)));
@@ -830,15 +754,7 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 		scrollPane_6 = new JScrollPane(txtArea1);
 		scrollPane_6.setBounds(10, 24, 428, 227);
 		panel_20.add(scrollPane_6);
-		
-		PModo = new JPanel();
-		PModo.setToolTipText("");
-		PModo.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Modo", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		PModo.setBounds(623, 34, 125, 43);
-		mantenimiento.add(PModo);
 		mantenimiento.add(txtLoc_Nomb);
-		mantenimiento.add(lblIdLocal);
-		mantenimiento.add(txtIdLocal);
 		
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -890,32 +806,6 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 		panel.setBounds(805, 34, 125, 43);
 		mantenimiento.add(panel);
 		
-		panel_1 = new JPanel();
-		panel_1.setToolTipText("");
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Calidad", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		panel_1.setBounds(24, 146, 200, 43);
-		mantenimiento.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Premiun(Duraplac Melamine)");
-		chckbxNewCheckBox_1.setBounds(6, 13, 177, 23);
-		panel_1.add(chckbxNewCheckBox_1);
-		
-		panel_2 = new JPanel();
-		panel_2.setToolTipText("");
-		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Medidas", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		panel_2.setBounds(234, 146, 181, 43);
-		mantenimiento.add(panel_2);
-		panel_2.setLayout(null);
-		
-		JRadioButton rdbtnCorte = new JRadioButton("Corte");
-		rdbtnCorte.setBounds(6, 13, 53, 23);
-		panel_2.add(rdbtnCorte);
-		
-		JRadioButton rdbtnPzaTerminada = new JRadioButton("Pza Terminada");
-		rdbtnPzaTerminada.setBounds(77, 13, 109, 23);
-		panel_2.add(rdbtnPzaTerminada);
-		
 		panel_3 = new JPanel();
 		panel_3.setToolTipText("");
 		panel_3.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Material del Cliente", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 255)));
@@ -940,7 +830,7 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 }
 	
 	
-	protected void btnGrabarActionPerformed(ActionEvent arg0) { 
+	protected void btnGrabarActionPerformed(ActionEvent arg0) { /*
 		
 		String texto=txtIdLocal.getText();
         texto=texto.replaceAll(" ", "");
@@ -969,7 +859,7 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 			
 			}
        }
-	}
+	}*/
 		
 }
 	
@@ -991,13 +881,12 @@ protected void btnEliminarActionPerformed(ActionEvent arg0) {
 	
 
 	protected void btnNuevoActionPerformed(ActionEvent arg0) {
-		txtIdLocal.setText("");
 		txtLoc_Nomb.setText("");
 		txtLoc_Nomb.requestFocus();
 		estado=true;
 	}
 	
-	void Listar(){
+	void Listar(){/*
 		modelo.setRowCount(0);
 		ArrayList<LocalBean> info=obj.listarLocal();
 		for(LocalBean x:info){
@@ -1005,7 +894,7 @@ protected void btnEliminarActionPerformed(ActionEvent arg0) {
 			modelo.addRow(fila);
 			
 		}
-			
+			*/
 
 	}
 }

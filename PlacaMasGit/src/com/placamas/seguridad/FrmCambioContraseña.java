@@ -32,7 +32,7 @@ import com.placamas.beans.UsuarioBean;
 import com.placamas.controlador.UsuarioControlador;
 
 
-public class FrmGestionUsuarios extends JInternalFrame implements ActionListener {
+public class FrmCambioContraseña extends JInternalFrame implements ActionListener {
 
 	
 	UsuarioControlador obj=new UsuarioControlador();
@@ -55,6 +55,7 @@ public class FrmGestionUsuarios extends JInternalFrame implements ActionListener
 	private JSeparator separator_1;
 	private JLabel lblListaDeUsuario;
 	private JLabel lblNewLabel;
+	private JButton btnCambiarContra;
 	
 
 
@@ -62,7 +63,7 @@ public class FrmGestionUsuarios extends JInternalFrame implements ActionListener
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FrmGestionUsuarios frame = new FrmGestionUsuarios();
+					FrmCambioContraseña frame = new FrmCambioContraseña();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -74,7 +75,7 @@ public class FrmGestionUsuarios extends JInternalFrame implements ActionListener
 	/**
 	 * Create the frame.
 	 */
-	public FrmGestionUsuarios() {
+	public FrmCambioContraseña() {
 		
 		GesUsu = new JPanel();
 		//GesUsu.addMouseListener((MouseListener) this);
@@ -87,15 +88,15 @@ public class FrmGestionUsuarios extends JInternalFrame implements ActionListener
 		
 		btnNuevo = new JButton("");
 		toolBar.add(btnNuevo);
-		btnNuevo.setIcon(new ImageIcon(FrmGestionUsuarios.class.getResource("/iconosmodernos/1466476618_File.png")));
+		btnNuevo.setIcon(new ImageIcon(FrmCambioContraseña.class.getResource("/iconosmodernos/1466476618_File.png")));
 		
 		btnGrabar = new JButton("");
 		toolBar.add(btnGrabar);
-		btnGrabar.setIcon(new ImageIcon(FrmGestionUsuarios.class.getResource("/iconosmodernos/1466475388_save.png")));
+		btnGrabar.setIcon(new ImageIcon(FrmCambioContraseña.class.getResource("/iconosmodernos/1466475388_save.png")));
 
 		btnEliminar = new JButton("");
 		toolBar.add(btnEliminar);
-		btnEliminar.setIcon(new ImageIcon(FrmGestionUsuarios.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
+		btnEliminar.setIcon(new ImageIcon(FrmCambioContraseña.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
 		
 		
 		
@@ -155,6 +156,17 @@ public class FrmGestionUsuarios extends JInternalFrame implements ActionListener
 		btnNuevo.setToolTipText("Nuevo Registro");
 		btnEliminar.setToolTipText("Eliminar");
 		btnGrabar.setToolTipText("Grabar");
+		
+		btnCambiarContra = new JButton("");
+		btnCambiarContra.setIcon(new ImageIcon(FrmCambioContraseña.class.getResource("/iconosmodernos/1466476622_common-new-edit-compose-glyph.png")));
+		btnCambiarContra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				FrmCambiar cambio = new FrmCambiar();
+				cambio.setVisible(true);
+			}
+		});
+		toolBar.add(btnCambiarContra);
 		
 		modelo.addColumn("Codigo");
 		modelo.addColumn("Nombre");
@@ -221,7 +233,7 @@ public class FrmGestionUsuarios extends JInternalFrame implements ActionListener
 		txtPassword.setColumns(10);
 		
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(FrmGestionUsuarios.class.getResource("/gui/img/banners/Img_Banner_usuarios_.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(FrmCambioContraseña.class.getResource("/gui/img/banners/Img_Banner_usuarios_.jpg")));
 		lblNewLabel.setBounds(10, 32, 775, 130);
 		GesUsu.add(lblNewLabel);
 		

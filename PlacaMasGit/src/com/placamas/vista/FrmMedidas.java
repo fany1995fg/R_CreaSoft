@@ -22,12 +22,14 @@ import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 import com.placamas.beans.LocalBean;
 import com.placamas.beans.MarcasBean;
 import com.placamas.beans.MedidasBean;
 import com.placamas.controlador.MedidasControlador;
+
 import javax.swing.JCheckBox;
 
 public class FrmMedidas extends JInternalFrame implements ActionListener {
@@ -103,45 +105,25 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 			}
 		});
 		txtIdMedidas.setBounds(213, 207, 80, 19);
-		medidas.add(txtIdMedidas);
 		txtIdMedidas.setColumns(10);
 		txtIdMedidas.setToolTipText("Escribe el Codigo de la Medida");
+		medidas.add(txtIdMedidas);
 		
 		txtMedidas = new JTextField();
 		txtMedidas.setBounds(213, 252, 80, 19);
-		medidas.add(txtMedidas);
 		txtMedidas.setColumns(10);
 		txtMedidas.setToolTipText("Escribe una Descripción para la medida");
+		medidas.add(txtMedidas);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 342, 323, 224);
+		scrollPane.setBounds(77, 342, 323, 224);
 		medidas.add(scrollPane);		
 		
-		tbMedidas = new JTable();
-		tbMedidas.addKeyListener(new KeyAdapter() {
-			@Override
-			//DISEÑO CLIC DERECHO EN EL SCROL / EVENT /KEY/ KEYRELEASED
-			public void keyReleased(KeyEvent arg0) {
-				Mostrar();
-			
-			}
-		});
-		tbMedidas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				Mostrar();
-			}
-		});
-		scrollPane.setViewportView(tbMedidas);
-
-
 		modelo.addColumn("Tipo");
 		modelo.addColumn("Medida");
 		modelo.addColumn("Tablero");
 		modelo.addColumn("Tapa Cantos");
-		tbMedidas.setModel(modelo);
 		Listar();
-		setDefaultCloseOperation(HIDE_ON_CLOSE); //Se oculte al cerrara
 		
 		toolBar = new JToolBar();
 		toolBar.setBounds(0, 0, 1194, 35);
@@ -159,6 +141,25 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 		toolBar.add(btnEliminar);
 		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
 		
+		tbMedidas = new JTable();
+		tbMedidas.addKeyListener(new KeyAdapter() {
+			@Override
+			//DISEÑO CLIC DERECHO EN EL SCROL / EVENT /KEY/ KEYRELEASED
+			public void keyReleased(KeyEvent arg0) {
+				Mostrar();
+			
+			}
+		});
+		tbMedidas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				Mostrar();
+			}
+		});
+		scrollPane.setViewportView(tbMedidas);
+		tbMedidas.setModel(modelo);
+		
+		setDefaultCloseOperation(HIDE_ON_CLOSE); //Se oculte al cerrara
 		
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(FrmMedidas.class.getResource("/gui/img/banners/medidas.jpg")));
@@ -173,6 +174,7 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 		separator = new JSeparator();
 		separator.setBounds(10, 162, 1195, 14);
 		medidas.add(separator);
+		
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnEliminarActionPerformed(arg0);
@@ -186,30 +188,33 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 		btnNuevo.addActionListener(this);
 		Listar();
 		
-		int fila=0;
-		txtIdMedidas.setText(""+tbMedidas.getValueAt(fila, 0));
-		txtMedidas.setText(""+tbMedidas.getValueAt(fila, 1));
 		
 		JLabel lblListaDeMedidas = new JLabel("Lista de Medidas:");
 		lblListaDeMedidas.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblListaDeMedidas.setBounds(57, 316, 153, 20);
+		lblListaDeMedidas.setBounds(77, 316, 153, 20);
 		medidas.add(lblListaDeMedidas);
 		
 		JCheckBox checkBox = new JCheckBox("Tapacanto", false);
-		checkBox.setBounds(408, 248, 97, 23);
+		checkBox.setBounds(362, 246, 97, 23);
 		medidas.add(checkBox);
 		
 		JCheckBox checkBox_1 = new JCheckBox("Tablero");
 		checkBox_1.setSelected(false);
 		checkBox_1.setMnemonic(KeyEvent.VK_1);
-		checkBox_1.setBounds(408, 216, 97, 23);
+		checkBox_1.setBounds(362, 214, 97, 23);
 		medidas.add(checkBox_1);
 		
 		JLabel label = new JLabel("Pertenece a :");
 		label.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label.setBounds(398, 188, 153, 20);
+		label.setBounds(352, 186, 153, 20);
 		medidas.add(label);
 		
+		Listar();
+		
+		int fila=0;
+		txtIdMedidas.setText(""+tbMedidas.getValueAt(fila, 0));
+		txtMedidas.setText(""+tbMedidas.getValueAt(fila, 1));
+			
 		
 		tamañoTablas();
 	

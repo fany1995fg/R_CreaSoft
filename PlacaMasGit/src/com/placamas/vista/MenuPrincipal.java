@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
@@ -26,8 +27,9 @@ import javax.swing.tree.DefaultTreeModel;
 import com.placamas.beans.OpcionBean;
 import com.placamas.controlador.UsuarioControlador;
 import com.placamas.seguridad.FrmControlUsuarios;
-import com.placamas.seguridad.FrmGestionUsuarios;
+import com.placamas.seguridad.FrmCambioContraseña;
 import com.placamas.seguridad.FrmCambiar;
+import com.placamas.listado.FrmMantenimientoLP;
 
 import java.awt.Font;
 import java.awt.Color;
@@ -88,13 +90,18 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 	public JMenuItem mItem15    = new JMenuItem("Ruta de Archivos");
 	public JMenuItem mItem16    = new JMenuItem("Reglas de Sistema");
 	
-	 ////////////////////////////////////////////////////////////////////////
-                     /* ITEMS DEL MENU USUARIOS*/
-    ////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+					/* ITEMS DEL MENU USUARIOS*/
+	////////////////////////////////////////////////////////////////////////
 	
 	public JMenuItem mItem17    = new JMenuItem("Gestión de Usuarios");
-	public JMenuItem mItem18    = new JMenuItem("Control de Usuarios");
-	public JMenuItem mItem19    = new JMenuItem("Cambiar Contraseña");
+	public JMenuItem mItem18    = new JMenuItem("Cambiar Contraseña");
+	public JMenuItem mItem19    = new JMenuItem("Administrar Usuarios");
+
+
+	////////////////////////////////////////////////////////////////////////
+					/* ITEMS DEL MENU LISTADO*/
+    ////////////////////////////////////////////////////////////////////////
 	
 	
 	
@@ -103,6 +110,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 	
 	//1 Se crean los formularios
 	
+		private FrmMantenimientoLP FrmMantenimientoLP = new FrmMantenimientoLP(); 
 		private FrmLocales FrmLocales = new FrmLocales(); 
 		private FrmMarcas FrmMarcas = new FrmMarcas(); 
 		private FrmColores FrmColores = new FrmColores();
@@ -112,7 +120,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		private FrmRutas FrmRutas = new FrmRutas();
 		
 	    //*FORMULARIOS DE USUARIOS
-		private FrmGestionUsuarios FrmGestionUsuarios = new FrmGestionUsuarios();
+		private FrmCambioContraseña FrmGestionUsuarios = new FrmCambioContraseña();
 		private FrmControlUsuarios FrmControlUsuarios = new FrmControlUsuarios();
 		private FrmCambiar FrmCambiar = new FrmCambiar();
 
@@ -174,8 +182,6 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		
 		//----------------------------------------------------------------
 		
-		
-		
 		contenedor.add(tabbedPane,BorderLayout.CENTER);
         
 		DefaultMutableTreeNode listar = new DefaultMutableTreeNode("Listar Piezas                                ");
@@ -209,6 +215,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 					listaItemMenus.add(mItem01);
 					listaItemMenus.add(mItem02);
 					listaItemMenus.add(mItem03);
+					listaItemMenus.add(mItem04);
 					listaItemMenus.add(mItem05);
 					listaItemMenus.add(mItem06);
 					listaItemMenus.add(mItem07);
@@ -224,22 +231,22 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 					listaItemMenus.add(mItem17);
 					listaItemMenus.add(mItem18);
 					listaItemMenus.add(mItem19);
+									
 					
 					listaMenus.add(mMenu01);
 					listaMenus.add(mMenu02);
 					listaMenus.add(mMenu03);
 					listaMenus.add(mMenu04);
 					
+					
 					mItem01.setVisible(false);
 					mItem02.setVisible(false);
 					mItem03.setVisible(false);
-
 					mItem04.setVisible(false);
 					mItem05.setVisible(false);
 					mItem06.setVisible(false);
 					mItem07.setVisible(false);
 					mItem08.setVisible(false);
-					
 					mItem09.setVisible(false);
 					mItem10.setVisible(false);
 					mItem11.setVisible(false);
@@ -248,10 +255,9 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 					mItem14.setVisible(false);
 					mItem15.setVisible(false);
 					mItem16.setVisible(false);
-					
 					mItem17.setVisible(false);
-					mItem18.setVisible(false);
 					mItem19.setVisible(false);
+					
 
 					mMenu01.setVisible(false);
 					mMenu02.setVisible(false);
@@ -261,43 +267,44 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 					
 		//Listener de los MenuItem
 		mItem01.addActionListener(this);
-		mItem02.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem01.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem02.addActionListener(this);
-		mItem03.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem02.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem03.addActionListener(this);
-		mItem04.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem03.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem04.addActionListener(this);
-		mItem05.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem04.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem05.addActionListener(this);
-		mItem06.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem05.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem06.addActionListener(this);
-		mItem07.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem06.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem07.addActionListener(this);
-		mItem08.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem07.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem08.addActionListener(this);
-		mItem09.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem08.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem09.addActionListener(this);
-		mItem10.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem09.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem10.addActionListener(this);
-		mItem11.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem10.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem11.addActionListener(this);
-		mItem12.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem11.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem12.addActionListener(this);
-		mItem13.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem12.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem13.addActionListener(this);
-		mItem14.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem13.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem14.addActionListener(this);
-		mItem15.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem14.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem15.addActionListener(this);
-		mItem16.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem15.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem16.addActionListener(this);
-		mItem17.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem16.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem17.addActionListener(this);
-		mItem18.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem17.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem18.addActionListener(this);
-		mItem19.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		mItem18.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		mItem19.addActionListener(this);
-		
+		mItem19.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+			
 		//-----------------------------------------------------------
 		
 		
@@ -323,9 +330,10 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		
 		
 		
+		
 		//--------------------------------------------------------
 		
-		/*
+	/*	
 		mItem09.addMouseListener(this);
 		mItem10.addMouseListener(this);
 		mItem11.addMouseListener(this);
@@ -355,12 +363,10 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		mItem18.addMouseListener((MouseListener) this);
 		*/
 		
-		mMenu01.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		
 		//Barra de MEnuBar
+		mMenu01.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		menuBar.add(mMenu01);
 		mMenu02.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		mMenu02.setForeground(new Color(0, 0, 0));
 		menuBar.add(mMenu02);
 		mMenu03.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		menuBar.add(mMenu03);
@@ -368,6 +374,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		menuBar.add(mMenu04);
 		mMenu05.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		menuBar.add(mMenu05);
+		
 		mMenu01.add(mItem01);
 		mMenu01.add(mItem02);
 		mMenu01.add(mItem03);
@@ -387,63 +394,63 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		mMenu04.add(mItem17);
 		mMenu04.add(mItem18);
 		mMenu04.add(mItem19);
-		
-		
 	
-		
 }
 
-
-       
-   
-
-	public void actionPerformed(ActionEvent e) {
-		
+    public void actionPerformed(ActionEvent e) {
+      	
 		//LISTADO//	
 		if(e.getSource()==mItem01){
-	
+			FrmMantenimientoLP.mantenimiento.setVisible(true);
+			tabbedPane.add( FrmMantenimientoLP.mantenimiento, "Lista de Piezas  ");
 		}
 		
 		//RESUMEN//		
 		if(e.getSource()==mItem02){
-
+			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");	
 		}
 		
 		//SEGUIMIENTO//	
 		if(e.getSource()==mItem03){
-
+			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");
+			
 		}
 		
 		//TABLEROS//
 		if(e.getSource()==mItem04){
+			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");
 
 		}
 		
 		//TAPACANTOS//
 		if(e.getSource()==mItem05){
-
-		
+			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");		
 		}
 		
 		//RANURAS//
 		if(e.getSource()==mItem06){
-			
+			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");
+
 		}
 		
 		//BISAGRADOS//
 		if(e.getSource()==mItem07){
-			
+			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");
+
 		}
 		
 		//PUERTAS CORREDIZAS//
 		if(e.getSource()==mItem08){
-			
+			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");
+
 		}
 		
 		//MARCAS//
 		if(e.getActionCommand() =="mItem09"){
-			tabbedPane.add(FrmMarcas.marcas, "Marcas    ");
 			FrmMarcas.setVisible(true);
+			tabbedPane.add(FrmMarcas.marcas, "Marcas    ");
+			FrmMarcas.toFront();
+					
 			/*FrmMarcas.tbMarcas.requestFocus();
 			FrmMarcas.tbMarcas.changeSelection(0,0,true, true);*/
 		}
@@ -452,6 +459,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		if(e.getSource()==mItem10){
 			tabbedPane.add(FrmMaterial.material, "Materiales    ");
 			FrmMaterial.setVisible(true);
+			
 			/*FrmMaterial.tbMaterial.requestFocus();
 			FrmMaterial.tbMaterial.changeSelection(0,0,true, true);*/
 
@@ -494,11 +502,13 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		
 		//RUTA DE ARCHIVOS//
 		if(e.getSource()==mItem15){
+			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");
 
 		}
 		
 		//REGLAS DEL SISTEMA//
 		if(e.getSource()==mItem16){
+			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");
 
 		}
 		
@@ -514,14 +524,14 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		if(e.getSource()==mItem18){
 			FrmControlUsuarios.setVisible(true);
 			FrmControlUsuarios.tablelocal.requestFocus();
-			tabbedPane.add(FrmControlUsuarios.control, "Control Usuario");	
+			tabbedPane.add(FrmControlUsuarios.control, "Cambiar Contraseña");	
 			//FrmControlUsuarios.setVisible(true);
 		}
 		
 		//CAMBIAR CONTRASEÑA//
 		if(e.getSource()==mItem19){
 			
-			tabbedPane.add(FrmCambiar.usuario, "Cambio de Comtra  ");
+			tabbedPane.add(FrmCambiar.usuario, "Administrar Usuarios");
 			FrmCambiar.setVisible(true);
 			
 			//FrmControlUsuarios.setVisible(true);
@@ -561,49 +571,26 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		
 	}
 
-
-
-
-
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
 	}
-
-
-
-
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
-
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
-
 	@Override
 	public void mousePressed(MouseEvent evento) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
 
 	@Override
 	public void mouseReleased(MouseEvent evento) {

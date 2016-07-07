@@ -124,6 +124,10 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		control.add(toolBar);
 		
 		JButton btnConsultar = new JButton("");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnConsultar.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconosmodernos/1466476618_File.png")));
 		toolBar.add(btnConsultar);
 		
@@ -177,7 +181,13 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 				//Mostrar();
 			}
 		});
-		tableul.setModel(modelo);
+		tableul.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Codigo", "Local"
+			}
+		));
 		
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
@@ -356,13 +366,20 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 	}
 	
 	private void listarUsuarioLocales() {
+	
+		UsuarioControlador uc = new UsuarioControlador();
+		ArrayList<UsuarioRight> lista = uc.listarUsuarioLocal();
+		DefaultTableModel model1 = (DefaultTableModel) tableul.getModel();
 		
-		modelo.setRowCount(0);
-		ArrayList<UsuarioRight> info=obj.listarUsuarioLocal();
-		for(UsuarioRight x:info){
-			Object fila[]={x.getIdUser(),x.getLocal()};
-			modelo.addRow(fila);		
+		//limpia la tabla
+		model1.setRowCount(0);
+		
+		//paso la data de la lista al model
+		for (UsuarioRight bean : lista) {
+			model1.addRow(new Object[]{bean.getIdUser(),
+										bean.getLocal()});			
 		}
+
 	}
 
 	private void listaLocales() {
@@ -428,6 +445,7 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		//limpiar();
 
 	}
+	
 	public void limpiar(){
 
 		for (int i = 0; i < table.getRowCount(); i++) {

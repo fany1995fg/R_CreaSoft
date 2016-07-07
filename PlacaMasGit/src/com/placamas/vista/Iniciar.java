@@ -66,6 +66,7 @@ public class Iniciar extends JFrame implements WindowListener, MouseListener{
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");
 			
+			
 			Iniciar jf = new Iniciar(
 					"PlacaMas Versión 1.0", 900, 600);
 			jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,6 +75,7 @@ public class Iniciar extends JFrame implements WindowListener, MouseListener{
 			FrmLogin frm = new FrmLogin(jf);
 			frm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			frm.setVisible(true);
+			
 			
 			
 		} catch (Exception e) {
