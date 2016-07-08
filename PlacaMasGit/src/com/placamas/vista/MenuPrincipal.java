@@ -110,6 +110,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		private FrmMaterial FrmMaterial = new FrmMaterial(); 
 		private FrmMedidas FrmMedidas = new FrmMedidas();
 		private FrmRutas FrmRutas = new FrmRutas();
+		private FrmReglas FrmReglas = new FrmReglas();
 		
 	    //*FORMULARIOS DE USUARIOS
 		private FrmCambioContraseña FrmGestionUsuarios = new FrmCambioContraseña();
@@ -501,7 +502,9 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		
 		//REGLAS DEL SISTEMA//
 		if(e.getSource()==mItem16){
-			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");
+			tabbedPane.add(FrmReglas.reglas, "Reglas de Sistema    ");
+			FrmRutas.setVisible(true);
+			
 
 		}
 		
