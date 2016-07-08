@@ -494,7 +494,8 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		
 		//RUTA DE ARCHIVOS//
 		if(e.getSource()==mItem15){
-			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");
+			tabbedPane.add(FrmRutas.rutas, "Ruta de Archivos    ");
+			FrmRutas.setVisible(true);
 
 		}
 		
