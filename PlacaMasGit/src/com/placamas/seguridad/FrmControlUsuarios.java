@@ -344,16 +344,19 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		txtCodigo = new JTextField();
+		txtCodigo.setEnabled(false);
 		txtCodigo.setBounds(21, 72, 115, 20);
 		panel_1.add(txtCodigo);
 		txtCodigo.setColumns(10);
 		
 		txtNombre = new JTextField();
+		txtNombre.setEnabled(false);
 		txtNombre.setBounds(21, 123, 229, 20);
 		panel_1.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		txtEmail = new JTextField();
+		txtEmail.setEnabled(false);
 		txtEmail.setBounds(21, 182, 229, 20);
 		panel_1.add(txtEmail);
 		txtEmail.setColumns(10);
