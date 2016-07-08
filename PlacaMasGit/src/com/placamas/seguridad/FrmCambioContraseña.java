@@ -55,10 +55,7 @@ public class FrmCambioContraseña extends JInternalFrame implements ActionListene
 	private JSeparator separator_1;
 	private JLabel lblListaDeUsuario;
 	private JLabel lblNewLabel;
-	private JButton btnCambiarContra;
 	
-
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -98,9 +95,6 @@ public class FrmCambioContraseña extends JInternalFrame implements ActionListene
 		toolBar.add(btnEliminar);
 		btnEliminar.setIcon(new ImageIcon(FrmCambioContraseña.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
 		
-		
-		
-		
 		btnEliminar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
@@ -124,8 +118,6 @@ public class FrmCambioContraseña extends JInternalFrame implements ActionListene
 		lblDescripcion.setBounds(63, 245, 118, 20);
 		
 		GesUsu.add(lblDescripcion);
-		
-		
 
 		txtIdUser = new JTextField();
 		txtIdUser.addKeyListener(new KeyAdapter() {
@@ -156,17 +148,6 @@ public class FrmCambioContraseña extends JInternalFrame implements ActionListene
 		btnNuevo.setToolTipText("Nuevo Registro");
 		btnEliminar.setToolTipText("Eliminar");
 		btnGrabar.setToolTipText("Grabar");
-		
-		btnCambiarContra = new JButton("");
-		btnCambiarContra.setIcon(new ImageIcon(FrmCambioContraseña.class.getResource("/iconosmodernos/1466476622_common-new-edit-compose-glyph.png")));
-		btnCambiarContra.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				FrmCambiar cambio = new FrmCambiar();
-				cambio.setVisible(true);
-			}
-		});
-		toolBar.add(btnCambiarContra);
 		
 		modelo.addColumn("Codigo");
 		modelo.addColumn("Nombre");
@@ -265,8 +246,6 @@ public class FrmCambioContraseña extends JInternalFrame implements ActionListene
 	void mensaje(String m){
 		JOptionPane.showMessageDialog(null, m);
 }	
-
-	
 	
 	protected void btnGrabarActionPerformed(ActionEvent arg0) {
 		
@@ -274,8 +253,7 @@ public class FrmCambioContraseña extends JInternalFrame implements ActionListene
         texto=texto.replaceAll(" ", "");
         if(texto.length()==0){
         	
-            mensaje("ERROR: No se aceptan campos en blanco");
-            
+            mensaje("ERROR: No se aceptan campos en blanco");        
         }
         else
         if(texto.length()>11 || texto.length()<3){

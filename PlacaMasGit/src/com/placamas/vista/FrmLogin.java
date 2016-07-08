@@ -144,12 +144,12 @@ public class FrmLogin extends JDialog implements ActionListener{
 					frm.menu.muestraOpciones();
 				}else{
 					String pregunta = "¿En que mes Nació?";
-					String b = "Marzo";
+					String respuesta = "Marzo";
 					
 					if (checkBox.isSelected()){
-						String respuesta = JOptionPane.showInputDialog(
+						String a = JOptionPane.showInputDialog(
 								"Clave o Contraseña Erronea " + "\n" 
-						+"Su Pregunta Secreta es:" + pregunta +  "\n"+"Respuesta Secreta", b);
+						+"Su Pregunta Secreta es:" + pregunta +  "\n"+"Respuesta Secreta", respuesta);
 
 					} else {
 						JOptionPane.showMessageDialog(this, "Usuario o Contraseña no valida!!!");

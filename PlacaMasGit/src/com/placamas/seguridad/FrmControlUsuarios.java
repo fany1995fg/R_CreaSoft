@@ -49,6 +49,9 @@ import javax.swing.JCheckBox;
 
 import org.apache.poi.hssf.record.formula.TblPtg;
 import org.omg.CORBA.OBJ_ADAPTER;
+import javax.swing.border.TitledBorder;
+import javax.swing.UIManager;
+import javax.swing.JTextField;
 
 public class FrmControlUsuarios extends JInternalFrame implements ActionListener, MouseListener {
 	
@@ -56,13 +59,16 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 	public JTable table;
 	public JTable tableul;
 	public JTable tablelocal;
-	private JButton btnAgregar;
+	private JButton btnGrabar;
 	private JButton btnEliminar;
 	public JPanel control;
 	DefaultTableModel modelo=new DefaultTableModel();
 	private JToolBar toolBar;
 	ResourceBundle rb = ResourceBundle.getBundle("database_sql");
 	private JComboBox cboUsuario_1;
+	private JTextField txtCodigo;
+	private JTextField txtNombre;
+	private JTextField txtEmail;
 
 	//private ControladorCategoria c = new ControladorCategoria();
 	/**
@@ -100,12 +106,18 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/gui/img/banners/pruebaBanner2.jpg")));
-		label.setBounds(20, 32, 1078, 157);
+		label.setBounds(20, 35, 1078, 108);
 		control.add(label);
 		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Usuarios", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 153, 255)));
+		panel.setBounds(40, 177, 297, 344);
+		control.add(panel);
+		panel.setLayout(null);
+		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(51, 245, 300, 350);
-		control.add(scrollPane);
+		scrollPane.setBounds(10, 25, 277, 297);
+		panel.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
@@ -123,30 +135,21 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		toolBar.setBounds(0, 0, 358, 23);
 		control.add(toolBar);
 		
-		JButton btnConsultar = new JButton("");
-		btnConsultar.addActionListener(new ActionListener() {
+		JButton btnAgregar = new JButton("");
+		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnConsultar.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconosmodernos/1466476618_File.png")));
-		toolBar.add(btnConsultar);
-		
-		btnAgregar = new JButton("");
-		btnAgregar.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconosmodernos/1466475388_save.png")));
+		btnAgregar.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconosmodernos/1466476618_File.png")));
 		toolBar.add(btnAgregar);
+		
+		btnGrabar = new JButton("");
+		btnGrabar.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconosmodernos/1466475388_save.png")));
+		toolBar.add(btnGrabar);
 		
 		btnEliminar = new JButton("");
 		btnEliminar.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
 		toolBar.add(btnEliminar);
-		
-		JButton btnVerOpciones = new JButton("Ver Opciones");
-		btnVerOpciones.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FrmOpciones frm = new FrmOpciones();
-				frm.setVisible(true);
-			}
-		});
-		toolBar.add(btnVerOpciones);
 		
 		JLabel lblSeleccioneUnUsuario = new JLabel("Seleccione un Usuario:");
 		lblSeleccioneUnUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -161,13 +164,46 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		modelo.addColumn("Cod-Usuario");
 		modelo.addColumn("Local");
 		
+		JLabel lblUsuario = new JLabel("Usuario");
+		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblUsuario.setBounds(68, 306, 48, 19);
+		control.add(lblUsuario);
+		cboUsuario_1 = new JComboBoxBD(rb.getString("SQL_COMBO_USUARIO"));
+		cboUsuario_1.setBounds(131, 307, 171, 20);
+		control.add(cboUsuario_1);
+		
+		JButton btnAadirPrivilegios = new JButton("Accesos al Sistema");
+		btnAadirPrivilegios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FrmOpciones frm = new FrmOpciones();
+				frm.setVisible(true);
+			
+			}
+		});
+		btnAadirPrivilegios.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconos/Notes.gif")));
+		btnAadirPrivilegios.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnAadirPrivilegios.setBounds(88, 545, 209, 50);
+		control.add(btnAadirPrivilegios);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Detalle Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 153, 255)));
+		panel_1.setBounds(392, 177, 696, 418);
+		control.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblLocales = new JLabel("Locales");
+		lblLocales.setBounds(403, 246, 51, 20);
+		panel_1.add(lblLocales);
+		lblLocales.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(631, 244, 300, 150);
-		control.add(scrollPane_1);
+		scrollPane_1.setBounds(21, 276, 274, 125);
+		panel_1.add(scrollPane_1);
 		
 		tableul = new JTable();
-		tableul.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		scrollPane_1.setViewportView(tableul);
+		tableul.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		tableul.addKeyListener(new KeyAdapter() {
 			@Override
 			//DISEÑO CLIC DERECHO EN EL SCROL / EVENT /KEY/ KEYRELEASED
@@ -191,10 +227,11 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(631, 445, 300, 150);
-		control.add(scrollPane_2);
+		scrollPane_2.setBounds(403, 276, 274, 125);
+		panel_1.add(scrollPane_2);
 		
 		tablelocal = new JTable();
+		scrollPane_2.setViewportView(tablelocal);
 		tablelocal.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		tablelocal.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -203,118 +240,125 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 				"Codigo", "Nombre de Local"
 			}
 		));
-		scrollPane_2.setViewportView(tablelocal);
 		
 		JLabel lblLocalXUsuarios = new JLabel("Usuarios x Local");
+		lblLocalXUsuarios.setBounds(21, 246, 115, 20);
+		panel_1.add(lblLocalXUsuarios);
 		lblLocalXUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblLocalXUsuarios.setBounds(631, 219, 125, 14);
-		control.add(lblLocalXUsuarios);
-		
-		JLabel lblLocales = new JLabel("Locales");
-		lblLocales.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblLocales.setBounds(631, 420, 97, 14);
-		control.add(lblLocales);
-		
-		JLabel lblUsuario = new JLabel("Usuario");
-		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblUsuario.setBounds(68, 306, 48, 19);
-		control.add(lblUsuario);
-		cboUsuario_1 = new JComboBoxBD(rb.getString("SQL_COMBO_USUARIO"));
-		cboUsuario_1.setBounds(131, 307, 171, 20);
-		control.add(cboUsuario_1);
 		
 		JLabel label_1 = new JLabel("Lista de Privilegios");
+		label_1.setBounds(275, 11, 131, 20);
+		panel_1.add(label_1);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		label_1.setBounds(383, 215, 149, 23);
-		control.add(label_1);
 		
 		JCheckBox checkBox_1 = new JCheckBox("Anular LP");
+		checkBox_1.setBounds(275, 38, 79, 25);
+		panel_1.add(checkBox_1);
 		checkBox_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		checkBox_1.setBounds(383, 260, 228, 23);
-		control.add(checkBox_1);
 		
 		JCheckBox checkBox_2 = new JCheckBox("Desbloquear LP");
+		checkBox_2.setBounds(275, 66, 113, 25);
+		panel_1.add(checkBox_2);
 		checkBox_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		checkBox_2.setBounds(383, 280, 228, 23);
-		control.add(checkBox_2);
 		
 		JCheckBox checkBox_3 = new JCheckBox("Aprobar/Desaprobar Produccion");
+		checkBox_3.setBounds(275, 94, 209, 25);
+		panel_1.add(checkBox_3);
 		checkBox_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		checkBox_3.setBounds(383, 301, 228, 23);
-		control.add(checkBox_3);
 		
 		JCheckBox checkBox_4 = new JCheckBox("Incluir Lista de Digitadores");
+		checkBox_4.setBounds(275, 178, 177, 25);
+		panel_1.add(checkBox_4);
 		checkBox_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		checkBox_4.setBounds(383, 321, 228, 23);
-		control.add(checkBox_4);
 		
 		JCheckBox checkBox_5 = new JCheckBox("Incluir Lista de Optimizadores");
+		checkBox_5.setBounds(275, 122, 195, 25);
+		panel_1.add(checkBox_5);
 		checkBox_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		checkBox_5.setBounds(383, 341, 228, 23);
-		control.add(checkBox_5);
 		
 		JCheckBox checkBox_6 = new JCheckBox("Editar Digitador");
+		checkBox_6.setBounds(275, 150, 113, 25);
+		panel_1.add(checkBox_6);
 		checkBox_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		checkBox_6.setBounds(383, 362, 228, 23);
-		control.add(checkBox_6);
 		
 		JCheckBox checkBox_7 = new JCheckBox("Editar Optimizador");
+		checkBox_7.setBounds(275, 206, 131, 25);
+		panel_1.add(checkBox_7);
 		checkBox_7.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		checkBox_7.setBounds(383, 382, 228, 23);
-		control.add(checkBox_7);
 		
 		JCheckBox checkBox_8 = new JCheckBox("Editar Vendedor");
+		checkBox_8.setBounds(486, 38, 117, 25);
+		panel_1.add(checkBox_8);
 		checkBox_8.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		checkBox_8.setBounds(383, 402, 228, 23);
-		control.add(checkBox_8);
 		
 		JCheckBox checkBox_9 = new JCheckBox("Editar Tiempo de Entrega");
+		checkBox_9.setBounds(486, 66, 171, 25);
+		panel_1.add(checkBox_9);
 		checkBox_9.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		checkBox_9.setBounds(383, 422, 228, 23);
-		control.add(checkBox_9);
 		
 		JCheckBox checkBox_10 = new JCheckBox("Editar Documentos de Venta");
+		checkBox_10.setBounds(486, 94, 187, 25);
+		panel_1.add(checkBox_10);
 		checkBox_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		checkBox_10.setBounds(383, 442, 228, 23);
-		control.add(checkBox_10);
 		
 		JCheckBox checkBox_11 = new JCheckBox("Exportar hacia Servidor FTP");
+		checkBox_11.setBounds(486, 122, 185, 25);
+		panel_1.add(checkBox_11);
 		checkBox_11.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		checkBox_11.setBounds(383, 462, 228, 23);
-		control.add(checkBox_11);
 		
 		JCheckBox checkBox_12 = new JCheckBox("Importar desde Servidor FTP");
+		checkBox_12.setBounds(486, 150, 191, 25);
+		panel_1.add(checkBox_12);
 		checkBox_12.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		checkBox_12.setBounds(383, 482, 228, 23);
-		control.add(checkBox_12);
 		
 		JCheckBox checkBox_13 = new JCheckBox("Administrar Usuarios");
+		checkBox_13.setBounds(486, 178, 145, 25);
+		panel_1.add(checkBox_13);
 		checkBox_13.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		checkBox_13.setBounds(383, 502, 228, 23);
-		control.add(checkBox_13);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(383, 245, 209, 2);
-		control.add(separator_1);
-		
-		JLabel lblUsuarios = new JLabel("Usuarios");
-		lblUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblUsuarios.setBounds(51, 210, 121, 23);
-		control.add(lblUsuarios);
 		
 		JButton btnA = new JButton("");
+		btnA.setBounds(323, 298, 57, 33);
+		panel_1.add(btnA);
 		btnA.setContentAreaFilled(false);
 		btnA.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconos/Up.gif")));
-		btnA.setBounds(754, 404, 33, 30);
-		control.add(btnA);
 		
 		JButton btnB = new JButton("");
+		btnB.setBounds(323, 353, 57, 33);
+		panel_1.add(btnB);
 		btnB.setContentAreaFilled(false);
 		btnB.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconos/Down.gif")));
-		btnB.setBounds(800, 405, 33, 28);
-		control.add(btnB);
+		
+		JLabel lblCodigo = new JLabel("Codigo:");
+		lblCodigo.setBounds(20, 38, 48, 17);
+		panel_1.add(lblCodigo);
+		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setBounds(20, 95, 54, 17);
+		panel_1.add(lblNombre);
+		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JLabel lblEmail = new JLabel("Email:");
+		lblEmail.setBounds(20, 151, 36, 17);
+		panel_1.add(lblEmail);
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		txtCodigo = new JTextField();
+		txtCodigo.setBounds(21, 72, 115, 20);
+		panel_1.add(txtCodigo);
+		txtCodigo.setColumns(10);
+		
+		txtNombre = new JTextField();
+		txtNombre.setBounds(21, 123, 229, 20);
+		panel_1.add(txtNombre);
+		txtNombre.setColumns(10);
+		
+		txtEmail = new JTextField();
+		txtEmail.setBounds(21, 182, 229, 20);
+		panel_1.add(txtEmail);
+		txtEmail.setColumns(10);
 		btnEliminar.addActionListener(this);
-		btnAgregar.addActionListener(this);
+		btnGrabar.addActionListener(this);
 		
 		listaLocales();
 		listarUsuarioLocales();
@@ -343,7 +387,7 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		if (arg0.getSource() == btnEliminar) {
 			do_btnEliminar_actionPerformed(arg0);
 		}
-		if (arg0.getSource() == btnAgregar) {
+		if (arg0.getSource() == btnGrabar) {
 			do_btnAgregar_actionPerformed(arg0);
 		}
 	}
