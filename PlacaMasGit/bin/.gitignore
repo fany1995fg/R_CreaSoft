@@ -1,9 +1,11 @@
-/iconos
+/Imagenes
 /Set
+/com
 /database_conexion.properties
 /database_sql.properties
 /gui
 /icon
-/Imagenes
-/com
-/org
+/iconos
+/iconosmodernos
+/recursos
+/toolbaricons

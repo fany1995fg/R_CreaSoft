@@ -2,11 +2,8 @@ package com.placamas.beans;
 
 public class ColoresBean {
 	
-	//Probando Alex
-	//Probando Francisco
+//STHEFANY PROBANDO UN PULL
 	
-	//Prueba coomit
-
 	private String idColor;
 	private String Descripcion;
 	private String Match_Tab;
