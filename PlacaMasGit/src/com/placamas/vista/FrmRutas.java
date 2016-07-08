@@ -1,32 +1,34 @@
 package com.placamas.vista;
 	import java.awt.EventQueue;
-	import java.awt.Font;
-	import java.awt.event.ActionEvent;
-	import java.awt.event.ActionListener;
-	import java.awt.event.FocusEvent;
-	import java.awt.event.FocusListener;
-	import java.awt.event.KeyAdapter;
-	import java.awt.event.KeyEvent;
-	import java.awt.event.MouseAdapter;
-	import java.awt.event.MouseEvent;
-	import java.awt.event.MouseListener;
-	import java.util.ArrayList;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.File;
+import java.util.ArrayList;
 
 	import javax.swing.ImageIcon;
-	import javax.swing.JButton;
-	import javax.swing.JInternalFrame;
-	import javax.swing.JLabel;
-	import javax.swing.JOptionPane;
-	import javax.swing.JPanel;
-	import javax.swing.JScrollPane;
-	import javax.swing.JSeparator;
-	import javax.swing.JTable;
-	import javax.swing.JTextField;
-	import javax.swing.JToolBar;
-	import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
+import javax.swing.table.DefaultTableModel;
 
 	import com.placamas.beans.RutasBean;
-	import com.placamas.controlador.RutasControlador;
+import com.placamas.controlador.RutasControlador;
 public class FrmRutas extends JInternalFrame implements ActionListener {
 
 		
@@ -40,7 +42,7 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 		private JTextField txtRuta;
 		JTable tbRutas;
 		private JButton btnGrabar;
-		private JButton btnCerrar;
+		private static JButton btnEscoger;
 		private JButton btnEliminar;
 		private JButton btnNuevo;
 		private JToolBar toolBar;
@@ -49,6 +51,7 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 		private JLabel label;
 		private JSeparator separator_1;
 		private JLabel lblListaDeRutas;
+		private JButton btnAbrir;
 
 
 		public static void main(String[] args) {
@@ -68,6 +71,7 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 		 * Create the frame.
 		 */
 		public FrmRutas() {
+			
 			
 			rutas = new JPanel();
 			//marcas.addMouseListener((MouseListener) this);
@@ -210,9 +214,14 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			txtIdRuta.setText(""+tbRutas.getValueAt(fila, 0));
 			txtRuta.setText(""+tbRutas.getValueAt(fila, 1));
 			
-			JButton btnExplorar = new JButton("Explorar");
-			btnExplorar.setBounds(570, 245, 89, 23);
-			rutas.add(btnExplorar);
+			btnAbrir = new JButton("...");
+			btnAbrir.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					btnEscogerActionPerformed(arg0);
+				}
+			});
+			btnAbrir.setBounds(579, 245, 89, 23);
+			rutas.add(btnAbrir);
 			
 			
 			//tbMarcas.requestFocus();
@@ -319,12 +328,27 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 		
 		}
 
-
+	String archivo ="";
+	@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if (arg0.getSource() == btnNuevo) {
 				btnNuevoActionPerformed(arg0);
 			}
 		}
+	
+	
+	public void btnEscogerActionPerformed(ActionEvent arg0){
+		
+			JFileChooser fc = new JFileChooser();
+			int returnVal = fc.showDialog(this, "Seleccione file");
+			
+			if(returnVal == JFileChooser.APPROVE_OPTION){
+				  File file = fc.getSelectedFile();
+				  txtRuta.setText(file.getAbsolutePath());
+			}
+
+		
+	}
 		protected void btnNuevoActionPerformed(ActionEvent arg0) {
 			txtIdRuta.setText("");
 			txtRuta.setText("");
