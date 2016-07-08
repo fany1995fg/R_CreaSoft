@@ -2,7 +2,6 @@ package com.placamas.beans;
 
 public class ColoresBean {
 	
-//STHEFANY PROBANDO UN PULL
 	
 	private String idColor;
 	private String Descripcion;

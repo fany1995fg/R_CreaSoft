@@ -38,15 +38,7 @@ import java.awt.Color;
 public class MenuPrincipal extends JFrame implements ActionListener, MouseListener {
 
 	
-	
-	/*public static void main (String[] args){	
-		
-		MenuPrincipal frame = new MenuPrincipal();
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.pack();
-        frame.setVisible(true);
-	}*/	
+//ELIMINANDO COMENTARIOS 
 	
 	private static final long serialVersionUID = 1L;
 	
