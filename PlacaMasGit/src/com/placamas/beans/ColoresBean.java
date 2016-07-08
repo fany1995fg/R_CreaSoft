@@ -2,7 +2,7 @@ package com.placamas.beans;
 
 public class ColoresBean {
 	
-	//PROBANDO :V
+	
 	
 	private String idColor;
 	private String Descripcion;
