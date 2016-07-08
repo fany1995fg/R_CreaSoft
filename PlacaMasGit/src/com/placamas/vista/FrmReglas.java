@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,9 +27,13 @@ import javax.swing.JToolBar;
 import javax.swing.table.DefaultTableModel;
 
 import com.placamas.beans.ReglasBean;
+import com.placamas.componentes.JComboBoxBD;
 import com.placamas.controlador.ReglasControlador;
+
 import javax.swing.border.TitledBorder;
+
 import java.awt.Color;
+
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.CompoundBorder;
@@ -109,6 +114,7 @@ public class FrmReglas extends JInternalFrame implements ActionListener{
 	private JCheckBox chckbxCopiarUltimo;
 	private JCheckBox chckbxAadirItemNuevo;
 	private JComboBox comboBox_2;
+	ResourceBundle rb = ResourceBundle.getBundle("database_sql");
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -509,7 +515,7 @@ public class FrmReglas extends JInternalFrame implements ActionListener{
 		
 		lblCodigoDeTienda = new JLabel("Codigo de Tienda");
 		lblCodigoDeTienda.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCodigoDeTienda.setBounds(45, 41, 100, 20);
+		lblCodigoDeTienda.setBounds(20, 41, 100, 20);
 		panel_6.add(lblCodigoDeTienda);
 		
 		textField_19 = new JTextField();
@@ -518,8 +524,8 @@ public class FrmReglas extends JInternalFrame implements ActionListener{
 		textField_19.setBounds(112, 64, 100, 20);
 		panel_6.add(textField_19);
 		
-		comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(148, 42, 64, 20);
+		comboBox_2 = new JComboBoxBD(rb.getString("SQL_COMBO_IDLOCAL"));
+		comboBox_2.setBounds(122, 42, 110, 20);
 		panel_6.add(comboBox_2);
 		
 		
