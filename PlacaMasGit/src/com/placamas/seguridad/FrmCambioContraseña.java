@@ -256,7 +256,7 @@ public class FrmCambioContraseña extends JInternalFrame implements ActionListene
             mensaje("ERROR: No se aceptan campos en blanco");        
         }
         else
-        if(texto.length()>11 || texto.length()<3){
+        if(texto.length()>11 || texto.length()<0){
         	
             mensaje("ERROR: Solo se aceptan de 3 a 11 caracteres");
             
@@ -265,7 +265,7 @@ public class FrmCambioContraseña extends JInternalFrame implements ActionListene
         if(texto.length()>0 || texto.length()<11){
         	estado=true;
         if(estado==true){ 	
-		UsuarioBean l=new UsuarioBean(txtIdUser.getText(), txtNomb_User.getText(),txtPassword.getText());
+		UsuarioBean l=new UsuarioBean(txtIdUser.getText(), txtNomb_User.getText(),txtPassword.getText(),txtNomb_User.getText());
 		int valor=obj.insertaUsuario(l);
 		if(valor==1){
 			

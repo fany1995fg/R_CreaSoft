@@ -72,7 +72,7 @@ public class FrmReglas extends JInternalFrame implements ActionListener{
 	private JLabel lblLargoMinimoDe;
 	private JLabel lblAnchoMinimoDe;
 	private JLabel lblEspesorMinimoDe;
-	private JTextField textField_12;
+	private JTextField txtCorSier;
 	private JTextField textField_13;
 	private JLabel lblRefilarServicio;
 	private JLabel lblEs;
@@ -212,19 +212,19 @@ public class FrmReglas extends JInternalFrame implements ActionListener{
 		panel_1.setLayout(null);
 		
 		chckbxImprimirFullEtiquetas = new JCheckBox("Imprimir full Etiquetas");
-		chckbxImprimirFullEtiquetas.setBounds(17, 46, 129, 16);
+		chckbxImprimirFullEtiquetas.setBounds(17, 46, 173, 16);
 		panel_1.add(chckbxImprimirFullEtiquetas);
 		
 		chckbxAgruparAlGrabar = new JCheckBox("Agrupar Piezas al Grabar");
-		chckbxAgruparAlGrabar.setBounds(17, 27, 145, 16);
+		chckbxAgruparAlGrabar.setBounds(17, 27, 173, 16);
 		panel_1.add(chckbxAgruparAlGrabar);
 		
 		chckbxCopiarUltimo = new JCheckBox("Copiar Ultimo Item");
-		chckbxCopiarUltimo.setBounds(17, 84, 115, 16);
+		chckbxCopiarUltimo.setBounds(17, 84, 157, 16);
 		panel_1.add(chckbxCopiarUltimo);
 		
 		chckbxAadirItemNuevo = new JCheckBox("A\u00F1adir Item Nuevo");
-		chckbxAadirItemNuevo.setBounds(17, 65, 115, 16);
+		chckbxAadirItemNuevo.setBounds(17, 65, 173, 16);
 		panel_1.add(chckbxAadirItemNuevo);
 		
 		panel_2 = new JPanel();
@@ -233,11 +233,11 @@ public class FrmReglas extends JInternalFrame implements ActionListener{
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		textField_12 = new JTextField();
-		textField_12.setToolTipText("Escribe una descripci\u00F3n para el Color");
-		textField_12.setColumns(10);
-		textField_12.setBounds(213, 14, 25, 20);
-		panel_2.add(textField_12);
+		txtCorSier = new JTextField();
+		txtCorSier.setToolTipText("Escribe una descripci\u00F3n para el Color");
+		txtCorSier.setColumns(10);
+		txtCorSier.setBounds(213, 14, 25, 20);
+		panel_2.add(txtCorSier);
 		
 		textField_13 = new JTextField();
 		textField_13.setToolTipText("Escribe un id para el Color");

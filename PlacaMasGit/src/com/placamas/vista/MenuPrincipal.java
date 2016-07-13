@@ -87,8 +87,8 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 	////////////////////////////////////////////////////////////////////////
 	
 	public JMenuItem mItem17    = new JMenuItem("Gestión de Usuarios");
-	public JMenuItem mItem18    = new JMenuItem("Cambiar Contraseña");
-	public JMenuItem mItem19    = new JMenuItem("Administrar Usuarios");
+	public JMenuItem mItem18    = new JMenuItem("Control de Usuarios");
+	public JMenuItem mItem19    = new JMenuItem("Cambiar Contraseña");
 
 
 	////////////////////////////////////////////////////////////////////////
@@ -510,8 +510,8 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		
 		//GESTION DE USUARIOS//
 		if(e.getSource()==mItem17){
-			tabbedPane.add(FrmGestionUsuarios.GesUsu, "Gestion    ");
-			FrmGestionUsuarios.setVisible(true);
+			//tabbedPane.add(FrmGestionUsuarios.GesUsu, "Gestion de Usuarios    ");
+			//FrmGestionUsuarios.setVisible(true);
 			/*FrmGestionUsuarios.tbUsuario.requestFocus();
 			FrmGestionUsuarios.tbUsuario.changeSelection(0,0,true, true);*/
 		
@@ -519,17 +519,14 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		//CONTROL DE USUARIOS//
 		if(e.getSource()==mItem18){
 			FrmControlUsuarios.setVisible(true);
-			FrmControlUsuarios.tablelocal.requestFocus();
-			tabbedPane.add(FrmControlUsuarios.control, "Cambiar Contraseña");	
+			tabbedPane.add(FrmControlUsuarios.control, "Control de Usuarios    ");	
 			//FrmControlUsuarios.setVisible(true);
 		}
 		
 		//CAMBIAR CONTRASEÑA//
 		if(e.getSource()==mItem19){
-			
-			tabbedPane.add(FrmCambiar.usuario, "Administrar Usuarios");
 			FrmCambiar.setVisible(true);
-			
+			tabbedPane.add(FrmCambiar.usuario, "Cambiar Contaseña    ");
 			//FrmControlUsuarios.setVisible(true);
 		}
 		

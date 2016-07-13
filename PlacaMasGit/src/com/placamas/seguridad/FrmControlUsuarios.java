@@ -49,6 +49,7 @@ import javax.swing.JCheckBox;
 
 import org.apache.poi.hssf.record.formula.TblPtg;
 import org.omg.CORBA.OBJ_ADAPTER;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
@@ -56,18 +57,20 @@ import javax.swing.JTextField;
 public class FrmControlUsuarios extends JInternalFrame implements ActionListener, MouseListener {
 	
 	UsuarioControlador obj=new UsuarioControlador();
+	Boolean estado=false;
 	public JTable table;
 	public JTable tableul;
 	public JTable tablelocal;
 	private JButton btnGrabar;
 	private JButton btnEliminar;
+	private JButton btnNuevo;
 	public JPanel control;
 	DefaultTableModel modelo=new DefaultTableModel();
 	private JToolBar toolBar;
 	ResourceBundle rb = ResourceBundle.getBundle("database_sql");
 	private JComboBox cboUsuario_1;
-	private JTextField txtCodigo;
-	private JTextField txtNombre;
+	private JTextField txtIdUser;
+	private JTextField txtNomb_User;
 	private JTextField txtEmail;
 
 	//private ControladorCategoria c = new ControladorCategoria();
@@ -135,13 +138,9 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		toolBar.setBounds(0, 0, 358, 23);
 		control.add(toolBar);
 		
-		JButton btnAgregar = new JButton("");
-		btnAgregar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnAgregar.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconosmodernos/1466476618_File.png")));
-		toolBar.add(btnAgregar);
+		btnNuevo = new JButton("");
+		btnNuevo.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconosmodernos/1466476618_File.png")));
+		toolBar.add(btnNuevo);
 		
 		btnGrabar = new JButton("");
 		btnGrabar.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconosmodernos/1466475388_save.png")));
@@ -343,17 +342,17 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		panel_1.add(lblEmail);
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		txtCodigo = new JTextField();
-		txtCodigo.setEnabled(false);
-		txtCodigo.setBounds(21, 72, 115, 20);
-		panel_1.add(txtCodigo);
-		txtCodigo.setColumns(10);
+		txtIdUser = new JTextField();
+		//txtIdUser.setEnabled(false);
+		txtIdUser.setBounds(21, 72, 115, 20);
+		panel_1.add(txtIdUser);
+		txtIdUser.setColumns(10);
 		
-		txtNombre = new JTextField();
-		txtNombre.setEnabled(false);
-		txtNombre.setBounds(21, 123, 229, 20);
-		panel_1.add(txtNombre);
-		txtNombre.setColumns(10);
+		txtNomb_User = new JTextField();
+		//txtNombre.setEnabled(false);
+		txtNomb_User.setBounds(21, 123, 229, 20);
+		panel_1.add(txtNomb_User);
+		txtNomb_User.setColumns(10);
 		
 		txtEmail = new JTextField();
 		txtEmail.setEnabled(false);
@@ -361,7 +360,20 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		panel_1.add(txtEmail);
 		txtEmail.setColumns(10);
 		btnEliminar.addActionListener(this);
-		btnGrabar.addActionListener(this);
+		
+		btnGrabar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnGrabarActionPerformed(arg0);
+			}
+		});
+		
+		
+		
+		btnNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnNuevoActionPerformed(arg0);
+			}
+		});
 		
 		listaLocales();
 		listarUsuarioLocales();
@@ -385,7 +397,42 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		}
 		
 	}
+	
+	void mensaje(String m){
+		JOptionPane.showMessageDialog(null, m);
+}	
 
+	
+protected void btnGrabarActionPerformed(ActionEvent arg0) {
+		
+		String texto=txtIdUser.getText();
+        texto=texto.replaceAll(" ", "");
+        if(texto.length()==0){
+        	
+            mensaje("ERROR: No se aceptan campos en blanco");        
+        }
+        else
+        if(texto.length()>11 || texto.length()<0){
+        	
+            mensaje("ERROR: Solo se aceptan de 3 a 11 caracteres");
+            
+        }
+        else
+        if(texto.length()>0 || texto.length()<11){
+        	estado=true;
+        if(estado==true){ 	
+		UsuarioBean l=new UsuarioBean(txtIdUser.getText(), txtNomb_User.getText(),txtIdUser.getText(),txtNomb_User.getText());
+		int valor=obj.insertaUsuario(l);
+		if(valor==1){
+			
+			mensaje("Registro Exitoso de Usuario");
+			estado=false;
+			listaData();
+			}
+       	  }
+       	}
+      }
+        
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btnEliminar) {
 			do_btnEliminar_actionPerformed(arg0);
@@ -393,6 +440,16 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		if (arg0.getSource() == btnGrabar) {
 			do_btnAgregar_actionPerformed(arg0);
 		}
+		if (arg0.getSource() == btnNuevo) {
+			btnNuevoActionPerformed(arg0);
+		}
+	}
+	
+	protected void btnNuevoActionPerformed(ActionEvent arg0) {
+		txtIdUser.setText("");
+		txtNomb_User.setText("");
+		txtIdUser.requestFocus();
+		estado=true;
 	}
 	protected void do_btnAgregar_actionPerformed(ActionEvent arg0) {
 		//String des = textField.getText().trim();

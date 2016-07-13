@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import com.placamas.beans.OpcionBean;
 import com.placamas.beans.UsuarioBean;
 import com.placamas.beans.UsuarioRight;
@@ -22,15 +24,15 @@ public class UsuarioControlador {
 		PreparedStatement pstm = null;
 		try {
 			conn = new ConexionDB().getConexion();
-			String sql = "select * from user_data where User_Nomb=? and User_Pasw =?";
+			String sql = "select * from user_data where idUser=? and User_Pasw =?";
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, login);
 			pstm.setString(2, clave);
 			ResultSet rs = pstm.executeQuery();
 			if (rs.next()) {
-				bean = new UsuarioBean(sql, sql, sql);
-				bean.setIdUser(rs.getString(1));
-				bean.setUser_Nomb(rs.getString("User_Nomb"));
+				bean = new UsuarioBean(sql, sql, sql,sql);
+				bean.setIdUser(rs.getString("idUser"));
+				bean.setUser_Nomb(rs.getString(2));
 				bean.setUser_Pasw("User_Pasw");
 			}
 		} catch (Exception e) {
@@ -114,25 +116,27 @@ public class UsuarioControlador {
 	}
 	
 	
-	public UsuarioBean cambiarContraseña(String clave,String login ) {
+	public UsuarioBean cambiarContraseña(String pass,String log ) {
 		
 		
 		UsuarioBean bean = null;
 		Connection conn = null;
 		PreparedStatement pstm = null;
+		
+		conn = new ConexionDB().getConexion();
+		String sql = "update user_data"+
+					" set User_Pasw=?"+
+					" where idUser=?";
 		try {
-			conn = new ConexionDB().getConexion();
-			String sql = "update user_data set User_Pasw=? where User_Nomb=?";
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, clave);
-			pstm.setString(2, login);
-			ResultSet rs = pstm.executeQuery();
-			if (rs.next()) {
-				bean = new UsuarioBean(sql, sql, sql);
-				bean.setIdUser(rs.getString(1));
-				bean.setUser_Pasw("User_Pasw");
-				bean.setUser_Nomb(rs.getString("User_Nomb"));
-				
+
+			pstm.setString(1, pass);
+			pstm.setString(2, log);
+			int rs = pstm.executeUpdate();
+			
+			String mensaje = "Los datos se han Modoficado de Manera Satisfactoria...";
+			if (rs>0) {
+				JOptionPane.showMessageDialog(null, mensaje);				
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -145,19 +149,21 @@ public class UsuarioControlador {
 		}
 		return bean;
 		
-
 	}
+	
+	
 	public int insertaUsuario(UsuarioBean x){
 		int contador = -1;
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		try {
 			conn = new ConexionDB().getConexion();
-			String sql ="insert into user_data values(?,?,?)";
+			String sql ="insert into user_data values(?,?,?,?)";
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, x.getIdUser());
 			pstm.setString(2, x.getUser_Nomb());
 			pstm.setString(3, x.getUser_Pasw());
+			pstm.setString(4, x.getResp());
 			
 
 			contador = pstm.executeUpdate();
@@ -187,7 +193,7 @@ public ArrayList<UsuarioBean> listarUsuario(){
 			ResultSet rs = pstm.executeQuery();
 			
 			while(rs.next()){
-				bean = new UsuarioBean(sql, sql, sql);
+				bean = new UsuarioBean(sql, sql, sql,sql);
 				bean.setIdUser(rs.getString("idUser"));
 				bean.setUser_Nomb(rs.getString("user_Nomb"));
 				bean.setUser_Pasw(rs.getString("user_Pasw"));

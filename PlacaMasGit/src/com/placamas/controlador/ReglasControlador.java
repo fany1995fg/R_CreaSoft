@@ -9,6 +9,8 @@ import com.placamas.beans.ReglasBean;
 import com.placamas.conexion.ConexionDB;
 
 public class ReglasControlador {
+	
+	
 	public int registrarReglas(ReglasBean x){
 		int valor=-1;
 		Connection cn=null;
@@ -43,7 +45,7 @@ public class ReglasControlador {
 	
 	
 	
-	/*
+	
 	public int actualizarReglas(ReglasBean x){
 		int valor=-1;
 		Connection cn=null;
@@ -52,8 +54,8 @@ public class ReglasControlador {
 			cn=new ConexionDB().getConexion();
 			String sql="update colores set idColor=?,Descripcion=?";
 			pstm=cn.prepareStatement(sql);
-			pstm.setString(1, x.getIdColor());
-			pstm.setString(2, x.getDescripcion());
+			pstm.setString(1, x.getDetalle());
+			pstm.setString(2, x.getIdRules());
 			valor=pstm.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,7 +70,7 @@ public class ReglasControlador {
 		}
 		return valor;
 	}
-	*/
+		
 	
 	
 	

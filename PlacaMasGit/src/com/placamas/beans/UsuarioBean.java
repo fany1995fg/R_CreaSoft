@@ -5,14 +5,16 @@ public class UsuarioBean {
 	private String idUser;
 	private String User_Nomb;
 	private String User_Pasw;
-	private String idLocal;
+	private String Resp;
 	
 
-	public UsuarioBean(String idUser, String user_Nomb, String user_Pasw) {
+	public UsuarioBean(String idUser, String user_Nomb, String user_Pasw, String resp) {
 		super();
 		this.idUser = idUser;
 		User_Nomb = user_Nomb;
 		User_Pasw = user_Pasw;
+		Resp = resp;
+		
 	}
 	public String getIdUser() {
 		return idUser;
@@ -32,11 +34,11 @@ public class UsuarioBean {
 	public void setUser_Pasw(String user_Pasw) {
 		User_Pasw = user_Pasw;
 	}
-	public String getIdLocal() {
-		return idLocal;
+	public String getResp() {
+		return Resp;
 	}
-	public void setIdLocal(String idLocal) {
-		this.idLocal = idLocal;
+	public void setResp(String resp) {
+		this.Resp = resp;
 	}
 
 	

@@ -25,8 +25,8 @@ import javax.swing.UIManager;
 public class FrmLogin extends JDialog implements ActionListener{
 	
 	public JLabel lblLogin, lblClave;
-	public JTextField txtLogin;
-	public JPasswordField txtClave;
+	public static JTextField txtLogin;
+	public static JPasswordField txtClave;
 	public static JTextField txtCamCont;
 	public static JTextField txtLog;
 	public JButton btnEnviar, btnCancelar;
@@ -35,7 +35,6 @@ public class FrmLogin extends JDialog implements ActionListener{
 	
 	private UsuarioControlador model = new UsuarioControlador();
 	public Iniciar frm;
-	private JCheckBox checkBox;
 	private JLabel lblBienvenido;
 	private JLabel lblPorFavorIngrese;
 	
@@ -96,13 +95,6 @@ public class FrmLogin extends JDialog implements ActionListener{
 			label.setBounds(37, 160, 145, 135);
 			getContentPane().add(label);
 			
-			checkBox = new JCheckBox("\u00BFOlvid\u00F3 su Contrase\u00F1a?");
-			checkBox.setBackground(UIManager.getColor("ToolBar.floatingBackground"));
-			checkBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			checkBox.setBounds(338, 223, 160, 31);
-			checkBox.setSelected(false);
-			getContentPane().add(checkBox);
-			
 			lblBienvenido = new JLabel("Bienvenido");
 			lblBienvenido.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			lblBienvenido.setBounds(27, 70, 223, 25);
@@ -112,6 +104,13 @@ public class FrmLogin extends JDialog implements ActionListener{
 			lblPorFavorIngrese.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			lblPorFavorIngrese.setBounds(27, 96, 344, 25);
 			getContentPane().add(lblPorFavorIngrese);
+			
+			JButton btnOlvContra = new JButton("\u00BFOlvidaste tu contrase\u00F1a?");
+			btnOlvContra.setBackground(UIManager.getColor("Panel.background"));
+			btnOlvContra.setForeground(Color.BLUE);
+			btnOlvContra.setBorder(null);
+			btnOlvContra.setBounds(338, 232, 160, 23);
+			getContentPane().add(btnOlvContra);
 			
 			
 			setVisible(true);
@@ -142,23 +141,13 @@ public class FrmLogin extends JDialog implements ActionListener{
 					frm.setVisible(true);
 					this.setVisible(false);
 					frm.menu.muestraOpciones();
-				}else{
-					String pregunta = "¿En que mes Nació?";
-					String respuesta = "Marzo";
-					
-					if (checkBox.isSelected()){
-						String a = JOptionPane.showInputDialog(
-								"Clave o Contraseña Erronea " + "\n" 
-						+"Su Pregunta Secreta es:" + pregunta +  "\n"+"Respuesta Secreta", respuesta);
-
-					} else {
+				}else {
 						JOptionPane.showMessageDialog(this, "Usuario o Contraseña no valida!!!");
+						txtLogin.requestFocus();
 						limpiar();
 
 					}
 					
-				}
-	
 			}
 			if(e.getSource() == btnCancelar){
 				System.exit(0);
