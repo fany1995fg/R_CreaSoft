@@ -10,6 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,8 +27,8 @@ import javax.swing.table.DefaultTableModel;
 
 import com.placamas.vista.FrmLogin;
 import com.placamas.beans.UsuarioBean;
-
 import com.placamas.controlador.UsuarioControlador;
+
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 
@@ -39,7 +40,7 @@ public class FrmCambiar extends JInternalFrame implements ActionListener{
 	UsuarioControlador obj=new UsuarioControlador();
 	DefaultTableModel modelo=new DefaultTableModel();
 	boolean estado=false;
-	
+	ResourceBundle rb = ResourceBundle.getBundle("database_sql");
 	private JTextField txtPassAct;
 	private JTextField txtPassNew;
 	private JButton btnGuardar;
