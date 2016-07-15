@@ -16,8 +16,10 @@ import javax.swing.JTextField;
 
 import com.placamas.beans.UsuarioBean;
 import com.placamas.controlador.UsuarioControlador;
-import javax.swing.JCheckBox;
+import com.placamas.vista.FrmPregunta;
+
 import java.awt.Color;
+
 import javax.swing.UIManager;
 
 
@@ -30,10 +32,10 @@ public class FrmLogin extends JDialog implements ActionListener{
 	public static JTextField txtCamCont;
 	public static JTextField txtLog;
 	public JButton btnEnviar, btnCancelar;
-	
+	JButton btnOlvContra;
 	public static String idUsuario;
-	
 	private UsuarioControlador model = new UsuarioControlador();
+	private FrmPregunta FrmPregunta = new FrmPregunta();
 	public Iniciar frm;
 	private JLabel lblBienvenido;
 	private JLabel lblPorFavorIngrese;
@@ -105,9 +107,14 @@ public class FrmLogin extends JDialog implements ActionListener{
 			lblPorFavorIngrese.setBounds(27, 96, 344, 25);
 			getContentPane().add(lblPorFavorIngrese);
 			
-			JButton btnOlvContra = new JButton("\u00BFOlvidaste tu contrase\u00F1a?");
+			btnOlvContra = new JButton("¿Olvidaste tu contraseña?");
 			btnOlvContra.setBackground(UIManager.getColor("Panel.background"));
 			btnOlvContra.setForeground(Color.BLUE);
+			btnOlvContra.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					btnOlvContraActionPerformed(arg0);
+				}
+			});
 			btnOlvContra.setBorder(null);
 			btnOlvContra.setBounds(338, 232, 160, 23);
 			getContentPane().add(btnOlvContra);
@@ -155,7 +162,13 @@ public class FrmLogin extends JDialog implements ActionListener{
 		
 	}
 	
-
+	protected void btnOlvContraActionPerformed(ActionEvent e) {
+		
+		FrmPregunta.setVisible(true);
+		//this.setVisible(false);
+      }
+	
+	
 	public void windowDeactivated(WindowEvent e) {}
 }
 

@@ -27,7 +27,6 @@ import javax.swing.tree.DefaultTreeModel;
 import com.placamas.beans.OpcionBean;
 import com.placamas.controlador.UsuarioControlador;
 import com.placamas.seguridad.FrmControlUsuarios;
-import com.placamas.seguridad.FrmCambioContraseña;
 import com.placamas.seguridad.FrmCambiar;
 import com.placamas.listado.FrmMantenimientoLP;
 
@@ -113,7 +112,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		private FrmReglas FrmReglas = new FrmReglas();
 		
 	    //*FORMULARIOS DE USUARIOS
-		private FrmCambioContraseña FrmGestionUsuarios = new FrmCambioContraseña();
+		
 		private FrmControlUsuarios FrmControlUsuarios = new FrmControlUsuarios();
 		private FrmCambiar FrmCambiar = new FrmCambiar();
 

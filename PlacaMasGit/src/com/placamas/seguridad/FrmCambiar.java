@@ -27,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.placamas.vista.FrmLogin;
 import com.placamas.beans.UsuarioBean;
+import com.placamas.componentes.JComboBoxBD;
 import com.placamas.controlador.UsuarioControlador;
 
 import javax.swing.JCheckBox;
@@ -45,7 +46,7 @@ public class FrmCambiar extends JInternalFrame implements ActionListener{
 	private JTextField txtPassNew;
 	private JButton btnGuardar;
 	private JButton btnCancelar;
-	
+	JComboBoxBD pregunta;
 	public JPanel usuario;
 	JSeparator separator;
 	private JTextField txtPassNew1;
@@ -149,9 +150,9 @@ public class FrmCambiar extends JInternalFrame implements ActionListener{
 		btnCancelar.setBounds(250, 254, 89, 23);
 		usuario.add(btnCancelar);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(62, 171, 332, 20);
-		usuario.add(comboBox);
+		pregunta = new JComboBoxBD(rb.getString("SQL_COMBO_PREGUNTA"));
+		pregunta.setBounds(62, 171, 332, 20);
+		usuario.add(pregunta);
 		
 		
 	}

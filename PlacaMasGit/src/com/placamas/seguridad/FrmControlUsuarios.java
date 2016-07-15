@@ -355,7 +355,7 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		txtNomb_User.setColumns(10);
 		
 		txtEmail = new JTextField();
-		txtEmail.setEnabled(false);
+		//txtEmail.setEnabled(false);
 		txtEmail.setBounds(21, 182, 229, 20);
 		panel_1.add(txtEmail);
 		txtEmail.setColumns(10);
@@ -421,7 +421,7 @@ protected void btnGrabarActionPerformed(ActionEvent arg0) {
         if(texto.length()>0 || texto.length()<11){
         	estado=true;
         if(estado==true){ 	
-		UsuarioBean l=new UsuarioBean(txtIdUser.getText(), txtNomb_User.getText(),txtIdUser.getText(),txtNomb_User.getText());
+		UsuarioBean l=new UsuarioBean(txtIdUser.getText(), txtNomb_User.getText(),txtIdUser.getText(),txtNomb_User.getText(),txtEmail.getText());
 		int valor=obj.insertaUsuario(l);
 		if(valor==1){
 			

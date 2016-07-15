@@ -30,7 +30,7 @@ public class UsuarioControlador {
 			pstm.setString(2, clave);
 			ResultSet rs = pstm.executeQuery();
 			if (rs.next()) {
-				bean = new UsuarioBean(sql, sql, sql,sql);
+				bean = new UsuarioBean(sql, sql, sql,sql,sql);
 				bean.setIdUser(rs.getString("idUser"));
 				bean.setUser_Nomb(rs.getString(2));
 				bean.setUser_Pasw("User_Pasw");
@@ -48,6 +48,39 @@ public class UsuarioControlador {
 	}
 
 
+	
+	
+	public UsuarioBean Pregunta(String login, String pregunta) {
+		UsuarioBean bean = null;
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		try {
+			conn = new ConexionDB().getConexion();
+			String sql = "select * from user_data where idUser=? and respuesta =?";
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, login);
+			pstm.setString(2, pregunta);
+			ResultSet rs = pstm.executeQuery();
+			if (rs.next()) {
+				bean = new UsuarioBean(sql, sql, sql,sql,sql);
+				bean.setIdUser(rs.getString("idUser"));
+				bean.setUser_Nomb(rs.getString(2));
+				bean.setUser_Pasw(rs.getString(3));
+				bean.setResp("respuesta");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				conn.close();
+				pstm.close();
+			} catch (SQLException e) {
+			}
+		}
+		return bean;
+	}
+	
+	
 	
 	
 	public List<OpcionBean> obtieneOpciones(String idUsuario) {
@@ -158,12 +191,13 @@ public class UsuarioControlador {
 		PreparedStatement pstm = null;
 		try {
 			conn = new ConexionDB().getConexion();
-			String sql ="insert into user_data values(?,?,?,?)";
+			String sql ="insert into user_data values(?,?,?,?,?)";
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, x.getIdUser());
 			pstm.setString(2, x.getUser_Nomb());
 			pstm.setString(3, x.getUser_Pasw());
 			pstm.setString(4, x.getResp());
+			pstm.setString(5, x.getEmail());
 			
 
 			contador = pstm.executeUpdate();
@@ -193,7 +227,7 @@ public ArrayList<UsuarioBean> listarUsuario(){
 			ResultSet rs = pstm.executeQuery();
 			
 			while(rs.next()){
-				bean = new UsuarioBean(sql, sql, sql,sql);
+				bean = new UsuarioBean(sql, sql, sql,sql,sql);
 				bean.setIdUser(rs.getString("idUser"));
 				bean.setUser_Nomb(rs.getString("user_Nomb"));
 				bean.setUser_Pasw(rs.getString("user_Pasw"));

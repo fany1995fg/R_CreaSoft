@@ -6,14 +6,16 @@ public class UsuarioBean {
 	private String User_Nomb;
 	private String User_Pasw;
 	private String Resp;
+	private String Email;
 	
 
-	public UsuarioBean(String idUser, String user_Nomb, String user_Pasw, String resp) {
+	public UsuarioBean(String idUser, String user_Nomb, String user_Pasw, String resp, String email) {
 		super();
 		this.idUser = idUser;
 		User_Nomb = user_Nomb;
 		User_Pasw = user_Pasw;
 		Resp = resp;
+		Email=email;
 		
 	}
 	public String getIdUser() {
@@ -39,6 +41,12 @@ public class UsuarioBean {
 	}
 	public void setResp(String resp) {
 		this.Resp = resp;
+	}
+	public String getEmail() {
+		return Email;
+	}
+	public void setEmail(String email) {
+		this.Email = email;
 	}
 
 	
