@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import com.placamas.beans.MarcasBean;
 import com.placamas.beans.OpcionBean;
 import com.placamas.beans.UsuarioBean;
 import com.placamas.beans.UsuarioRight;
@@ -274,7 +275,53 @@ public ArrayList<UsuarioRight> listarUsuarioLocal(){
 		}
 	}
 	
-	return data;
+		return data;
+	}
+
+
+public UsuarioBean listarPregunta(){
+	UsuarioBean bean = null;
+	Connection cn=null;
+	PreparedStatement pstm=null;
+	ResultSet rs=null;
+	try {
+		//1
+		cn=new ConexionDB().getConexion();
+		//2
+		String sql="select pregunta  from user_data where IdUser = ?";
+		//3
+		pstm=cn.prepareStatement(sql);
+		//4 para.
+		//5 ejecutar
+		rs=pstm.executeQuery();
+		//6bucle
+		while (rs.next()) {
+			UsuarioBean pg=new UsuarioBean(rs.getString(1),
+										rs.getString(2), sql, sql, sql);
+			//agregar el objeto al arreglo
+			bean.add();
+			
+		}
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally{
+		try {
+			if(rs!=null) rs.close();
+			if(pstm!=null) pstm.close();
+			if(cn!=null) cn.close();
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+	}
+	return bean;
 }
 
+
 }
+
+
+
+
+
+

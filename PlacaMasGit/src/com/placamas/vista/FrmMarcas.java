@@ -340,7 +340,9 @@ protected void btnEliminarActionPerformed(ActionEvent arg0) {
 	
 	void Listar(){
 		modelo.setRowCount(0);
+		
 		ArrayList<MarcasBean> info=obj.listarMarcas();
+		
 		for(MarcasBean x:info){
 			Object fila[]={x.getIdMarcas(),x.getDescripcion()};
 			modelo.addRow(fila);

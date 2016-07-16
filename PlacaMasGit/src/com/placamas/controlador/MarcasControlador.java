@@ -103,7 +103,7 @@ public class MarcasControlador {
 			//1
 			cn=new ConexionDB().getConexion();
 			//2
-			String sql="select *from marcas";
+			String sql="select *from marcas";//"select ?  from user_data where IdUser = ?";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4 para.

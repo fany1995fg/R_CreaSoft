@@ -18,15 +18,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class FrmPregunta extends JFrame implements ActionListener{
 	
 	private static final Iniciar Iniciar = null;
 	private JTextField txtResp;
 	Boolean estado=false;
-	private JTextField txtPass;
 	JButton btnVerificar;
-	JButton btnAceptar;
 	private JLabel lblIngresarIdDe;
 	private JTextField txtIdUser;
 	
@@ -52,46 +51,9 @@ public class FrmPregunta extends JFrame implements ActionListener{
 		
 		getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
-		this.setSize(439, 285);
+		this.setSize(439, 248);
 		this.setLocationRelativeTo(null);
 	    this.setTitle("PlacaMas Version 1.0");
-
-		
-		txtResp = new JTextField();
-		txtResp.setBounds(236, 71, 128, 20);
-		getContentPane().add(txtResp);
-		txtResp.setColumns(10);
-		
-		btnVerificar = new JButton("Verificar");
-		btnVerificar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnVerificarActionPerformed(arg0);
-			}
-		});
-		btnVerificar.setBounds(162, 112, 89, 23);
-		getContentPane().add(btnVerificar);
-		
-		txtPass = new JTextField();
-		txtPass.setColumns(10);
-		txtPass.setBounds(236, 151, 128, 20);
-		getContentPane().add(txtPass);
-		
-		btnAceptar = new JButton("Aceptar");
-		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnAceptarActionPerformed(arg0);
-			}
-		});
-		btnAceptar.setBounds(162, 185, 89, 23);
-		getContentPane().add(btnAceptar);
-		
-		JLabel lblIngre = new JLabel("Ingresar su respuesta:");
-		lblIngre.setBounds(54, 74, 122, 14);
-		getContentPane().add(lblIngre);
-		
-		JLabel lblIngresarlaNuevaContrasea = new JLabel("Ingresarla nueva contrase\u00F1a:");
-		lblIngresarlaNuevaContrasea.setBounds(54, 154, 162, 14);
-		getContentPane().add(lblIngresarlaNuevaContrasea);
 		
 		lblIngresarIdDe = new JLabel("Ingresar ID de usuario:");
 		lblIngresarIdDe.setBounds(54, 43, 122, 14);
@@ -101,6 +63,34 @@ public class FrmPregunta extends JFrame implements ActionListener{
 		txtIdUser.setColumns(10);
 		txtIdUser.setBounds(236, 40, 128, 20);
 		getContentPane().add(txtIdUser);
+		
+		JLabel lblIngre = new JLabel("Ingresar su respuesta:");
+		lblIngre.setBounds(54, 117, 122, 14);
+		getContentPane().add(lblIngre);
+
+		
+		txtResp = new JTextField();
+		txtResp.setBounds(236, 114, 128, 20);
+		getContentPane().add(txtResp);
+		txtResp.setColumns(10);
+		
+		btnVerificar = new JButton("Verificar");
+		btnVerificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnVerificarActionPerformed(arg0);
+			}
+		});
+		btnVerificar.setBounds(165, 159, 89, 23);
+		getContentPane().add(btnVerificar);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(65, 80, 284, 20);
+		getContentPane().add(label);
+		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(FrmPregunta.class.getResource("/recursos/aceptar.png")));
+		button.setBounds(374, 39, 30, 23);
+		getContentPane().add(button);
 		
 		limpiar();
 		
@@ -140,53 +130,10 @@ public class FrmPregunta extends JFrame implements ActionListener{
 		
     }
 
-	
-	protected void btnAceptarActionPerformed(ActionEvent e) {
-	
-		String clave=txtPass.getText();
-		
-		String log=txtIdUser.getText();
-		String pass=txtPass.getText();
-		
-		
-		
-		clave=clave.replaceAll(" ", "");
-       
-        
-        if(clave.length()==0){
-        	
-            mensaje("ERROR: No se aceptan campos en blanco");
-            
-        }
-        else
-        	if(e.getSource() == btnAceptar){
-        	estado=true;
-	        if(estado==true){ 	
-	        	
-	        	UsuarioBean bean =  model.cambiarContraseña(pass, log );
-	        	if(bean!= null){
-				mensaje("Se cambió de contraseña");
-				
-				}
-        	  }
-	        }
-		
-        //Iniciar.setVisible(true);
-		this.setVisible(false);
-		
-		
-	  }
-
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	
-	
-	
-	
-	
 }
