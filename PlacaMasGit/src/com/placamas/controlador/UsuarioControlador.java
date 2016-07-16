@@ -299,7 +299,7 @@ public UsuarioBean listarPregunta(){
 			UsuarioBean pg=new UsuarioBean(rs.getString(1),
 										rs.getString(2), sql, sql, sql);
 			//agregar el objeto al arreglo
-			bean.add();
+			//bean.add();
 			
 		}
 		
