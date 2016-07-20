@@ -72,7 +72,6 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 	public FrmMarcas() {
 		
 		marcas = new JPanel();
-		//marcas.addMouseListener((MouseListener) this);
 		marcas.setLayout(null);
 		
 		toolBar = new JToolBar();
@@ -122,6 +121,7 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 		
 
 		txtIdMarca = new JTextField();
+		txtIdMarca.setDocument(new LimiteJTextField(3));
 		txtIdMarca.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent evt) {
@@ -135,13 +135,12 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 			}
 		});
 		txtIdMarca.setBounds(221, 206, 81, 20);
-		txtIdMarca.setColumns(10);
 		txtIdMarca.setToolTipText("Escribe el Codigo de la Marca (3 Car)");
 		marcas.add(txtIdMarca);
 		
 		
 		txtDescripcion = new JTextField();
-		txtDescripcion.setBounds(221, 247, 143, 20);
+		txtDescripcion.setBounds(221, 247, 198, 20);
 		txtDescripcion.setColumns(10);
 		txtDescripcion.setToolTipText("Escribe una Descripción para la marca");
 		marcas.add(txtDescripcion);
@@ -168,6 +167,11 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 		
 		
 		tbMarcas = new JTable();
+		tbMarcas = new JTable(){
+			public boolean isCellEditable(int rowIndex, int colIndex){
+				return false;
+			}
+		};
 		tbMarcas.addKeyListener(new KeyAdapter() {
 			@Override
 			//DISEÑO CLIC DERECHO EN EL SCROL / EVENT /KEY/ KEYRELEASED
@@ -201,23 +205,12 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 		Listar();
 		
 		
-		//tbMarcas.setFocusable(true);
-		//tbMarcas.getValueAt(0,0);
-		
-		
 		int fila=0;
 		txtIdMarca.setText(""+tbMarcas.getValueAt(fila, 0));
 		txtDescripcion.setText(""+tbMarcas.getValueAt(fila, 1));
 		
-		
-		//tbMarcas.requestFocus();
-		//tbMarcas.changeSelection(0,0,true, true);
-		
-		//tbMarcas.getValueAt(0, 0).setFocus();
-		//tbMarcas.setFocusable(true);
-		//tbMarcas.requestFocusInWindow();
-		//tbMarcas.requestFocus(true);
-		//tbMarcas.requestFocus();
+		tbMarcas.requestFocus();
+		tbMarcas.changeSelection(0,0,true, false);
 		
 		tamañoTablas();
 	
@@ -241,30 +234,28 @@ private void tamañoTablas() {
 	
 	
 	protected void btnGrabarActionPerformed(ActionEvent arg0) {
-		/*String texto=txtIdMarca.getText();
+        	
+		String texto=txtIdMarca.getText();
+		String descripcion=txtDescripcion.getText();
         texto=texto.replaceAll(" ", "");
-        if(texto.length()==0){
-            System.out.println("no ai texto");
-            
+        descripcion=descripcion.replaceAll(" ", "");
+        
+        if(descripcion.length()==0){
+        	
+            mensaje("ERROR: No se aceptan campos en blanco "+" 'Descripcion'");
+            txtDescripcion.requestFocus();
         }
         else
-        {
-            System.out.println("si lo ai ");
-        }*/
-        
-		
-		String texto=txtIdMarca.getText();
-        texto=texto.replaceAll(" ", "");
         if(texto.length()==0){
         	
-            mensaje("ERROR: No se aceptan campos en blanco");
-            
+            mensaje("ERROR: No se aceptan campos en blanco"+" 'Codigo'");
+            txtIdMarca.requestFocus();
         }
         else
         if(texto.length()>3 || texto.length()<3){
         	
-            mensaje("ERROR: Solo se aceptan 3 caracteres");
-            
+            mensaje("ERROR: El Codigo debe de tener 3 caracteres");
+            txtIdMarca.requestFocus();
         }
         else
         if(texto.length()==3){
@@ -275,32 +266,26 @@ private void tamañoTablas() {
 		if(valor==1){
 			
 			mensaje("Registro Exitoso de Marca");
-			estado=false;
+
 			Listar();
-			}
-       }
-	}
-	/*else{
-		MarcasBean l=new MarcasBean(txtIdMarca.getText(), txtDescripcion.getText());
-		int valor=obj.actualizarMarcas(l);
-		if(valor==1){
-			mensaje("Actualizado Correctamente");
-		Listar();
-		}
-		else
-			mensaje("Error");
-	}*/
-        
+		 }
+		tbMarcas.requestFocus();
+		tbMarcas.changeSelection(0,0,true, false);
 		
+		txtIdMarca.setText(""+tbMarcas.getValueAt(0, 0));
+		txtDescripcion.setText(""+tbMarcas.getValueAt(0, 1));
+       }
+	}		
+        
+        
 }
 	
 
 protected void btnEliminarActionPerformed(ActionEvent arg0) {
-	
-	
-	 int descicion = JOptionPane.showConfirmDialog(null,"Esta seguro de eliminar en registro?");
+		
+	 int descicion = JOptionPane.showConfirmDialog(null,"Esta seguro de eliminar en registro?",null, JOptionPane.OK_CANCEL_OPTION );
 
-		if(descicion==JOptionPane.YES_OPTION){
+		if(descicion==JOptionPane.OK_OPTION){
 			
 			int valor=obj.eliminarMarcas(txtIdMarca.getText());
 			
@@ -309,17 +294,15 @@ protected void btnEliminarActionPerformed(ActionEvent arg0) {
 					 ((DefaultTableModel)tbMarcas.getModel()).removeRow(tbMarcas.getSelectedRow());
 				 }
 					mensaje("Registro Eliminado");
-					txtIdMarca.setText("");
-					txtDescripcion.setText("");
+					tbMarcas.requestFocus();
+					tbMarcas.changeSelection(0,0,true, false);
+					
+					
 			 }
-			 else
-					mensaje("Error al Eliminar");
-			 
-			}
-
-		if(descicion==JOptionPane.NO_OPTION){
+		if(descicion==JOptionPane.CANCEL_OPTION){
 
 			mensaje("El Registro no se Elimino");
+		}
 		}
 		
 	

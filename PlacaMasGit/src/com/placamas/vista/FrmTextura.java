@@ -88,6 +88,19 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 		textura.add(lblDescripcion);
 		
 		txtIdTextura = new JTextField();
+		txtIdTextura.setDocument(new LimiteJTextField(2));
+		txtIdTextura.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				
+				char c=evt.getKeyChar();
+				if(Character.isLowerCase(c)){
+					String cad=(""+c).toUpperCase();
+					c=cad.charAt(0);
+					evt.setKeyChar(c);
+				}
+			}
+		});
 		txtIdTextura.setBounds(270, 194, 100, 19);
 		txtIdTextura.setToolTipText("Escribe el Codigo de la Marca (2 Car)");
 		textura.add(txtIdTextura);
@@ -95,8 +108,8 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 		
 		txtDescripcion = new JTextField();
 		txtDescripcion.setBounds(270, 225, 146, 19);
+		txtDescripcion.setToolTipText("Escribe una Descripción para el textura");
 		textura.add(txtDescripcion);
-		txtDescripcion.setColumns(10);
 		
 	
 		
@@ -106,6 +119,11 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 		textura.add(scrollPane);
 		
 		tbTextura = new JTable();
+		tbTextura = new JTable(){
+			public boolean isCellEditable(int rowIndex, int colIndex){
+				return false;
+			}
+		};
 		tbTextura.addKeyListener(new KeyAdapter() {
 			@Override
 			//DISEÑO CLIC DERECHO EN EL SCROL / EVENT /KEY/ KEYRELEASED
@@ -170,6 +188,13 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 		btnNuevo.addActionListener(this);
 		Listar();
 		
+		btnNuevo.setToolTipText("Nuevo Registro");
+		btnEliminar.setToolTipText("Eliminar");
+		btnGrabar.setToolTipText("Grabar");
+		
+		tbTextura.requestFocus();
+		tbTextura.changeSelection(0,0,true, false);
+		
 		int fila=0;
 		txtIdTextura.setText(""+tbTextura.getValueAt(fila, 0));
 		txtDescripcion.setText(""+tbTextura.getValueAt(fila, 1));
@@ -198,24 +223,22 @@ private void tamañoTablas() {
 	
 	
 	protected void btnGrabarActionPerformed(ActionEvent arg0) {
-		/*String texto=txtIdMarca.getText();
-        texto=texto.replaceAll(" ", "");
-        if(texto.length()==0){
-            System.out.println("no ai texto");
-            
-        }
-        else
-        {
-            System.out.println("si lo ai ");
-        }*/
-        
 		
 		String texto=txtIdTextura.getText();
+		String descripcion=txtDescripcion.getText();
+		descripcion=descripcion.replaceAll(" ", "");
         texto=texto.replaceAll(" ", "");
+        
+        if(descripcion.length()==0){
+        	
+            mensaje("ERROR: No se aceptan campos en blanco "+" 'Descripcion'");
+            txtDescripcion.requestFocus();
+        }
+        else
         if(texto.length()==0){
         	
-            mensaje("ERROR: No se aceptan campos en blanco");
-            
+            mensaje("ERROR: No se aceptan campos en blanco"+" 'Codigo'");
+            txtIdTextura.requestFocus();
         }
         else
         if(texto.length()>2 || texto.length()<2){
@@ -235,19 +258,13 @@ private void tamañoTablas() {
 			estado=false;
 			Listar();
 			}
+		tbTextura.requestFocus();
+		tbTextura.changeSelection(0,0,true, false);
+		
+		txtIdTextura.setText(""+tbTextura.getValueAt(0, 0));
+		txtDescripcion.setText(""+tbTextura.getValueAt(0, 1));
        }
 	}
-	/*else{
-		MarcasBean l=new MarcasBean(txtIdMarca.getText(), txtDescripcion.getText());
-		int valor=obj.actualizarMarcas(l);
-		if(valor==1){
-			mensaje("Actualizado Correctamente");
-		Listar();
-		}
-		else
-			mensaje("Error");
-	}*/
-        
 		
 }
 	
@@ -255,9 +272,9 @@ private void tamañoTablas() {
 protected void btnEliminarActionPerformed(ActionEvent arg0) {
 	
 	
-	 int descicion = JOptionPane.showConfirmDialog(null,"Esta seguro de eliminar en registro?");
-
-		if(descicion==JOptionPane.YES_OPTION){
+		int descicion = JOptionPane.showConfirmDialog(null,"Esta seguro de eliminar en registro?",null, JOptionPane.OK_CANCEL_OPTION );
+	
+		if(descicion==JOptionPane.OK_OPTION){
 			
 			int valor=obj.eliminarTextura(txtIdTextura.getText());
 			
@@ -266,20 +283,19 @@ protected void btnEliminarActionPerformed(ActionEvent arg0) {
 					 ((DefaultTableModel)tbTextura.getModel()).removeRow(tbTextura.getSelectedRow());
 				 }
 					mensaje("Registro Eliminado");
-					txtIdTextura.setText("");
-					txtDescripcion.setText("");
+					
+					tbTextura.requestFocus();
+					tbTextura.changeSelection(0,0,true, false);
+					
+					txtIdTextura.setText(""+tbTextura.getValueAt(0, 0));
+					txtDescripcion.setText(""+tbTextura.getValueAt(0, 1));
+					
 			 }
-			 else
-					mensaje("Error al Eliminar");
-			 
-			}
-
-		if(descicion==JOptionPane.NO_OPTION){
-
-			mensaje("El Registro no se Elimino");
-		}
-		
+		if(descicion==JOptionPane.CANCEL_OPTION){
 	
+			mensaje("El Registro no se Elimino");
+			}
+		}	
 	}
 
 
@@ -292,7 +308,7 @@ protected void btnEliminarActionPerformed(ActionEvent arg0) {
 	protected void btnNuevoActionPerformed(ActionEvent arg0) {
 		txtIdTextura.setText("");
 		txtDescripcion.setText("");
-		txtDescripcion.requestFocus();
+		txtIdTextura.requestFocus();
 		estado=true;
 	}
 	

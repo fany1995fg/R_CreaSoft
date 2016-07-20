@@ -123,7 +123,8 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			
 			
 
-			txtIdRuta = new JTextField(3);
+			txtIdRuta = new JTextField();
+			txtIdRuta.setDocument(new LimiteJTextField(8));
 			txtIdRuta.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyTyped(KeyEvent evt) {
@@ -137,15 +138,13 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 				}
 			});
 			txtIdRuta.setBounds(221, 206, 143, 20);
-			txtIdRuta.setColumns(10);
-			txtIdRuta.setToolTipText("Escribe el Codigo de la Marca (3 Car)");
+			txtIdRuta.setToolTipText("Escribe el Codigo de la Ruta( max. 8 car)");
 			rutas.add(txtIdRuta);
 			
 			
 			txtRuta = new JTextField();
 			txtRuta.setBounds(221, 247, 317, 20);
-			txtRuta.setColumns(10);
-			txtRuta.setToolTipText("Escribe una Descripción para la marca");
+			txtRuta.setToolTipText("Escribe una Descripción para la ruta");
 			rutas.add(txtRuta);
 			
 			
@@ -173,6 +172,11 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			
 			
 			tbRutas = new JTable();
+			tbRutas = new JTable(){
+				public boolean isCellEditable(int rowIndex, int colIndex){
+					return false;
+				}
+			};
 			tbRutas.addKeyListener(new KeyAdapter() {
 				@Override
 				//DISEÑO CLIC DERECHO EN EL SCROL / EVENT /KEY/ KEYRELEASED
@@ -206,15 +210,15 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			Listar();
 			
 			
-			//tbMarcas.setFocusable(true);
-			//tbMarcas.getValueAt(0,0);
-			
-			
 			int fila=0;
 			txtIdRuta.setText(""+tbRutas.getValueAt(fila, 0));
 			txtRuta.setText(""+tbRutas.getValueAt(fila, 1));
 			
+			tbRutas.requestFocus();
+			tbRutas.changeSelection(0,0,true, false);
+			
 			btnAbrir = new JButton("...");
+			btnAbrir.setToolTipText("selecionar una ubicacion");
 			btnAbrir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					btnEscogerActionPerformed(arg0);
@@ -223,15 +227,6 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			btnAbrir.setBounds(579, 245, 89, 23);
 			rutas.add(btnAbrir);
 			
-			
-			//tbMarcas.requestFocus();
-			//tbMarcas.changeSelection(0,0,true, true);
-			
-			//tbMarcas.getValueAt(0, 0).setFocus();
-			//tbMarcas.setFocusable(true);
-			//tbMarcas.requestFocusInWindow();
-			//tbMarcas.requestFocus(true);
-			//tbMarcas.requestFocus();
 			
 		
 		}
@@ -244,33 +239,31 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 		
 		
 		protected void btnGrabarActionPerformed(ActionEvent arg0) {
-			/*String texto=txtIdMarca.getText();
-	        texto=texto.replaceAll(" ", "");
-	        if(texto.length()==0){
-	            System.out.println("no ai texto");
-	            
-	        }
-	        else
-	        {
-	            System.out.println("si lo ai ");
-	        }*/
-	        
 			
 			String texto=txtIdRuta.getText();
+			String descripcion=txtRuta.getText();
+			descripcion=descripcion.replaceAll(" ", "");
 	        texto=texto.replaceAll(" ", "");
+	        
+	        if(descripcion.length()==0){
+	        	
+	            mensaje("ERROR: No se aceptan campos en blanco "+" 'Ruta'");
+	            txtRuta.requestFocus();
+	        }
+	        else
 	        if(texto.length()==0){
 	        	
-	            mensaje("ERROR: No se aceptan campos en blanco");
-	            
+	            mensaje("ERROR: No se aceptan campos en blanco"+" 'Codigo'");
+	            txtIdRuta.requestFocus();
 	        }
 	        else
-	        if(texto.length()>3 || texto.length()<3){
+	        if(texto.length()>3 || texto.length()<9){
 	        	
-	            mensaje("ERROR: Solo se aceptan 3 caracteres");
+	            mensaje("ERROR: Solo se aceptan como max. 9 car");
 	            
 	        }
 	        else
-	        if(texto.length()==3){
+	        if(texto.length()<=8){
 	        	estado=true;
 	        if(estado==true){ 	
 			RutasBean l=new RutasBean(txtIdRuta.getText(), txtRuta.getText());
@@ -281,19 +274,14 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 				estado=false;
 				Listar();
 				}
+			tbRutas.requestFocus();
+			tbRutas.changeSelection(0,0,true, false);
+			
+			txtIdRuta.setText(""+tbRutas.getValueAt(0, 0));
+			txtRuta.setText(""+tbRutas.getValueAt(0, 1));
 	       }
 		}
-		/*else{
-			MarcasBean l=new MarcasBean(txtIdMarca.getText(), txtDescripcion.getText());
-			int valor=obj.actualizarMarcas(l);
-			if(valor==1){
-				mensaje("Actualizado Correctamente");
-			Listar();
-			}
-			else
-				mensaje("Error");
-		}*/
-	        
+		
 			
 	}
 		
@@ -301,30 +289,30 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 	protected void btnEliminarActionPerformed(ActionEvent arg0) {
 		
 		
-		 int descicion = JOptionPane.showConfirmDialog(null,"Esta seguro de eliminar en registro?");
-
-			if(descicion==JOptionPane.YES_OPTION){
-				
-				int valor=obj.eliminarRutas(txtIdRuta.getText());
-				
-				 if(valor==1){
-					 if(tbRutas.getSelectedRow() >=0 ){					 
-						 ((DefaultTableModel)tbRutas.getModel()).removeRow(tbRutas.getSelectedRow());
-					 }
-						mensaje("Registro Eliminado");
-						txtIdRuta.setText("");
-						txtRuta.setText("");
-				 }
-				 else
-						mensaje("Error al Eliminar");
-				 
-				}
-
-			if(descicion==JOptionPane.NO_OPTION){
-
-				mensaje("El Registro no se Elimino");
-			}
+		int descicion = JOptionPane.showConfirmDialog(null,"Esta seguro de eliminar en registro?",null, JOptionPane.OK_CANCEL_OPTION );
+		
+		if(descicion==JOptionPane.OK_OPTION){
 			
+			int valor=obj.eliminarRutas(txtIdRuta.getText());
+			
+			 if(valor==1){
+				 if(tbRutas.getSelectedRow() >=0 ){					 
+					 ((DefaultTableModel)tbRutas.getModel()).removeRow(tbRutas.getSelectedRow());
+				 }
+					mensaje("Registro Eliminado");
+					
+					tbRutas.requestFocus();
+					tbRutas.changeSelection(0,0,true, false);
+					
+					txtIdRuta.setText(""+tbRutas.getValueAt(0, 0));
+					txtRuta.setText(""+tbRutas.getValueAt(0, 1));
+					
+			 }
+		if(descicion==JOptionPane.CANCEL_OPTION){
+	
+			mensaje("El Registro no se Elimino");
+			}
+		}	
 		
 		}
 
@@ -340,6 +328,7 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 	public void btnEscogerActionPerformed(ActionEvent arg0){
 		
 			JFileChooser fc = new JFileChooser();
+			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 			int returnVal = fc.showDialog(this, "Seleccione file");
 			
 			if(returnVal == JFileChooser.APPROVE_OPTION){

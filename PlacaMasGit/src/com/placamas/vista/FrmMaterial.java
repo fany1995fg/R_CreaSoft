@@ -74,14 +74,8 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 	public FrmMaterial() {
 		
 		material = new JPanel();
-		//material.addMouseListener((MouseListener) this);
 		material.setLayout(null);
-		
-		/*
-		setTitle("Material");
-		setClosable(true);
-		setBounds(100, 100, 577, 511);
-		getContentPane().setLayout(null);*/
+
 		
 		JLabel lblIdMaterial = new JLabel("C\u00F3digo de Material:");
 		lblIdMaterial.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -94,6 +88,19 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 		material.add(lblDescripcion);
 		
 		txtIdMaterial = new JTextField();
+		txtIdMaterial.setDocument(new LimiteJTextField(3));
+		txtIdMaterial.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				
+				char c=evt.getKeyChar();
+				if(Character.isLowerCase(c)){
+					String cad=(""+c).toUpperCase();
+					c=cad.charAt(0);
+					evt.setKeyChar(c);
+				}
+			}
+		});
 		txtIdMaterial.setBounds(264, 208, 128, 19);
 		txtIdMaterial.setToolTipText("Escribe el Codigo de la Marca (3 Car)");
 		material.add(txtIdMaterial);
@@ -101,14 +108,19 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 		
 		txtDescripcion = new JTextField();
 		txtDescripcion.setBounds(264, 238, 253, 19);
+		txtDescripcion.setToolTipText("Escribe una Descripción para el material");
 		material.add(txtDescripcion);
-		txtDescripcion.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(57, 347, 411, 220);
 		material.add(scrollPane);
 		
 		tbMaterial = new JTable();
+		tbMaterial = new JTable(){
+			public boolean isCellEditable(int rowIndex, int colIndex){
+				return false;
+			}
+		};
 		tbMaterial.addKeyListener(new KeyAdapter() {
 			@Override
 			//DISEÑO CLIC DERECHO EN EL SCROL / EVENT /KEY/ KEYRELEASED
@@ -147,17 +159,11 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 		toolBar.add(btnEliminar);
 		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
 		
-		
-		/*
-		btnNuevo.setToolTipText("Nuevo Registro");
-		btnEliminar.setToolTipText("Eliminar");
-		btnGrabar.setToolTipText("Grabar");
-		*/
 		///QUITANDOLE LOS BORDES A LOS BOTONES
 		
-		//		btnNuevo.setBorder(null);
-			//	btnEliminar.setBorder(null);
-				//btnGrabar.setBorder(null);
+		//btnNuevo.setBorder(null);
+		//btnEliminar.setBorder(null);
+		//btnGrabar.setBorder(null);
 
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(FrmMaterial.class.getResource("/gui/img/banners/BannerMateriales.png")));
@@ -183,15 +189,24 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 		btnNuevo.addActionListener(this);
 		Listar();
 		
-		int fila=0;
-		txtIdMaterial.setText(""+tbMaterial.getValueAt(fila, 0));
-		txtDescripcion.setText(""+tbMaterial.getValueAt(fila, 1));
-		
 		lblListaDeMateriales = new JLabel("Lista de Materiales:");
 		lblListaDeMateriales.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblListaDeMateriales.setBounds(57, 316, 153, 20);
 		material.add(lblListaDeMateriales);
-
+		
+		
+		int fila=0;
+		txtIdMaterial.setText(""+tbMaterial.getValueAt(fila, 0));
+		txtDescripcion.setText(""+tbMaterial.getValueAt(fila, 1));
+		
+		tbMaterial.requestFocus();
+		tbMaterial.changeSelection(0,0,true, false);
+		
+		
+		btnNuevo.setToolTipText("Nuevo Registro");
+		btnEliminar.setToolTipText("Eliminar");
+		btnGrabar.setToolTipText("Grabar");
+		
 		tamañoTablas();
 	
 	}
@@ -212,30 +227,28 @@ private void tamañoTablas() {
 	
 	
 	protected void btnGrabarActionPerformed(ActionEvent arg0) {
-		/*String texto=txtIdMarca.getText();
-        texto=texto.replaceAll(" ", "");
-        if(texto.length()==0){
-            System.out.println("no ai texto");
-            
-        }
-        else
-        {
-            System.out.println("si lo ai ");
-        }*/
-        
 		
 		String texto=txtIdMaterial.getText();
+		String descripcion=txtDescripcion.getText();
+		descripcion=descripcion.replaceAll(" ", "");
         texto=texto.replaceAll(" ", "");
+        
+        if(descripcion.length()==0){
+        	
+            mensaje("ERROR: No se aceptan campos en blanco "+" 'Descripcion'");
+            txtDescripcion.requestFocus();
+        }
+        else
         if(texto.length()==0){
         	
-            mensaje("ERROR: No se aceptan campos en blanco");
-            
+            mensaje("ERROR: No se aceptan campos en blanco"+" 'Codigo'");
+            txtIdMaterial.requestFocus();
         }
         else
         if(texto.length()>3 || texto.length()<3){
         	
             mensaje("ERROR: Solo se aceptan 3 caracteres");
-            
+            txtIdMaterial.requestFocus();
         }
         else
         if(texto.length()==3){
@@ -250,28 +263,21 @@ private void tamañoTablas() {
 			Listar();
 			}
        }
-	}
-	/*else{
-		MarcasBean l=new MarcasBean(txtIdMarca.getText(), txtDescripcion.getText());
-		int valor=obj.actualizarMarcas(l);
-		if(valor==1){
-			mensaje("Actualizado Correctamente");
-		Listar();
-		}
-		else
-			mensaje("Error");
-	}*/
-        
+        tbMaterial.requestFocus();
+        tbMaterial.changeSelection(0,0,true, false);
 		
+        txtIdMaterial.setText(""+tbMaterial.getValueAt(0, 0));
+		txtDescripcion.setText(""+tbMaterial.getValueAt(0, 1));
+	}	
 }
 	
 
 protected void btnEliminarActionPerformed(ActionEvent arg0) {
 	
 	
-	 int descicion = JOptionPane.showConfirmDialog(null,"Esta seguro de eliminar en registro?");
+	 int descicion = JOptionPane.showConfirmDialog(null,"Esta seguro de eliminar en registro?",null, JOptionPane.OK_CANCEL_OPTION );
 
-		if(descicion==JOptionPane.YES_OPTION){
+		if(descicion==JOptionPane.OK_OPTION){
 			
 			int valor=obj.eliminarMaterial(txtIdMaterial.getText());
 			
@@ -280,34 +286,31 @@ protected void btnEliminarActionPerformed(ActionEvent arg0) {
 					 ((DefaultTableModel)tbMaterial.getModel()).removeRow(tbMaterial.getSelectedRow());
 				 }
 					mensaje("Registro Eliminado");
-					txtIdMaterial.setText("");
-					txtDescripcion.setText("");
+					
+					tbMaterial.requestFocus();
+					tbMaterial.changeSelection(0,0,true, false);
+					
+					txtIdMaterial.setText(""+tbMaterial.getValueAt(0, 0));
+					txtDescripcion.setText(""+tbMaterial.getValueAt(0, 1));
+					
 			 }
-			 else
-					mensaje("Error al Eliminar");
-			 
-			}
-
-		if(descicion==JOptionPane.NO_OPTION){
+		if(descicion==JOptionPane.CANCEL_OPTION){
 
 			mensaje("El Registro no se Elimino");
-		}
-		
-	
+			}
+		}	
 	}
-
-
-
 
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btnNuevo) {
 			btnNuevoActionPerformed(arg0);
 		}
 	}
+	
 	protected void btnNuevoActionPerformed(ActionEvent arg0) {
 		txtIdMaterial.setText("");
 		txtDescripcion.setText("");
-		txtDescripcion.requestFocus();
+		txtIdMaterial.requestFocus();
 		estado=true;
 	}
 	
@@ -317,11 +320,9 @@ protected void btnEliminarActionPerformed(ActionEvent arg0) {
 		for(MaterialBean x:info){
 			Object fila[]={x.getIdMaterial(),x.getDescripcion()};
 			modelo.addRow(fila);
-			
 		}
-			
-
 	}
+	
 	void Mostrar(){
 	
 		int fila=tbMaterial.getSelectedRow();

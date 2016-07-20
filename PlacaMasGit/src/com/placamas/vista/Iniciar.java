@@ -91,6 +91,11 @@ public class Iniciar extends JFrame implements WindowListener, MouseListener{
 				JOptionPane.YES_NO_OPTION);
 		if (n == JOptionPane.YES_OPTION)
 			System.exit(0);
+		
+		if (n == JOptionPane.NO_OPTION){
+			JOptionPane.showMessageDialog(null, "Operacion cancelada");
+		}
+			
 	}
 
 	public void windowClosed(WindowEvent e) {}

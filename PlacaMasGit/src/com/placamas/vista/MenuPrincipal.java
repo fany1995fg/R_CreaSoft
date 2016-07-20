@@ -441,6 +441,8 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		if(e.getActionCommand() =="mItem09"){
 			FrmMarcas.setVisible(true);
 			tabbedPane.add(FrmMarcas.marcas, "Marcas    ");
+			FrmMarcas.tbMarcas.requestFocus();
+			FrmMarcas.tbMarcas.changeSelection(0,1,true, true);
 			FrmMarcas.toFront();
 					
 			/*FrmMarcas.tbMarcas.requestFocus();
@@ -461,8 +463,8 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		if(e.getSource()==mItem11){
 			tabbedPane.add(FrmTextura.textura, "Texturas    ");	
 			FrmTextura.setVisible(true);
-			/*FrmTextura.tbTextura.requestFocus();
-			FrmTextura.tbTextura.changeSelection(0,0,true, true);*/
+			FrmTextura.tbTextura.requestFocus();
+			FrmTextura.tbTextura.changeSelection(0,0,true, true);
 			
 		}
 		
