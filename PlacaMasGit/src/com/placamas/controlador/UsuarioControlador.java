@@ -279,32 +279,30 @@ public ArrayList<UsuarioRight> listarUsuarioLocal(){
 	}
 
 
-public UsuarioBean listarPregunta(){
+public UsuarioBean listarPregunta(String idpreg){
 	UsuarioBean bean = null;
 	Connection cn=null;
 	PreparedStatement pstm=null;
 	ResultSet rs=null;
 	try {
-		//1
+		
 		cn=new ConexionDB().getConexion();
-		//2
-		String sql="select pregunta  from user_data where IdUser = ?";
-		//3
-		pstm=cn.prepareStatement(sql);
-		//4 para.
-		//5 ejecutar
+		String sql="select ?  from user_data where IdUser="+idpreg;
+		pstm=cn.prepareStatement(sql);//esto almacena la pregunta?
+		
+		
 		rs=pstm.executeQuery();
-		//6bucle
+		
 		while (rs.next()) {
 			UsuarioBean pg=new UsuarioBean(rs.getString(1),
-										rs.getString(2), sql, sql, sql);
-			//agregar el objeto al arreglo
-			//bean.add();
+						rs.getString(2), sql, sql, sql);
+			
 			
 		}
+	
 		
 	} catch (Exception e) {
-		e.printStackTrace();
+		//e.printStackTrace();
 	}finally{
 		try {
 			if(rs!=null) rs.close();

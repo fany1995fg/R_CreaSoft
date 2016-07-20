@@ -209,14 +209,6 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			rutas.add(lblListaDeRutas);
 			Listar();
 			
-			
-			int fila=0;
-			txtIdRuta.setText(""+tbRutas.getValueAt(fila, 0));
-			txtRuta.setText(""+tbRutas.getValueAt(fila, 1));
-			
-			tbRutas.requestFocus();
-			tbRutas.changeSelection(0,0,true, false);
-			
 			btnAbrir = new JButton("...");
 			btnAbrir.setToolTipText("selecionar una ubicacion");
 			btnAbrir.addActionListener(new ActionListener() {
@@ -228,8 +220,19 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			rutas.add(btnAbrir);
 			
 			
+			
+			
+			
+			int fila=0;
+			txtIdRuta.setText(""+tbRutas.getValueAt(fila, 0));
+			txtRuta.setText(""+tbRutas.getValueAt(fila, 1));
+			
+			tbRutas.requestFocus();
+			tbRutas.changeSelection(0,0,true, false);
+			
 		
-		}
+	}
+		
 		
 		
 		void mensaje(String m){
@@ -245,25 +248,25 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			descripcion=descripcion.replaceAll(" ", "");
 	        texto=texto.replaceAll(" ", "");
 	        
-	        if(descripcion.length()==0){
-	        	
-	            mensaje("ERROR: No se aceptan campos en blanco "+" 'Ruta'");
-	            txtRuta.requestFocus();
-	        }
-	        else
 	        if(texto.length()==0){
 	        	
-	            mensaje("ERROR: No se aceptan campos en blanco"+" 'Codigo'");
+	        	mensaje("ERROR: No se acepta 'CODIGO' en blanco");
 	            txtIdRuta.requestFocus();
 	        }
 	        else
-	        if(texto.length()>3 || texto.length()<9){
+	        if(descripcion.length()==0){
+	        	
+	        	mensaje("ERROR: No se acepta 'DESCRIPCION' en blanco");
+	            txtRuta.requestFocus();
+	        }
+	        else
+	        if(texto.length()<3 || texto.length()>8){
 	        	
 	            mensaje("ERROR: Solo se aceptan como max. 9 car");
 	            
 	        }
 	        else
-	        if(texto.length()<=8){
+	        if(texto.length()<=8 || texto.length()>3){
 	        	estado=true;
 	        if(estado==true){ 	
 			RutasBean l=new RutasBean(txtIdRuta.getText(), txtRuta.getText());
@@ -273,12 +276,14 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 				mensaje("Registro Exitoso de Ruta");
 				estado=false;
 				Listar();
+				
+				tbRutas.requestFocus();
+				tbRutas.changeSelection(0,0,true, false);
+				
+				txtIdRuta.setText(""+tbRutas.getValueAt(0, 0));
+				txtRuta.setText(""+tbRutas.getValueAt(0, 1));
 				}
-			tbRutas.requestFocus();
-			tbRutas.changeSelection(0,0,true, false);
 			
-			txtIdRuta.setText(""+tbRutas.getValueAt(0, 0));
-			txtRuta.setText(""+tbRutas.getValueAt(0, 1));
 	       }
 		}
 		

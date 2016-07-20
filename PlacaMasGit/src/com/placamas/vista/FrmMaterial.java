@@ -233,16 +233,16 @@ private void tamañoTablas() {
 		descripcion=descripcion.replaceAll(" ", "");
         texto=texto.replaceAll(" ", "");
         
-        if(descripcion.length()==0){
-        	
-            mensaje("ERROR: No se aceptan campos en blanco "+" 'Descripcion'");
-            txtDescripcion.requestFocus();
-        }
-        else
         if(texto.length()==0){
         	
-            mensaje("ERROR: No se aceptan campos en blanco"+" 'Codigo'");
+        	mensaje("ERROR: No se acepta 'CODIGO' en blanco");
             txtIdMaterial.requestFocus();
+        }
+        else
+        if(descripcion.length()==0){
+        	
+        	mensaje("ERROR: No se acepta 'DESCRIPCION' en blanco");
+            txtDescripcion.requestFocus();
         }
         else
         if(texto.length()>3 || texto.length()<3){
@@ -261,13 +261,14 @@ private void tamañoTablas() {
 			mensaje("Registro Exitoso de Marca");
 			estado=false;
 			Listar();
+			tbMaterial.requestFocus();
+	        tbMaterial.changeSelection(0,0,true, false);
+			
+	        txtIdMaterial.setText(""+tbMaterial.getValueAt(0, 0));
+			txtDescripcion.setText(""+tbMaterial.getValueAt(0, 1));
 			}
        }
-        tbMaterial.requestFocus();
-        tbMaterial.changeSelection(0,0,true, false);
-		
-        txtIdMaterial.setText(""+tbMaterial.getValueAt(0, 0));
-		txtDescripcion.setText(""+tbMaterial.getValueAt(0, 1));
+        
 	}	
 }
 	

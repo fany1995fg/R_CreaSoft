@@ -21,6 +21,7 @@ import com.placamas.vista.FrmPregunta;
 import java.awt.Color;
 
 import javax.swing.UIManager;
+import java.awt.Window.Type;
 
 
 @SuppressWarnings("serial")
@@ -41,8 +42,9 @@ public class FrmLogin extends JDialog implements ActionListener{
 	private JLabel lblPorFavorIngrese;
 	
 	public FrmLogin(Iniciar frm) {
-		getContentPane().setForeground(new Color(255, 228, 196));
-		getContentPane().setBackground(UIManager.getColor("ToolBar.floatingBackground"));
+		setResizable(false);
+		getContentPane().setForeground(UIManager.getColor("MenuBar.background"));
+		getContentPane().setBackground(UIManager.getColor("ToolBar.dockingBackground"));
 			this.frm = frm;
 			
 			getContentPane().setLayout(null);
@@ -52,7 +54,7 @@ public class FrmLogin extends JDialog implements ActionListener{
 		    
 			lblLogin = new JLabel("Usuario:");
 			lblLogin.setForeground(new Color(0, 0, 0));
-			lblLogin.setFont(new Font("Tahoma", Font.BOLD, 16));
+			lblLogin.setFont(new Font("Century Gothic", Font.PLAIN, 20));
 			lblLogin.setBounds(207,160,100,25);
 			getContentPane().add(lblLogin);
 			
@@ -63,7 +65,7 @@ public class FrmLogin extends JDialog implements ActionListener{
 			
 			lblClave = new JLabel("Contrase\u00F1a:");
 			lblClave.setForeground(new Color(0, 0, 0));
-			lblClave.setFont(new Font("Tahoma", Font.BOLD, 16));
+			lblClave.setFont(new Font("Century Gothic", Font.PLAIN, 20));
 			lblClave.setBounds(207,198,121,25);
 			getContentPane().add(lblClave);
 			
@@ -88,27 +90,28 @@ public class FrmLogin extends JDialog implements ActionListener{
 			
 			JLabel lblBienvenidoAPlacamas = new JLabel("LOGIN PLACAMAS");
 			lblBienvenidoAPlacamas.setForeground(new Color(0, 0, 0));
-			lblBienvenidoAPlacamas.setFont(new Font("Tahoma", Font.BOLD, 23));
+			lblBienvenidoAPlacamas.setFont(new Font("Lucida Sans Unicode", Font.BOLD | Font.ITALIC, 23));
 			lblBienvenidoAPlacamas.setBounds(27, 25, 411, 38);
 			getContentPane().add(lblBienvenidoAPlacamas);
 			
 			JLabel label = new JLabel("");
-			label.setIcon(new ImageIcon(FrmLogin.class.getResource("/iconos/1405731856_gnome-keyring-manager.png")));
+			label.setIcon(new ImageIcon(FrmLogin.class.getResource("/iconos/1405731875_application-pgp-signature.png")));
 			label.setBounds(37, 160, 145, 135);
 			getContentPane().add(label);
 			
 			lblBienvenido = new JLabel("Bienvenido");
-			lblBienvenido.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblBienvenido.setFont(new Font("Tahoma", Font.ITALIC, 16));
 			lblBienvenido.setBounds(27, 70, 223, 25);
 			getContentPane().add(lblBienvenido);
 			
 			lblPorFavorIngrese = new JLabel("Por Favor ingrese sus credenciales de acceso");
-			lblPorFavorIngrese.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			lblPorFavorIngrese.setFont(new Font("Tahoma", Font.ITALIC, 16));
 			lblPorFavorIngrese.setBounds(27, 96, 344, 25);
 			getContentPane().add(lblPorFavorIngrese);
 			
 			btnOlvContra = new JButton("¿Olvidaste tu contraseña?");
-			btnOlvContra.setBackground(UIManager.getColor("Panel.background"));
+			btnOlvContra.setFont(new Font("Calibri Light", Font.PLAIN, 12));
+			btnOlvContra.setBackground(UIManager.getColor("MenuBar.background"));
 			btnOlvContra.setForeground(Color.BLUE);
 			btnOlvContra.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -118,9 +121,6 @@ public class FrmLogin extends JDialog implements ActionListener{
 			btnOlvContra.setBorder(null);
 			btnOlvContra.setBounds(338, 232, 160, 23);
 			getContentPane().add(btnOlvContra);
-			
-			
-			setVisible(true);
 			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 			
 			limpiar();
@@ -149,7 +149,7 @@ public class FrmLogin extends JDialog implements ActionListener{
 					this.setVisible(false);
 					frm.menu.muestraOpciones();
 				}else {
-						JOptionPane.showMessageDialog(this, "Usuario o Contraseña no valida!!!");
+						JOptionPane.showMessageDialog(this, "ERROR: Usuario o Contraseña no valida!!");
 						txtLogin.requestFocus();
 						limpiar();
 
@@ -165,12 +165,16 @@ public class FrmLogin extends JDialog implements ActionListener{
 	protected void btnOlvContraActionPerformed(ActionEvent e) {
 		
 		FrmPregunta.setVisible(true);
-		//this.setVisible(false);
+		FrmPregunta.txtIdUser.requestFocus();
+		
       }
 	
 	
 	public void windowDeactivated(WindowEvent e) {}
 }
+
+
+
 
 
 
