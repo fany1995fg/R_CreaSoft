@@ -25,6 +25,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 import com.placamas.beans.OpcionBean;
+import com.placamas.biblioteca;
 import com.placamas.controlador.UsuarioControlador;
 import com.placamas.seguridad.FrmControlUsuarios;
 import com.placamas.seguridad.FrmCambiar;
@@ -96,6 +97,11 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 	
 	private List<JMenuItem> listaItemMenus = new ArrayList<>();
 	private List<JMenu> listaMenus = new ArrayList<>();
+	
+	//Biblioteca
+		private FrmTableros FrmTableros=new FrmTableros();
+	
+	
 	
 	//1 Se crean los formularios
 	
@@ -366,7 +372,8 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		
 		//TABLEROS//
 		if(e.getSource()==mItem04){
-			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");
+			FrmTableros.mantenimiento.setVisible(true);
+			tabbedPane.add( FrmMantenimientoLP.mantenimiento, "Lista de Piezas  ");
 
 		}
 		

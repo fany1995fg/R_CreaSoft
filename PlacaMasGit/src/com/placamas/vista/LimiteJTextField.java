@@ -5,7 +5,7 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
-class LimiteJTextField extends PlainDocument {
+public class LimiteJTextField extends PlainDocument {
 	private int limite;
 	
 	public LimiteJTextField(int i){
