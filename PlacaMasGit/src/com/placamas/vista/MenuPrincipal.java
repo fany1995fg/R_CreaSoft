@@ -24,8 +24,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import com.placamas.beans.OpcionBean;
-import com.placamas.biblioteca;
+import com.placamas.beans.OpcionBean; 
+import com.placamas.biblioteca.FrmTableros;
+import com.placamas.biblioteca.FrmTapacantos;
 import com.placamas.controlador.UsuarioControlador;
 import com.placamas.seguridad.FrmControlUsuarios;
 import com.placamas.seguridad.FrmCambiar;
@@ -100,7 +101,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 	
 	//Biblioteca
 		private FrmTableros FrmTableros=new FrmTableros();
-	
+		private FrmTapacantos FrmTapacantos=new FrmTapacantos();
 	
 	
 	//1 Se crean los formularios
@@ -372,14 +373,15 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		
 		//TABLEROS//
 		if(e.getSource()==mItem04){
-			FrmTableros.mantenimiento.setVisible(true);
-			tabbedPane.add( FrmMantenimientoLP.mantenimiento, "Lista de Piezas  ");
+			FrmTableros.tablero.setVisible(true);
+			tabbedPane.add( FrmTableros.tablero, "Tableros  ");
 
 		}
 		
 		//TAPACANTOS//
 		if(e.getSource()==mItem05){
-			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");		
+			FrmTapacantos.tapacanto.setVisible(true);
+			tabbedPane.add( FrmTapacantos.tapacanto, "Tapacantos  ");		
 		}
 		
 		//RANURAS//
