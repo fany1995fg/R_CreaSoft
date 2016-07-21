@@ -36,11 +36,9 @@ import java.awt.Color;
 
 public class MenuPrincipal extends JFrame implements ActionListener, MouseListener {
 
-	
-
-	//solucion
 	private static final long serialVersionUID = 1L;
-	
+	JPanel contenedor;
+	JMenuBar menuBar;
     ClosableTabbedPane tabbedPane;
 	
 	
@@ -119,12 +117,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		
 		private UsuarioControlador model = new UsuarioControlador();
 		
-		//@SuppressWarnings("unused")
-		//private JDesktopPane desktop= new  JDesktopPane();
-		
-		
-		JPanel contenedor;
-		JMenuBar menuBar;
+	//BARRA DE HERRAMIENTAS
     	
     private final JButton btnNuevoPrincipal = new JButton("");
     private final JButton btnConfiguracionPrincipal = new JButton("");
@@ -132,7 +125,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
     
     
     public MenuPrincipal() {
-		
+    	
 		tabbedPane = new ClosableTabbedPane();
 		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -142,7 +135,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
     	
     	
 		menuBar = new JMenuBar();
-		//getContentPane().add(menuBar, BorderLayout.NORTH);
+		
 		menuBar.setForeground(Color.BLACK);
 		mItem01.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 	    
@@ -153,9 +146,8 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
     	
     	contenedor.setBorder(new LineBorder(SystemColor.activeCaption));
     	contenedor.setBounds(10, 23, 655, 480);
-    	//getContentPane().add(contenedor, BorderLayout.CENTER);
-		
-		//----------------------------------------------------------------
+    	
+    	
 		JToolBar toolBar = new JToolBar();
 		contenedor.add(toolBar, BorderLayout.NORTH);
 		toolBar.setBounds(0, 0, 735, 39);
@@ -195,14 +187,13 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 					modelo.insertNodeInto(hijo, padre, 0);
 					modelo.insertNodeInto(hija, padre, 1);
 			
+		//LISTAMOS EN SUBMENU			
+					listaMenus.add(mMenu01);
+					listaMenus.add(mMenu02);
+					listaMenus.add(mMenu03);
+					listaMenus.add(mMenu04);
 					
-		//----------------------------------------------------------------------------
-		/*FrmColores.colores.addMouseListener((MouseListener) this);
-		FrmLocales.locales.addMouseListener((MouseListener) this);
-		FrmMarcas.marcas.addMouseListener((MouseListener) this);
-		FrmMaterial.material.addMouseListener((MouseListener) this);
-		FrmMedidas.medidas.addMouseListener((MouseListener) this);
-		FrmTextura.textura.addMouseListener((MouseListener) this);*/
+		//LISTAMOS LAS VISTAS(PESTAÑAS) SEGUN EL MENU QUE TENEMOS
 				
 					listaItemMenus.add(mItem01);
 					listaItemMenus.add(mItem02);
@@ -224,12 +215,9 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 					listaItemMenus.add(mItem18);
 					listaItemMenus.add(mItem19);
 									
+		
 					
-					listaMenus.add(mMenu01);
-					listaMenus.add(mMenu02);
-					listaMenus.add(mMenu03);
-					listaMenus.add(mMenu04);
-					
+		//VOLVEMOS INVISIBLES LAS VISTAS PARA PODER DARLES LOS ACCESOS
 					
 					mItem01.setVisible(false);
 					mItem02.setVisible(false);
@@ -323,39 +311,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		
 		
 		
-		//--------------------------------------------------------
-		
-	/*	
-		mItem09.addMouseListener(this);
-		mItem10.addMouseListener(this);
-		mItem11.addMouseListener(this);
-		mItem12.addMouseListener(this);
-		mItem13.addMouseListener(this);
-		mItem14.addMouseListener(this);
-		mItem15.addMouseListener(this);
-		mItem16.addMouseListener(this);
-		
-		mItem01.addMouseListener((MouseListener) this);
-		mItem02.addMouseListener((MouseListener) this);
-		mItem03.addMouseListener((MouseListener) this);
-		mItem04.addMouseListener((MouseListener) this);
-		mItem05.addMouseListener((MouseListener) this);
-		mItem06.addMouseListener((MouseListener) this);
-		mItem07.addMouseListener((MouseListener) this);
-		mItem08.addMouseListener((MouseListener) this);
-		mItem09.addMouseListener((MouseListener) this);
-		
-		mItem11.addMouseListener((MouseListener) this);
-		mItem12.addMouseListener((MouseListener) this);
-		mItem13.addMouseListener((MouseListener) this);
-		mItem14.addMouseListener((MouseListener) this);
-		mItem15.addMouseListener((MouseListener) this);
-		mItem16.addMouseListener((MouseListener) this);
-		mItem17.addMouseListener((MouseListener) this);
-		mItem18.addMouseListener((MouseListener) this);
-		*/
-		
-		//Barra de MEnuBar
+		//Barra de MENU
 		mMenu01.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		menuBar.add(mMenu01);
 		mMenu02.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -444,18 +400,12 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 			FrmMarcas.tbMarcas.requestFocus();
 			FrmMarcas.tbMarcas.changeSelection(0,1,true, true);
 			FrmMarcas.toFront();
-					
-			/*FrmMarcas.tbMarcas.requestFocus();
-			FrmMarcas.tbMarcas.changeSelection(0,0,true, true);*/
 		}
 		
 		//MATERIAL//
 		if(e.getSource()==mItem10){
 			tabbedPane.add(FrmMaterial.material, "Materiales    ");
 			FrmMaterial.setVisible(true);
-			
-			/*FrmMaterial.tbMaterial.requestFocus();
-			FrmMaterial.tbMaterial.changeSelection(0,0,true, true);*/
 
 		}
 		
@@ -511,24 +461,21 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		
 		//GESTION DE USUARIOS//
 		if(e.getSource()==mItem17){
-			//tabbedPane.add(FrmGestionUsuarios.GesUsu, "Gestion de Usuarios    ");
-			//FrmGestionUsuarios.setVisible(true);
-			/*FrmGestionUsuarios.tbUsuario.requestFocus();
-			FrmGestionUsuarios.tbUsuario.changeSelection(0,0,true, true);*/
+			
 		
 		}
 		//CONTROL DE USUARIOS//
 		if(e.getSource()==mItem18){
 			FrmControlUsuarios.setVisible(true);
 			tabbedPane.add(FrmControlUsuarios.control, "Control de Usuarios    ");	
-			//FrmControlUsuarios.setVisible(true);
+		
 		}
 		
 		//CAMBIAR CONTRASEÑA//
 		if(e.getSource()==mItem19){
 			FrmCambiar.setVisible(true);
 			tabbedPane.add(FrmCambiar.usuario, "Cambiar Contaseña    ");
-			//FrmControlUsuarios.setVisible(true);
+
 		}
 		
 		

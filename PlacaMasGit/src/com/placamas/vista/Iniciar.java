@@ -21,7 +21,7 @@ import java.awt.SystemColor;
 
 
 @SuppressWarnings("serial")
-public class Iniciar extends JFrame implements WindowListener, MouseListener{
+public class Iniciar extends JFrame implements WindowListener{
  
 	public MenuPrincipal menu = new MenuPrincipal();
 	
@@ -32,26 +32,12 @@ public class Iniciar extends JFrame implements WindowListener, MouseListener{
 		setSize(x, y);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
-		 
-		//menu.setSize(600, 400);
 		menu.setBackground(SystemColor.activeCaption);
-		
-		//se instancia a MenuPrincipal
 		
 		getContentPane().add(menu.menuBar, BorderLayout.NORTH);
 		getContentPane().add(menu.contenedor, BorderLayout.CENTER);
 
 		addWindowListener(this);		
-
-		
-		menu.mItem09.addMouseListener(this);
-		menu.mItem10.addMouseListener(this);
-		menu.mItem11.addMouseListener(this);
-		menu.mItem12.addMouseListener(this);
-		menu.mItem13.addMouseListener(this);
-		menu.mItem14.addMouseListener(this);
-		menu.mItem15.addMouseListener(this);
-		menu.mItem16.addMouseListener(this);
 		
 	}
 		
@@ -109,71 +95,5 @@ public class Iniciar extends JFrame implements WindowListener, MouseListener{
 	public void windowDeactivated(WindowEvent e) {}
 
 	
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent evento) {
-		// TODO Auto-generated method stub
-		
-		/*if (evento.getSource() == menu.mItem09){
-			  FrmMarcas.marcas.requestFocus();			  
-			  }
-		if (evento.getSource() == menu.mItem10){
-			  FrmMaterial.material.requestFocus();			  
-			  }
-		if (evento.getSource() == menu.mItem11){
-			  FrmTextura.textura.requestFocus();			  
-			  }
-		if (evento.getSource() == menu.mItem12){
-			  FrmColores.colores.requestFocus();			  
-			  }
-		if (evento.getSource() == menu.mItem13){
-			  FrmMedidas.medidas.requestFocus();			  
-			  }
-		if (evento.getSource() == menu.mItem14){
-			  FrmLocales.locales.requestFocus();			  
-			  }*/
-	}
-
-
-	@Override
-	public void mouseReleased(MouseEvent evento) {
-		// TODO Auto-generated method stub
-		/*if (evento.getSource() == menu.mItem09){
-			  FrmMarcas.marcas.requestFocus();			  
-			  }
-		if (evento.getSource() == menu.mItem10){
-			  FrmMaterial.material.requestFocus();			  
-			  }
-		if (evento.getSource() == menu.mItem11){
-			  FrmTextura.textura.requestFocus();			  
-			  }
-		if (evento.getSource() == menu.mItem12){
-			  FrmColores.colores.requestFocus();			  
-			  }
-		if (evento.getSource() == menu.mItem13){
-			  FrmMedidas.medidas.requestFocus();			  
-			  }
-		if (evento.getSource() == menu.mItem14){
-			  FrmLocales.locales.requestFocus();			  
-			  }*/
-	
-	}
 
 }

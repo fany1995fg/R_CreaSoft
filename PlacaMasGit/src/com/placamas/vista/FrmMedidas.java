@@ -72,14 +72,7 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 	public FrmMedidas() {
 		
 		medidas = new JPanel();
-		//medidas.addMouseListener((MouseListener) this);
 		medidas.setLayout(null);
-		
-		/*
-		setTitle("Medidas");
-		setClosable(true);
-		setBounds(100, 100, 577, 511);
-		getContentPane().setLayout(null);*/
 		
 		JLabel lblIdMedidas = new JLabel("C\u00F3digo de Medidas:");
 		lblIdMedidas.setFont(new Font("Tahoma", Font.PLAIN, 13));

@@ -79,14 +79,9 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public FrmColores() {
-				
-		/*
-		setToolTipText("Colores");
-		setBounds(100, 100, 634, 493);
-		getContentPane().setLayout(null);*/
 		
 		colores = new JPanel();
-		//colores.addMouseListener((MouseListener) this);
+		colores.setLayout(null);
 		
 		JLabel lblIdMarca = new JLabel("C\u00F3digo de Color :");
 		lblIdMarca.setBounds(57, 231, 115, 20);

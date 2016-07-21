@@ -154,7 +154,6 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 		modelo.addColumn("Descripcion");
 		Listar();
 		
-		//setDefaultCloseOperation(DISPOSE_ON_CLOSE ); //Se oculte al cerrara
 		
 		separator = new JSeparator();
 		separator.setBounds(726, 132, 0, 2);

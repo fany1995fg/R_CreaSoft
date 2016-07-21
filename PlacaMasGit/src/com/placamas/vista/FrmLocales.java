@@ -67,13 +67,9 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public FrmLocales() {
-		/*
-		setToolTipText("Colores");
-		setBounds(100, 100, 634, 493);
-		getContentPane().setLayout(null);*/
 		
 		locales = new JPanel();
-		//locales.addMouseListener((MouseListener) this);
+		locales.setLayout(null);
 		
 		JLabel lblIdLocal = new JLabel("C\u00F3digo de Local :");
 		lblIdLocal.setBounds(57, 231, 115, 20);
@@ -125,12 +121,6 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		btnEliminar = new JButton("");
 		toolBar.add(btnEliminar);
 		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
-		
-        ///QUITANDOLE LOS BORDES A LOS BOTONES
-		
-		/*btnNuevo.setBorder(null);
-		btnEliminar.setBorder(null);
-		btnGrabar.setBorder(null);*/
 		
 		label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(FrmLocales.class.getResource("/gui/img/banners/loca3.png")));

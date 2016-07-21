@@ -36,9 +36,7 @@ public class FrmPregunta extends JFrame implements ActionListener{
 	JButton btnVerificar;
 	private JLabel lblIngresarIdDe;
 	JTextField txtIdUser;
-	
-	//private FrmLogin FrmLogin= new FrmLogin(Iniciar);
-	
+
 	private UsuarioControlador model = new UsuarioControlador();
 	private JLabel lblPregunta;
 	
@@ -75,71 +73,12 @@ public class FrmPregunta extends JFrame implements ActionListener{
 		txtIdUser.setColumns(10);
 		txtIdUser.setBounds(150, 42, 160, 25);
 		getContentPane().add(txtIdUser);
-		//txtIdUser.requestFocus();
-	//	getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblIngresarIdDe, txtIdUser, lblIngre, txtResp, btnVerificar, label, button, lblPregunta}));
 		
 		JButton button = new JButton("");
-		
-		 
-		//aqui es el metodo del jframe donde debo colocar mi codigo cierto? como en el 
-		//mio me lo ghenera la maquina
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			
-				if( e.getSource()== txtIdUser){
-					
-					String login = txtIdUser.getText().trim();
-					String pregunta = txtResp.getText().trim();
-					//loca y el mensaje como imprimira
-					UsuarioBean bean =  model.listarPregunta(login);
-					System.out.println(""+bean);
-					if(bean!= null){
-						mensaje("Verificacion correcta");
-						txtIdUser.setEnabled(false);
-						txtResp.setEnabled(false);
-					}else {
-							System.out.println("ERROR: Datos ingresardos incorrectos !!");
-							txtIdUser.requestFocus();
-							limpiar();
-
-						}
-						
-				}
-				
-				
-				
-				/*try {
-					//aqui debes hacer ya la recuperacion de  los datos
-					String usuario;
-					usuario = txtIdUser.getText();
-					System.out.println("CMostramos el suusario " +usuario);
-					UsuarioBean bean =  model.listarPregunta(usuario); 
-					
-					
-					//aqui hacemos la consulta que ya tiene predefinida el controlador
-					
-					System.out.println(model.listarPregunta(usuario));
-					
-					
-					
-					
-					
-					//Aqui debemos ya setear en el desplegable las pretguntas
-				} catch (Exception e) {
-					System.out.println("Esto mira coge el valor eso es bueno ahora seguri de ahi ves"
-							+ "se ve el erroroo");
-				}
-				
-				*/
-				 
-			}
-		});
 		button.setIcon(new ImageIcon(FrmPregunta.class.getResource("/recursos/consultar.png")));
 		button.setBounds(328, 30, 35, 35);
 		getContentPane().add(button);
-	//	setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{getContentPane(), lblIngresarIdDe, txtIdUser, lblIngre, txtResp, btnVerificar, label, button, lblPregunta}));
-		
+	
 		lblPregunta = new JLabel("Pregunta : ");
 		lblPregunta.setFont(new Font("Century Gothic", Font.PLAIN, 18));
 		lblPregunta.setBounds(26, 80, 115, 25);

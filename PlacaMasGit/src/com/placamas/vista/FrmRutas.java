@@ -74,7 +74,6 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			
 			
 			rutas = new JPanel();
-			//marcas.addMouseListener((MouseListener) this);
 			rutas.setLayout(null);
 			
 			toolBar = new JToolBar();
@@ -172,6 +171,7 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			
 			
 			tbRutas = new JTable();
+			
 			tbRutas = new JTable(){
 				public boolean isCellEditable(int rowIndex, int colIndex){
 					return false;

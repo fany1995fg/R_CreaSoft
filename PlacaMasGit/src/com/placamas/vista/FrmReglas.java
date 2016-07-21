@@ -49,14 +49,13 @@ public class FrmReglas extends JInternalFrame implements ActionListener{
 	int tab=0,tap=0;
 	String math_tab,math_can;
 	private JButton btnGrabar;
-	//private JButton btnCerrar;
 	private JButton btnEliminar;
 	private JButton btnNuevo;
 	private JToolBar toolBar;
 	private JLabel label_1;
 	JPanel reglas;
-	private JPanel panel_1;
-	private JPanel panel_2;
+	private JPanel P_OperAuto;
+	private JPanel Corte;
 	private JPanel panel_3;
 	private JPanel panel_4;
 	private JPanel panel_5;
@@ -199,66 +198,66 @@ public class FrmReglas extends JInternalFrame implements ActionListener{
 		
 		int fila=0;
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Mantenimiento de LP", TitledBorder.LEADING, TitledBorder.TOP, null, Color.RED));
-		panel.setBounds(78, 35, 879, 308);
-		reglas.add(panel);
-		panel.setLayout(null);
+		JPanel P_MantenimientoLP = new JPanel();
+		P_MantenimientoLP.setBorder(new TitledBorder(null, "Mantenimiento de LP", TitledBorder.LEADING, TitledBorder.TOP, null, Color.RED));
+		P_MantenimientoLP.setBounds(78, 35, 879, 308);
+		reglas.add(P_MantenimientoLP);
+		P_MantenimientoLP.setLayout(null);
 		
-		panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Operaciones Automaticas", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLUE));
-		panel_1.setBounds(10, 91, 234, 114);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+		P_OperAuto = new JPanel();
+		P_OperAuto.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Operaciones Automaticas", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLUE));
+		P_OperAuto.setBounds(10, 91, 234, 114);
+		P_MantenimientoLP.add(P_OperAuto);
+		P_OperAuto.setLayout(null);
 		
 		chckbxImprimirFullEtiquetas = new JCheckBox("Imprimir full Etiquetas");
 		chckbxImprimirFullEtiquetas.setBounds(17, 46, 173, 16);
-		panel_1.add(chckbxImprimirFullEtiquetas);
+		P_OperAuto.add(chckbxImprimirFullEtiquetas);
 		
 		chckbxAgruparAlGrabar = new JCheckBox("Agrupar Piezas al Grabar");
 		chckbxAgruparAlGrabar.setBounds(17, 27, 173, 16);
-		panel_1.add(chckbxAgruparAlGrabar);
+		P_OperAuto.add(chckbxAgruparAlGrabar);
 		
 		chckbxCopiarUltimo = new JCheckBox("Copiar Ultimo Item");
 		chckbxCopiarUltimo.setBounds(17, 84, 157, 16);
-		panel_1.add(chckbxCopiarUltimo);
+		P_OperAuto.add(chckbxCopiarUltimo);
 		
 		chckbxAadirItemNuevo = new JCheckBox("A\u00F1adir Item Nuevo");
 		chckbxAadirItemNuevo.setBounds(17, 65, 173, 16);
-		panel_1.add(chckbxAadirItemNuevo);
+		P_OperAuto.add(chckbxAadirItemNuevo);
 		
-		panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Corte", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		panel_2.setBounds(254, 24, 273, 68);
-		panel.add(panel_2);
-		panel_2.setLayout(null);
+		Corte = new JPanel();
+		Corte.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Corte", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
+		Corte.setBounds(254, 24, 273, 68);
+		P_MantenimientoLP.add(Corte);
+		Corte.setLayout(null);
 		
 		txtCorSier = new JTextField();
 		txtCorSier.setToolTipText("Escribe una descripci\u00F3n para el Color");
 		txtCorSier.setColumns(10);
 		txtCorSier.setBounds(213, 14, 25, 20);
-		panel_2.add(txtCorSier);
+		Corte.add(txtCorSier);
 		
 		textField_13 = new JTextField();
 		textField_13.setToolTipText("Escribe un id para el Color");
 		textField_13.setColumns(10);
 		textField_13.setBounds(213, 36, 25, 20);
-		panel_2.add(textField_13);
+		Corte.add(textField_13);
 		
 		lblRefilarServicio = new JLabel("Refilar Servicio Premiun(mm)");
 		lblRefilarServicio.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblRefilarServicio.setBounds(39, 37, 169, 20);
-		panel_2.add(lblRefilarServicio);
+		Corte.add(lblRefilarServicio);
 		
 		lblEs = new JLabel("Espesor de Sierra (mm)");
 		lblEs.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblEs.setBounds(70, 15, 138, 20);
-		panel_2.add(lblEs);
+		Corte.add(lblEs);
 		
 		panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Operaciones Automaticas", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLUE));
 		panel_3.setBounds(254, 91, 273, 203);
-		panel.add(panel_3);
+		P_MantenimientoLP.add(panel_3);
 		panel_3.setLayout(null);
 		
 		textField_6 = new JTextField();
@@ -341,7 +340,7 @@ public class FrmReglas extends JInternalFrame implements ActionListener{
 		panel_4 = new JPanel();
 		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Ranura", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
 		panel_4.setBounds(556, 24, 263, 68);
-		panel.add(panel_4);
+		P_MantenimientoLP.add(panel_4);
 		panel_4.setLayout(null);
 		
 		textField_14 = new JTextField();
@@ -369,15 +368,15 @@ public class FrmReglas extends JInternalFrame implements ActionListener{
 		panel_5 = new JPanel();
 		panel_5.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Perforacion", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 255)));
 		panel_5.setBounds(556, 91, 263, 74);
-		panel.add(panel_5);
+		P_MantenimientoLP.add(panel_5);
 		
 		chckbxNewCheckBox = new JCheckBox("RMS-Obligatorio Importar Tablero");
 		chckbxNewCheckBox.setBounds(27, 32, 194, 16);
-		panel.add(chckbxNewCheckBox);
+		P_MantenimientoLP.add(chckbxNewCheckBox);
 		
 		chckbxNewCheckBox_1 = new JCheckBox("CC-Obligatorio Contacto y Movil");
 		chckbxNewCheckBox_1.setBounds(27, 51, 179, 16);
-		panel.add(chckbxNewCheckBox_1);
+		P_MantenimientoLP.add(chckbxNewCheckBox_1);
 		
 		panel_6 = new JPanel();
 		panel_6.setBorder(new TitledBorder(null, "Sistemas", TitledBorder.LEADING, TitledBorder.TOP, null, Color.RED));

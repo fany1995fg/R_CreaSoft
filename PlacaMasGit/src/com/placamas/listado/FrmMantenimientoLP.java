@@ -173,12 +173,6 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 		toolBar.add(btnEliminar);
 		btnEliminar.setIcon(new ImageIcon(FrmMantenimientoLP.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
 		
-        ///QUITANDOLE LOS BORDES A LOS BOTONES
-		
-		/*btnNuevo.setBorder(null);
-		btnEliminar.setBorder(null);
-		btnGrabar.setBorder(null);*/
-		
 		label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(FrmMantenimientoLP.class.getResource("/gui/img/banners/loca3.png")));
 		label_1.setBounds(10, 24, 598, 108);
@@ -188,7 +182,6 @@ public class FrmMantenimientoLP extends JInternalFrame implements ActionListener
 		
 		JPanel PListaPieza = new JPanel();
 		PListaPieza.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Lista de Piezas", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 255)));
-		//TitledBorder.setFont(new Font("Stencil", Font.PLAIN, 16));
 		PListaPieza.setBounds(49, 46, 161, 62);
 		mantenimiento.add(PListaPieza);
 		
@@ -886,15 +879,7 @@ protected void btnEliminarActionPerformed(ActionEvent arg0) {
 		estado=true;
 	}
 	
-	void Listar(){/*
-		modelo.setRowCount(0);
-		ArrayList<LocalBean> info=obj.listarLocal();
-		for(LocalBean x:info){
-			Object fila[]={x.getIdLocal(),x.getLoc_Nomb()};
-			modelo.addRow(fila);
-			
-		}
-			*/
+	void Listar(){
 
 	}
 }

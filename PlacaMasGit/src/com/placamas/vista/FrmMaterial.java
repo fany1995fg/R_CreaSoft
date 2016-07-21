@@ -158,12 +158,6 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 		btnEliminar = new JButton("");
 		toolBar.add(btnEliminar);
 		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
-		
-		///QUITANDOLE LOS BORDES A LOS BOTONES
-		
-		//btnNuevo.setBorder(null);
-		//btnEliminar.setBorder(null);
-		//btnGrabar.setBorder(null);
 
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(FrmMaterial.class.getResource("/gui/img/banners/BannerMateriales.png")));

@@ -73,7 +73,6 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 	private JTextField txtNomb_User;
 	private JTextField txtEmail;
 
-	//private ControladorCategoria c = new ControladorCategoria();
 	/**
 	 * Launch the application.
 	 */
@@ -96,16 +95,7 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 	public FrmControlUsuarios() {
 		
 		control = new JPanel();
-		/*
-		setBounds(100, 100, 1008, 673);
 		control.setLayout(null);
-		setClosable(true);
-		setDefaultCloseOperation(HIDE_ON_CLOSE);
-		setIconifiable(true);
-		setTitle("Control de Usuarios");*/
-		control.setLayout(null);
-		
-		//cboUsuario_1 = new JComboBox();
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/gui/img/banners/pruebaBanner2.jpg")));
@@ -452,21 +442,9 @@ protected void btnGrabarActionPerformed(ActionEvent arg0) {
 		estado=true;
 	}
 	protected void do_btnAgregar_actionPerformed(ActionEvent arg0) {
-		//String des = textField.getText().trim();
-		
-	/*//	CategoriaBean bean = new CategoriaBean();
-		bean.setDescripcion(des);
-		
-		c.inserta(bean);
-		
-		listaData();*/
+	
 	}
 	protected void do_btnEliminar_actionPerformed(ActionEvent arg0) {
-		/*if( idCategoria!= -1){
-			c.elimina(idCategoria);
-			textField.setText("");
-			listaData();
-		}*/
 	}
 	
 	private void listarUsuarioLocales() {

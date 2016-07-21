@@ -69,13 +69,7 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 	public FrmTextura() {
 		
 		textura = new JPanel();
-		//textura.addMouseListener((MouseListener) this);
 		textura.setLayout(null);
-		/*
-		setTitle("Textura");
-		setClosable(true);
-		setBounds(100, 100, 577, 511);
-		getContentPane().setLayout(null);*/
 		
 		JLabel lblIdTextura = new JLabel("C\u00F3digo de Textura");
 		lblIdTextura.setFont(new Font("Tahoma", Font.PLAIN, 13));

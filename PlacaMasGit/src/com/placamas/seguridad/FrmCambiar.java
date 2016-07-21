@@ -160,28 +160,6 @@ public class FrmCambiar extends JInternalFrame implements ActionListener{
 	void mensaje(String m){
 		JOptionPane.showMessageDialog(null, m);
 }
-
-	/*public void actionPerformed(ActionEvent e) {
-		
-		if(e.getSource() == FrmLogin.txtCamCont){
-						
-			if(bean!= null){
-				idusuario = bean.getIdUser();
-				frm.setVisible(true);
-				this.setVisible(false);
-				frm.menu.muestraOpciones();
-			}else{
-				JOptionPane.showMessageDialog(this, "usuario no valido");
-			}
-			
-		}
-		if(e.getSource() == btnCancelar){
-			txtLogin.setText("");
-			txtClave.setText("");
-			txtLogin.requestFocus();
-		}
-	
-}*/
 	
 	
 	protected void btnGrabarActionPerformed(ActionEvent e) {
@@ -203,77 +181,24 @@ public class FrmCambiar extends JInternalFrame implements ActionListener{
         	
             mensaje("ERROR: No se aceptan campos en blanco");
             
-        }/*else
-        	 if(clave != clavelog){
-        	
-        	mensaje("ERROR: Contraseña incorrecta");
-        }*/
+        }
         else
         	if(txtPassAct.getText().equals(FrmLogin.txtClave.getText()) || txtPassNew.getText().equals(txtPassNew1.getText())){
         	estado=true;
 	        if(estado==true){ 	
-			//UsuarioBean l=new UsuarioBean(txtPassNew.getText(), FrmLogin.txtLog.getText());
-	        	
+			
 	        	UsuarioBean bean =  obj.cambiarContraseña(pass, log );
 	        	if(bean!= null){
 				mensaje("Cambio de contraseña");
 				}
         	  }
 	        }
-        
       }
-	/*else{
-		MarcasBean l=new MarcasBean(txtIdMarca.getText(), txtDescripcion.getText());
-		int valor=obj.actualizarMarcas(l);
-		if(valor==1){
-			mensaje("Actualizado Correctamente");
-		Listar();
-		}
-		else
-			mensaje("Error");
-	}*/
-        
-		
-
-	
 
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-		/*String texto=txtPassAct.getText();
-		newc = FrmLogin.txtCamCont.getText();
-		
-		
-		String pass=txtPassNew.getText();
-		
-		String log=FrmLogin.txtLog.getText();
-		
-		
-        texto=texto.replaceAll(" ", "");
-        
-        if(texto.length()==0){
-        	
-            mensaje("ERROR: No se aceptan campos en blanco");
-            
-        }
-        else
-        	if(txtPassAct.getText() == FrmLogin.txtLog.getText()  || txtPassNew.getText()==txtPassNew1.getText()){
-        	estado=true;
-	        if(estado==true){ 	
-			//UsuarioBean l=new UsuarioBean(txtPassNew.getText(), FrmLogin.txtLog.getText());
-	        	
-	        	UsuarioBean bean =  obj.cambiarContraseña(pass, log );
-	        	if(bean!= null){
-				mensaje("Cambio de contraseña");
-				}else{
-					JOptionPane.showMessageDialog(this, "Usuario no valido");
-				}
-	       
-        	  }
-	        }*/
-             
+		// TODO Auto-generated method stub     
 	}
 }
 
