@@ -91,6 +91,11 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		btnEliminar.setToolTipText("Eliminar");
 		btnGrabar.setToolTipText("Grabar");
 		
+		JButton button_2 = new JButton("");
+		button_2.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/iconosmodernos/1466476622_common-new-edit-compose-glyph.png")));
+		button_2.setToolTipText("Eliminar");
+		toolBar.add(button_2);
+		
 		modelo.addColumn("Codigo");
 		modelo.addColumn("Descripcion");
 		
@@ -100,7 +105,7 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		tapacanto.add(separator);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 138, 496, 417);
+		scrollPane.setBounds(57, 174, 496, 417);
 		tapacanto.add(scrollPane);		
 		
 		
@@ -125,7 +130,7 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		tapacanto.add(separator_1);
 		
 		lblListaDeMarcas = new JLabel("Lista de Tapacantos:");
-		lblListaDeMarcas.setBounds(57, 106, 153, 20);
+		lblListaDeMarcas.setBounds(57, 153, 153, 20);
 		lblListaDeMarcas.setFont(new Font("Tahoma", Font.BOLD, 12));
 		tapacanto.add(lblListaDeMarcas);
 		
@@ -252,6 +257,18 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Ver Todos (Act./Inact.)");
 		chckbxNewCheckBox_1.setBounds(506, 588, 177, 23);
 		tapacanto.add(chckbxNewCheckBox_1);
+		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/iconosmodernos/1466475388_save.png")));
+		button.setToolTipText("Eliminar");
+		button.setBounds(57, 119, 23, 23);
+		tapacanto.add(button);
+		
+		JButton button_1 = new JButton("");
+		button_1.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/iconosmodernos/1466476618_File.png")));
+		button_1.setToolTipText("Eliminar");
+		button_1.setBounds(83, 119, 23, 23);
+		tapacanto.add(button_1);
 		
 		
 		int fila=0;
