@@ -33,6 +33,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.UIManager;
 import java.awt.Color;
+import javax.swing.JToggleButton;
+import javax.swing.JSpinner;
+import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
 
 public class FrmTableros extends JInternalFrame implements ActionListener{
 
@@ -40,25 +44,20 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 	Boolean estado=false;
 	JTable tbMarcas;
 	private JTable tbTablero;
-	private JButton btnGrabar;
+	private JButton btnEditar;
 	private JButton btnCerrar;
-	private JButton btnEliminar;
+	private JButton btnGrabar;
 	private JButton btnNuevo;
 	private JToolBar toolBar;
-	private JSeparator separator;
 	public JPanel tablero;
 	private JLabel label;
-	private JSeparator separator_1;
-	private JLabel lblListaDeMarcas;
-	private JCheckBox chckbxServPrimeun;
-	private JCheckBox chckbxActivo;
-	private JCheckBox chckbxRotacion;
-	private JCheckBox chckbxVenta;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTable table;
+	private JCheckBox chbxActivo;
+	private JCheckBox chbxRotacion;
+	private JCheckBox chbxVeta;
+	private JTextField vrbPila;
+	private JTable tbFormato;
+	private JTextField vrbCodigo;
+	private JTextField vrbDescripcion;
 
 
 	public static void main(String[] args) {
@@ -83,232 +82,264 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		tablero.setLayout(null);
 		
 		toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 1194, 35);
+		toolBar.setBounds(0, 0, 310, 35);
 		tablero.add(toolBar);
 		
 		
 		btnNuevo = new JButton("");
 		toolBar.add(btnNuevo);
-		btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466476618_File.png")));
+		btnNuevo.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_New_document.png")));
 		
-		btnGrabar = new JButton("");
-		toolBar.add(btnGrabar);
-		btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475388_save.png")));
-
-		btnEliminar = new JButton("");
+		btnEditar = new JButton("");
+		toolBar.add(btnEditar);
+		btnEditar.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_Modify.png")));
+		
+		JButton btnEliminar = new JButton("");
+		btnEliminar.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_Erase.png")));
+		btnEliminar.setToolTipText("Eliminar Registro");
 		toolBar.add(btnEliminar);
-		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
+		
+		JButton btnExportar = new JButton("");
+		btnExportar.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_Upload.png")));
+		btnExportar.setToolTipText("Exportar Tableros");
+		toolBar.add(btnExportar);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(290, 109, 11, 33);
+		separator_3.setOrientation(SwingConstants.VERTICAL);
+		toolBar.add(separator_3);
+		
+		JButton btnEditarNo = new JButton("");
+		btnEditarNo.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_Editar_No.png")));
+		toolBar.add(btnEditarNo);
+		btnEditarNo.setToolTipText("Quitar Edicion Registro");
+		
+				btnGrabar = new JButton("");
+				toolBar.add(btnGrabar);
+				btnGrabar.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_Save.png")));
+				btnGrabar.setToolTipText("Grabar Cambios");
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setOrientation(SwingConstants.VERTICAL);
+		toolBar.add(separator_2);
+		
+		JButton btnCopiar = new JButton("");
+		btnCopiar.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_Copy.png")));
+		btnCopiar.setToolTipText("Copiar Registro");
+		toolBar.add(btnCopiar);
+		
+		JButton btnPegar = new JButton("");
+		btnPegar.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_Paste.png")));
+		btnPegar.setToolTipText("Pegar Registro");
+		toolBar.add(btnPegar);
+		
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setOrientation(SwingConstants.VERTICAL);
+		toolBar.add(separator_4);
+		
+		JButton btnInicio = new JButton("");
+		btnInicio.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_First.png")));
+		btnInicio.setToolTipText("Ir a Inicio de Registros");
+		toolBar.add(btnInicio);
+		
+		JButton btnAtras = new JButton("");
+		btnAtras.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_Back.png")));
+		btnAtras.setToolTipText("Ir a Pantalla anterior");
+		toolBar.add(btnAtras);
+		
+		JButton btnAdelante = new JButton("");
+		btnAdelante.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_Forward.png")));
+		btnAdelante.setToolTipText("Ir a Pantalla Siguientes");
+		toolBar.add(btnAdelante);
+		
+		JButton btnFinal = new JButton("");
+		btnFinal.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_Last.png")));
+		btnFinal.setToolTipText("Ir a Ultimo Registro");
+		toolBar.add(btnFinal);
 		
 		
 		btnNuevo.setToolTipText("Nuevo Registro");
-		btnEliminar.setToolTipText("Eliminar");
-		btnGrabar.setToolTipText("Grabar");
-		
-		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon(FrmTableros.class.getResource("/iconosmodernos/1466476622_common-new-edit-compose-glyph.png")));
-		button_2.setToolTipText("Eliminar");
-		toolBar.add(button_2);
+		btnEditar.setToolTipText("Editar Registro");
 		
 		modelo.addColumn("Codigo");
 		modelo.addColumn("Descripcion");
 		
-		
-		separator = new JSeparator();
-		separator.setBounds(726, 132, 0, 2);
-		tablero.add(separator);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 173, 496, 396);
-		tablero.add(scrollPane);		
+		label = new JLabel("");
+		label.setBounds(0, 36, 1194, 65);
+		label.setIcon(new ImageIcon(FrmTableros.class.getResource("/gui/img/banners/tablero.jpg")));
+		tablero.add(label);
 		
 		
 		
 		tbMarcas = new JTable();
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tableros", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_5.setBounds(20, 112, 1113, 495);
+		tablero.add(panel_5);
+		panel_5.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 33, 496, 417);
+		panel_5.add(scrollPane);
 		tbTablero = new JTable(){
 			public boolean isCellEditable(int rowIndex, int colIndex){
 				return false;
 			}
 		};
-
-		scrollPane.setViewportView(tbTablero);
-		tbTablero.setModel(modelo);
 		
-		label = new JLabel("");
-		label.setBounds(0, 33, 1194, 65);
-		label.setIcon(new ImageIcon(FrmTableros.class.getResource("/gui/img/banners/tablero.jpg")));
-		tablero.add(label);
+				scrollPane.setViewportView(tbTablero);
+				tbTablero.setModel(modelo);
+				
+				tbTablero.requestFocus();
+				tbTablero.changeSelection(0,0,true, false);
 		
-		separator_1 = new JSeparator();
-		separator_1.setBounds(10, 106, 1354, 8);
-		tablero.add(separator_1);
+		JLabel lblCodigo = new JLabel("Codigo : ");
+		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblCodigo.setBounds(599, 31, 70, 20);
+		panel_5.add(lblCodigo);
 		
-		lblListaDeMarcas = new JLabel("Lista de Tableros:");
-		lblListaDeMarcas.setBounds(57, 149, 153, 20);
-		lblListaDeMarcas.setFont(new Font("Tahoma", Font.BOLD, 12));
-		tablero.add(lblListaDeMarcas);
+		vrbCodigo = new JTextField();
+		vrbCodigo.setColumns(10);
+		vrbCodigo.setBounds(678, 31, 122, 20);
+		panel_5.add(vrbCodigo);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(627, 132, 153, 55);
-		panel.setBorder(new TitledBorder(null, "Codigo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		tablero.add(panel);
-		panel.setLayout(null);
+		JLabel lblDescripcion = new JLabel("Descripcion : ");
+		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblDescripcion.setBounds(599, 57, 70, 20);
+		panel_5.add(lblDescripcion);
 		
-		textField_2 = new JTextField();
-		textField_2.setText("");
-		textField_2.setColumns(10);
-		textField_2.setBounds(10, 24, 133, 20);
-		panel.add(textField_2);
+		vrbDescripcion = new JTextField();
+		vrbDescripcion.setColumns(10);
+		vrbDescripcion.setBounds(678, 57, 350, 20);
+		panel_5.add(vrbDescripcion);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(627, 192, 389, 84);
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Descripci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		tablero.add(panel_1);
-		panel_1.setLayout(null);
+		chbxActivo = new JCheckBox("Activo");
+		chbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxActivo.setBounds(964, 31, 64, 20);
+		panel_5.add(chbxActivo);
 		
-		textField = new JTextField();
-		textField.setText("");
-		textField.setBounds(137, 22, 228, 20);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		chbxVeta = new JCheckBox("Con Veta");
+		chbxVeta.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxVeta.setBounds(599, 85, 77, 20);
+		panel_5.add(chbxVeta);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("");
-		textField_1.setColumns(10);
-		textField_1.setBounds(137, 48, 228, 20);
-		panel_1.add(textField_1);
+		chbxRotacion = new JCheckBox("Permite Rotacion");
+		chbxRotacion.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxRotacion.setBounds(741, 85, 107, 20);
+		panel_5.add(chbxRotacion);
 		
-		JLabel lblNewLabel = new JLabel("LP:");
-		lblNewLabel.setBounds(99, 28, 26, 14);
-		panel_1.add(lblNewLabel);
-		
-		JLabel lblEtiqueta = new JLabel("Etiqueta:");
-		lblEtiqueta.setBounds(73, 51, 54, 14);
-		panel_1.add(lblEtiqueta);
-		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("No Canto");
-		chckbxNewCheckBox.setBounds(811, 168, 83, 23);
-		tablero.add(chckbxNewCheckBox);
-		
-		chckbxServPrimeun = new JCheckBox("Serv. Premiun");
-		chckbxServPrimeun.setBounds(896, 168, 120, 23);
-		tablero.add(chckbxServPrimeun);
-		
-		chckbxActivo = new JCheckBox("Activo");
-		chckbxActivo.setBounds(811, 150, 83, 20);
-		tablero.add(chckbxActivo);
-		
-		chckbxRotacion = new JCheckBox("Rotacion");
-		chckbxRotacion.setBounds(896, 150, 97, 20);
-		tablero.add(chckbxRotacion);
-		
-		chckbxVenta = new JCheckBox("Venta");
-		chckbxVenta.setBounds(896, 132, 97, 20);
-		tablero.add(chckbxVenta);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(802, 277, 203, 20);
-		tablero.add(comboBox);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(802, 301, 203, 20);
-		tablero.add(comboBox_1);
-		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(802, 325, 55, 20);
-		tablero.add(comboBox_2);
-		
-		JLabel lblMarca = new JLabel("Marca:");
-		lblMarca.setBounds(762, 304, 38, 14);
-		tablero.add(lblMarca);
+		JCheckBox chbxSiCanto = new JCheckBox("Permite Colocar Canto");
+		chbxSiCanto.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxSiCanto.setBounds(901, 84, 127, 23);
+		panel_5.add(chbxSiCanto);
 		
 		JLabel lblMaterial = new JLabel("Material:");
-		lblMaterial.setBounds(754, 280, 46, 14);
-		tablero.add(lblMaterial);
+		lblMaterial.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblMaterial.setBounds(599, 114, 70, 20);
+		panel_5.add(lblMaterial);
+		
+		JComboBox cmBxMaterial = new JComboBox();
+		cmBxMaterial.setBounds(678, 114, 350, 20);
+		panel_5.add(cmBxMaterial);
+		
+		JLabel lblMarca = new JLabel("Marca:");
+		lblMarca.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblMarca.setBounds(599, 145, 70, 20);
+		panel_5.add(lblMarca);
+		
+		JComboBox cmBxMarca = new JComboBox();
+		cmBxMarca.setBounds(678, 145, 350, 20);
+		panel_5.add(cmBxMarca);
 		
 		JLabel lblEspesor = new JLabel("Espesor:");
-		lblEspesor.setBounds(747, 328, 53, 14);
-		tablero.add(lblEspesor);
+		lblEspesor.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblEspesor.setBounds(599, 176, 70, 20);
+		panel_5.add(lblEspesor);
 		
-		JLabel lblPiezaPor = new JLabel("Pieza x Pila:");
-		lblPiezaPor.setBounds(886, 328, 65, 14);
-		tablero.add(lblPiezaPor);
+		JComboBox cmBxEspesor = new JComboBox();
+		cmBxEspesor.setBounds(678, 176, 70, 20);
+		panel_5.add(cmBxEspesor);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(961, 325, 44, 20);
-		tablero.add(textField_3);
-		textField_3.setColumns(10);
+		JLabel lblPila = new JLabel("Cantidad de Pieza x Pila:");
+		lblPila.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblPila.setBounds(852, 176, 122, 20);
+		panel_5.add(lblPila);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(739, 356, 131, 73);
-		panel_2.setBorder(new TitledBorder(null, "Cara1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		tablero.add(panel_2);
-		panel_2.setLayout(null);
-		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(10, 21, 111, 20);
-		panel_2.add(comboBox_3);
-		
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(10, 44, 111, 20);
-		panel_2.add(comboBox_4);
-		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(882, 356, 134, 73);
-		panel_3.setBorder(new TitledBorder(null, "Cara2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		tablero.add(panel_3);
-		panel_3.setLayout(null);
-		
-		JComboBox comboBox_5 = new JComboBox();
-		comboBox_5.setBounds(10, 21, 111, 20);
-		panel_3.add(comboBox_5);
-		
-		JComboBox comboBox_6 = new JComboBox();
-		comboBox_6.setBounds(10, 44, 111, 20);
-		panel_3.add(comboBox_6);
-		
-		JLabel lblTextura = new JLabel("Textura:");
-		lblTextura.setBounds(694, 404, 46, 14);
-		tablero.add(lblTextura);
+		vrbPila = new JTextField();
+		vrbPila.setBounds(984, 176, 44, 20);
+		panel_5.add(vrbPila);
+		vrbPila.setColumns(10);
 		
 		JLabel lblColor = new JLabel("Color:");
-		lblColor.setBounds(706, 379, 34, 14);
-		tablero.add(lblColor);
+		lblColor.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblColor.setBounds(599, 228, 70, 20);
+		panel_5.add(lblColor);
+		
+		JLabel lblTextura = new JLabel("Textura:");
+		lblTextura.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblTextura.setBounds(599, 249, 70, 20);
+		panel_5.add(lblTextura);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(678, 207, 170, 73);
+		panel_5.add(panel_2);
+		panel_2.setBorder(new TitledBorder(null, "Cara1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setLayout(null);
+		
+		JComboBox cmBxColorC1 = new JComboBox();
+		cmBxColorC1.setBounds(10, 21, 148, 20);
+		panel_2.add(cmBxColorC1);
+		
+		JComboBox cmBxTexturaC1 = new JComboBox();
+		cmBxTexturaC1.setBounds(10, 44, 148, 20);
+		panel_2.add(cmBxTexturaC1);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(858, 207, 170, 73);
+		panel_5.add(panel_3);
+		panel_3.setBorder(new TitledBorder(null, "Cara2", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setLayout(null);
+		
+		JComboBox cmBxColorC2 = new JComboBox();
+		cmBxColorC2.setBounds(10, 21, 148, 20);
+		panel_3.add(cmBxColorC2);
+		
+		JComboBox cmBxTexturaC2 = new JComboBox();
+		cmBxTexturaC2.setBounds(10, 44, 148, 20);
+		panel_3.add(cmBxTexturaC2);
+		
+		JCheckBox chbxVerTodos = new JCheckBox("Ver Todos (Act./Inact.)");
+		chbxVerTodos.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxVerTodos.setBounds(21, 453, 177, 23);
+		panel_5.add(chbxVerTodos);
 		
 		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(657, 429, 359, 134);
+		panel_4.setBounds(599, 285, 429, 164);
+		panel_5.add(panel_4);
 		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Formato", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		tablero.add(panel_4);
 		panel_4.setLayout(null);
 		
-		table = new JTable();
-		table.setBounds(10, 23, 339, 82);
-		panel_4.add(table);
+		tbFormato = new JTable();
+		tbFormato.setBounds(10, 40, 401, 113);
+		panel_4.add(tbFormato);
 		
-		JLabel lblins = new JLabel("[INS]Nuevo [DEL]Borrar");
-		lblins.setBounds(228, 116, 121, 14);
-		panel_4.add(lblins);
+		JButton btnNewForm = new JButton("");
+		btnNewForm.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_New_document.png")));
+		btnNewForm.setToolTipText("Nuevo Formato");
+		btnNewForm.setBorder(null);
+		btnNewForm.setBounds(8, 14, 23, 23);
+		panel_4.add(btnNewForm);
 		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Ver Todos (Act./Inact.)");
-		chckbxNewCheckBox_1.setBounds(506, 588, 177, 23);
-		tablero.add(chckbxNewCheckBox_1);
-		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(FrmTableros.class.getResource("/iconosmodernos/1466475388_save.png")));
-		button.setToolTipText("Eliminar");
-		button.setBounds(57, 115, 23, 23);
-		tablero.add(button);
-		
-		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon(FrmTableros.class.getResource("/iconosmodernos/1466476618_File.png")));
-		button_1.setToolTipText("Eliminar");
-		button_1.setBounds(83, 115, 23, 23);
-		tablero.add(button_1);
+		JButton btnElimForm = new JButton("");
+		btnElimForm.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_Erase.png")));
+		btnElimForm.setToolTipText("Elimina Formato");
+		btnElimForm.setBorder(null);
+		btnElimForm.setBounds(37, 14, 23, 23);
+		panel_4.add(btnElimForm);
 		
 		
 		int fila=0;
-		
-		tbTablero.requestFocus();
-		tbTablero.changeSelection(0,0,true, false);
 		
 		tamañoTablas();
 	
@@ -338,5 +369,7 @@ private void tamañoTablas() {
 		
 	}
 }
+
+
 
 

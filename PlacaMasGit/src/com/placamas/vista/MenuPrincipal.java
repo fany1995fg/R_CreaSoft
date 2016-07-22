@@ -27,10 +27,14 @@ import javax.swing.tree.DefaultTreeModel;
 import com.placamas.beans.OpcionBean; 
 import com.placamas.biblioteca.FrmTableros;
 import com.placamas.biblioteca.FrmTapacantos;
+import com.placamas.biblioteca.FrmRanuras;
+import com.placamas.biblioteca.FrmBisagrado;
+import com.placamas.biblioteca.FrmPuerta_Corre;
 import com.placamas.controlador.UsuarioControlador;
 import com.placamas.seguridad.FrmControlUsuarios;
 import com.placamas.seguridad.FrmCambiar;
 import com.placamas.listado.FrmMantenimientoLP;
+import com.placamas.listado.FrmListado_Pieza;
 
 import java.awt.Font;
 import java.awt.Color;
@@ -44,7 +48,7 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
     ClosableTabbedPane tabbedPane;
 	
 	
-	private JMenu  mMenu01	  	 = new JMenu("Lista de Piezas");
+	private JMenu  mMenu01	  	 = new JMenu("Listado de Piezas");
 	private JMenu  mMenu02	  	 = new JMenu("Materiales y Servicios");
 	private JMenu  mMenu03	  	 = new JMenu("Par\u00E1metros");
 	private JMenu  mMenu04	  	 = new JMenu("Usuarios");
@@ -54,8 +58,8 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 	                 /* ITEMS DEL MENU LISTA DE PIEZAS*/
 	////////////////////////////////////////////////////////////////////////
 	
-	public JMenuItem mItem01    = new JMenuItem("Listado de Piezas");
-	public JMenuItem mItem02    = new JMenuItem("Resumen de Productos y Servicios");
+	public JMenuItem mItem01    = new JMenuItem("Nueva LP");
+	public JMenuItem mItem02    = new JMenuItem("Listado de LP'S & Seguimiento");
 	public JMenuItem mItem03    = new JMenuItem("Seguimiento");
 	
     ////////////////////////////////////////////////////////////////////////
@@ -102,10 +106,11 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 	//Biblioteca
 		private FrmTableros FrmTableros=new FrmTableros();
 		private FrmTapacantos FrmTapacantos=new FrmTapacantos();
-	
-	
+		private FrmRanuras FrmRanuras = new FrmRanuras();
+		private FrmBisagrado FrmBisagrado = new FrmBisagrado();
+		private FrmPuerta_Corre FrmPuerta_Corre= new FrmPuerta_Corre();
 	//1 Se crean los formularios
-	
+		private FrmListado_Pieza FrmListado_Pieza = new FrmListado_Pieza();
 		private FrmMantenimientoLP FrmMantenimientoLP = new FrmMantenimientoLP(); 
 		private FrmLocales FrmLocales = new FrmLocales(); 
 		private FrmMarcas FrmMarcas = new FrmMarcas(); 
@@ -357,12 +362,13 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		//LISTADO//	
 		if(e.getSource()==mItem01){
 			FrmMantenimientoLP.mantenimiento.setVisible(true);
-			tabbedPane.add( FrmMantenimientoLP.mantenimiento, "Lista de Piezas  ");
+			tabbedPane.add( FrmMantenimientoLP.mantenimiento, "Listado de Piezas  ");
 		}
 		
 		//RESUMEN//		
 		if(e.getSource()==mItem02){
-			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");	
+			FrmListado_Pieza.listado.setVisible(true);
+			tabbedPane.add( FrmListado_Pieza.listado, "Listado de LP'S & Seguimiento  ");
 		}
 		
 		//SEGUIMIENTO//	
@@ -386,19 +392,21 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		
 		//RANURAS//
 		if(e.getSource()==mItem06){
-			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");
-
+			FrmRanuras.ranura.setVisible(true);
+			tabbedPane.add( FrmRanuras.ranura, "Ranuras  ");
 		}
 		
 		//BISAGRADOS//
 		if(e.getSource()==mItem07){
-			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");
+			FrmBisagrado.bisagrado.setVisible(true);
+			tabbedPane.add( FrmBisagrado.bisagrado, "Bisagrados  ");
 
 		}
 		
 		//PUERTAS CORREDIZAS//
 		if(e.getSource()==mItem08){
-			JOptionPane.showMessageDialog(null, "Ventana Aun no creada");
+			FrmPuerta_Corre.puerta.setVisible(true);
+			tabbedPane.add( FrmPuerta_Corre.puerta, "Puertas Corredizas  ");
 
 		}
 		

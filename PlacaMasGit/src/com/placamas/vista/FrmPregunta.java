@@ -59,7 +59,6 @@ public class FrmPregunta extends JFrame implements ActionListener{
 		setResizable(false);
 		
 		getContentPane().setLayout(null);
-		getContentPane().setLayout(null);
 		this.setSize(504, 266);
 		this.setLocationRelativeTo(null);
 	    this.setTitle("Pregunta Secreta...");
