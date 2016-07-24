@@ -1,59 +1,27 @@
 package com.placamas.vista;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JToolBar;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.SwingConstants;
 
 import com.placamas.beans.LocalBean;
-import com.placamas.beans.MarcasBean;
-import com.placamas.controlador.LocalesControlador;
+import com.placamas.beans.Lugar;
 
-public class FrmLocales extends JInternalFrame implements ActionListener {
+public class FrmLocales extends JFrame {
 
-	LocalesControlador obj=new LocalesControlador();
-	boolean estado=false;
-
-	DefaultTableModel modelo=new DefaultTableModel();
-	
-	
-	private JTextField txtIdLocal;
-	private JTextField txtLoc_Nomb;
-	JTable tbLocales;
-	private JButton btnGrabar;
-	private JButton btnCerrar;
-	private JButton btnEliminar;
-	private JButton btnNuevo;
-	private JToolBar toolBar;
-	private JLabel label_1;
 	private JComboBox<String> cboRegion;
 	private JComboBox<String> cboProvincia;
 	private JComboBox<String> cboDistrito;
-	
-	JPanel locales;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -61,6 +29,9 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 				try {
 					FrmLocales frame = new FrmLocales();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -68,251 +39,99 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public FrmLocales() {
-		
-		locales = new JPanel();
-		locales.setLayout(null);
-		
-		JLabel lblIdLocal = new JLabel("C\u00F3digo de Local :");
-		lblIdLocal.setBounds(57, 231, 115, 20);
-		lblIdLocal.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
-		JLabel lblLoc_Nomb = new JLabel("Nombre del Local:");
-		lblLoc_Nomb.setBounds(57, 263, 115, 20);
-		lblLoc_Nomb.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
-		txtIdLocal = new JTextField();
-		txtIdLocal.addKeyListener(new KeyAdapter() {
+		addWindowListener(new WindowAdapter() {
+
+			private LocalBean x;
+
+			public void windowOpened(WindowEvent arg0) {
+				cboRegion.addItem("Seleccionar");
+				for (Lugar x : com.placamas.controlador.Ubigeo
+						.getAllDepartamento()) {
+					String name = x.getNombre();
+					cboRegion.addItem(name);
+				}
+				x = null;
+				cboRegion.setSelectedItem(x.getRegion());
+				cboProvincia.setSelectedItem(x.getProvincia());
+				cboDistrito.setSelectedItem(x.getDistrito());
+
+			}
+
+		});
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1008, 548);
+		getContentPane().setLayout(null);
+
+		cboRegion = new JComboBox();
+		cboRegion.setBounds(127, 87, 194, 22);
+		getContentPane().add(cboRegion);
+
+		cboProvincia = new JComboBox<String>();
+		cboProvincia.setBounds(417, 88, 109, 20);
+		getContentPane().add(cboProvincia);
+
+		cboDistrito = new JComboBox();
+		cboDistrito.setBounds(634, 88, 141, 20);
+		getContentPane().add(cboDistrito);
+
+		cboDistrito.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+
+			}
+		});
+		cboProvincia.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyTyped(KeyEvent evt) {
-				
-				char c=evt.getKeyChar();
-				if(Character.isLowerCase(c)){
-					String cad=(""+c).toUpperCase();
-					c=cad.charAt(0);
-					evt.setKeyChar(c);
+			public void keyPressed(KeyEvent e) {
+				char c = e.getKeyChar();
+
+				if (!(c != KeyEvent.VK_ENTER)) {
+					cboDistrito.requestFocus();
 				}
 			}
 		});
-		txtIdLocal.setBounds(190, 232, 127, 20);
-		txtIdLocal.setToolTipText("Escribe un id para el Local");
-		txtIdLocal.setColumns(10);
-		
-		txtLoc_Nomb = new JTextField();
-		txtLoc_Nomb.setBounds(190, 264, 194, 20);
-		txtLoc_Nomb.setToolTipText("Escribe una descripción para el Local");
-		txtLoc_Nomb.setColumns(10);
+		cboProvincia.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				cboDistrito.removeAllItems();
+				int valor = 0;
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					String text = cboProvincia.getSelectedItem().toString();
 
-
-		modelo.addColumn("codigo");
-		modelo.addColumn("nombre");
-		Listar();
-		
-		toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 1194, 35);
-		locales.add(toolBar);
-		
-		btnNuevo = new JButton("");
-		toolBar.add(btnNuevo);
-		btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466476618_File.png")));
-		
-		btnGrabar = new JButton("");
-		toolBar.add(btnGrabar);
-		btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475388_save.png")));
-
-		btnEliminar = new JButton("");
-		toolBar.add(btnEliminar);
-		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
-		
-		label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(FrmLocales.class.getResource("/gui/img/banners/loca3.png")));
-		label_1.setBounds(10, 24, 598, 108);
-		getContentPane().add(label_1);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 342, 327, 220);
-		
-		tbLocales = new JTable();
-		tbLocales.addKeyListener(new KeyAdapter() {
+					valor = com.placamas.controlador.Ubigeo.getCodProv(text);
+					for (Lugar dist : com.placamas.controlador.Ubigeo
+							.getAllDistritoByProv(valor)) {
+						String name = dist.getNombre();
+						cboDistrito.addItem(name);
+					}
+				}
+			}
+		});
+		cboRegion.addKeyListener(new KeyAdapter() {
 			@Override
-			//DISEÑO CLIC DERECHO EN EL SCROL / EVENT /KEY/ KEYRELEASED
-			public void keyReleased(KeyEvent arg0) {
-				Mostrar();
+			public void keyPressed(KeyEvent e) {
+				char c = e.getKeyChar();
+
+				if (!(c != KeyEvent.VK_ENTER)) {
+					cboProvincia.requestFocus();
+				}
 			}
 		});
-		tbLocales.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				Mostrar();
+		cboRegion.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				cboProvincia.removeAllItems();
+				int valor = 0;
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					valor = cboRegion.getSelectedIndex();
+					for (Lugar prov : com.placamas.controlador.Ubigeo
+							.getAllProvinciaByDepa(valor)) {
+						String name = prov.getNombre();
+						cboProvincia.addItem(name);
+					}
+				}
+
 			}
 		});
-		scrollPane.setViewportView(tbLocales);
-		tbLocales.setModel(modelo);
-		
-		JLabel label = new JLabel("");
-		label.setBounds(0, 30, 1194, 121);
-		label.setIcon(new ImageIcon(FrmLocales.class.getResource("/gui/img/banners/BanColor.png")));
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 162, 1194, 11);
-		
-		JLabel lblListaDeLocales = new JLabel("Lista de Locales:");
-		lblListaDeLocales.setBounds(57, 316, 153, 20);
-		lblListaDeLocales.setFont(new Font("Tahoma", Font.BOLD, 12));
-		locales.setLayout(null);
-		locales.add(toolBar);
-		locales.add(separator);
-		locales.add(label);
-		locales.add(lblListaDeLocales);
-		locales.add(scrollPane);
-		locales.add(lblLoc_Nomb);
-		locales.add(txtLoc_Nomb);
-		locales.add(lblIdLocal);
-		locales.add(txtIdLocal);
-		
-		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnEliminarActionPerformed(arg0);
-			}
-		});
-		btnGrabar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnGrabarActionPerformed(arg0);
-			}
-		});
-		btnNuevo.addActionListener(this);
-		setClosable(true); //->Se pueda cerrara
-		setDefaultCloseOperation(HIDE_ON_CLOSE); //Se oculte al cerrara
-		Listar();
-		
-		int fila=0;
-		txtIdLocal.setText(""+tbLocales.getValueAt(fila, 0));
-		txtLoc_Nomb.setText(""+tbLocales.getValueAt(fila, 1));
-		
-		
-		tamañoTablas();
-	
 	}
-	
-private void tamañoTablas() {
-		
-		int [] anchos = {40, 200, 50};
-		
-		for (int i = 0; i < tbLocales.getColumnCount(); i++) {
-			tbLocales.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
-		}
-				
-	}
-	void mensaje(String m){
-		JOptionPane.showMessageDialog(null, m);
+
 }
-	
-	
-	protected void btnGrabarActionPerformed(ActionEvent arg0) { 
-		
-		String texto=txtIdLocal.getText();
-        texto=texto.replaceAll(" ", "");
-        if(texto.length()==0){
-        	
-            mensaje("ERROR: No se aceptan campos en blanco");
-            
-        }
-        else
-        if(texto.length()>5 || texto.length()<5){
-        	
-            mensaje("ERROR: Solo se aceptan 5 caracteres");
-            
-        }
-        else
-        if(texto.length()==5){
-        	estado=true;
-        if(estado==true){ 	
-		LocalBean l=new LocalBean(txtIdLocal.getText(), txtLoc_Nomb.getText());
-		int valor=obj.registrarLocal(l);
-		if(valor==1){
-			mensaje("Registro Exitoso de Marca");
-			Listar();
-			txtIdLocal.setText("");
-			txtLoc_Nomb.setText("");
-			
-			}
-       }
-	}
-		
-}
-	
-
-protected void btnEliminarActionPerformed(ActionEvent arg0) {
-	
-	
-	 int descicion = JOptionPane.showConfirmDialog(null,"Esta seguro de eliminar en registro?");
-
-		if(descicion==JOptionPane.YES_OPTION){
-			
-			int valor=obj.eliminarLocal(txtIdLocal.getText());
-			
-			 if(valor==1){
-				 if(tbLocales.getSelectedRow() >=0 ){					 
-					 ((DefaultTableModel)tbLocales.getModel()).removeRow(tbLocales.getSelectedRow());
-				 }
-					mensaje("Registro Eliminado");
-					txtIdLocal.setText("");
-					txtLoc_Nomb.setText("");
-			 }
-			 else
-					mensaje("Error al Eliminar");
-			 
-			}
-
-		if(descicion==JOptionPane.NO_OPTION){
-
-			mensaje("El Registro no se Elimino");
-		}
-		
-	
-	}
-
-
-	public void actionPerformed(ActionEvent arg0) {
-		if (arg0.getSource() == btnNuevo) {
-			btnNuevoActionPerformed(arg0);
-		}
-		
-		
-	}
-	
-
-	protected void btnNuevoActionPerformed(ActionEvent arg0) {
-		txtIdLocal.setText("");
-		txtLoc_Nomb.setText("");
-		txtLoc_Nomb.requestFocus();
-		estado=true;
-	}
-	
-	void Listar(){
-		modelo.setRowCount(0);
-		ArrayList<LocalBean> info=obj.listarLocal();
-		for(LocalBean x:info){
-			Object fila[]={x.getIdLocal(),x.getLoc_Nomb()};
-			modelo.addRow(fila);
-			
-		}
-			
-
-	}
-	void Mostrar(){
-	
-		int fila=tbLocales.getSelectedRow();
-		txtIdLocal.setText(""+tbLocales.getValueAt(fila, 0));
-		txtLoc_Nomb.setText(""+tbLocales.getValueAt(fila, 1));
-		
-	}
-}
-
-
-
-
-

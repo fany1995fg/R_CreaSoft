@@ -453,13 +453,13 @@ public class MenuPrincipal extends JFrame implements ActionListener, MouseListen
 		}
 		
 		//LOCALES//
-		if(e.getSource()==mItem14){
+		/*if(e.getSource()==mItem14){
 			tabbedPane.add(FrmLocales.locales, "Locales    ");
 			FrmLocales.setVisible(true);
 			FrmLocales.tbLocales.requestFocus();
 			FrmLocales.tbLocales.changeSelection(0,0,true, true);
 			
-		}
+		}*/
 		
 		//RUTA DE ARCHIVOS//
 		if(e.getSource()==mItem15){
