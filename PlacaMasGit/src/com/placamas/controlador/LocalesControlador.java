@@ -4,11 +4,60 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
 import com.placamas.beans.LocalBean;
 import com.placamas.conexion.ConexionDB;
 
 
 public class LocalesControlador {
+	
+	public static ArrayList<LocalBean> getAllLocaless() {
+		ArrayList<LocalBean> locales = new ArrayList<LocalBean>();
+
+		Connection cn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		String sql = null;
+
+		try {
+			// realizamos la conexion sql
+			cn = new ConexionDB().getConexion();
+			sql = "select * from locales";
+
+			// ejecutamos el query sql
+			pstm = cn.prepareStatement(sql);
+			rs = pstm.executeQuery(sql);
+
+			// Almacenamos al obj data para almacenar la informacion del usuario
+			while (rs.next()) {
+				LocalBean local = new LocalBean();
+				local.setIdLocal(rs.getString(1));
+				local.setLoc_Nomb(rs.getString(2));
+				local.setRegion(rs.getString(3));
+				local.setProvincia(rs.getString(4));
+				local.setDistrito(rs.getString(5));
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				// cerramos la conexion
+				if (rs != null)
+					rs.close();
+				if (pstm != null)
+					pstm.close();
+				if (cn != null)
+					cn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+
+		return locales;
+	}
+
 
 	public int registrarLocal(LocalBean x){
 		int valor=-1;
@@ -22,6 +71,9 @@ public class LocalesControlador {
 			pstm=cn.prepareStatement(sql);
 			pstm.setString(1, x.getIdLocal());
 			pstm.setString(2, x.getLoc_Nomb());
+			pstm.setString(3, x.getRegion());
+			pstm.setString(4, x.getProvincia());
+			pstm.setString(5, x.getDistrito());
 			valor=pstm.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,7 +142,6 @@ public class LocalesControlador {
 		
 		return valor;
 	}
-	//método que retorna un arreglo de objetos de la clase ColoresBean
 	
 	public ArrayList<LocalBean> listarLocal(){
 		ArrayList<LocalBean> data=new ArrayList<LocalBean>();

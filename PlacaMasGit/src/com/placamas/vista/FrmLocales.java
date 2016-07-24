@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -48,6 +49,10 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 	private JButton btnNuevo;
 	private JToolBar toolBar;
 	private JLabel label_1;
+	private JComboBox<String> cboRegion;
+	private JComboBox<String> cboProvincia;
+	private JComboBox<String> cboDistrito;
+	
 	JPanel locales;
 
 	public static void main(String[] args) {
