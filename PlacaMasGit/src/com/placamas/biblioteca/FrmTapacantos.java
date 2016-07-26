@@ -24,28 +24,26 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.placamas.vista.FrmTextura;
+import javax.swing.SwingConstants;
+import java.awt.Rectangle;
+import java.awt.Component;
 
 public class FrmTapacantos extends JInternalFrame implements ActionListener{
 	DefaultTableModel modelo=new DefaultTableModel();
 	Boolean estado=false;
 	JTable tbMarcas;
-	private JTable tbTablero;
-	private JButton btnGrabar;
+	private JTable tbCantos;
+	private JButton btnEditar;
 	private JButton btnCerrar;
 	private JButton btnEliminar;
 	private JButton btnNuevo;
 	private JToolBar toolBar;
-	private JSeparator separator;
 	public JPanel tapacanto;
 	private JLabel label;
-	private JSeparator separator_1;
-	private JLabel lblListaDeMarcas;
-	private JCheckBox chckbxServPrimeun;
-	private JCheckBox chckbxRotacion;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTable table;
+	private JCheckBox chbxActivo;
+	private JTextField vrbCodigo;
+	private JTextField vrbDescripcion;
+	private JTable tbMatch;
 
 
 	public static void main(String[] args) {
@@ -70,211 +68,242 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		tapacanto.setLayout(null);
 		
 		toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 1194, 35);
+		toolBar.setBounds(0, 0, 286, 30);
 		tapacanto.add(toolBar);
 		
 		
 		btnNuevo = new JButton("");
+		btnNuevo.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		toolBar.add(btnNuevo);
-		btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466476618_File.png")));
+		btnNuevo.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_New_document.png")));
 		
-		btnGrabar = new JButton("");
-		toolBar.add(btnGrabar);
-		btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475388_save.png")));
+		btnEditar = new JButton("");
+		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		toolBar.add(btnEditar);
+		btnEditar.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_Modify.png")));
 
 		btnEliminar = new JButton("");
+		btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		toolBar.add(btnEliminar);
-		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
+		btnEliminar.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_Erase.png")));
 		
 		
-		btnNuevo.setToolTipText("Nuevo Registro");
+		btnNuevo.setToolTipText("Nuevo");
 		btnEliminar.setToolTipText("Eliminar");
-		btnGrabar.setToolTipText("Grabar");
+		btnEditar.setToolTipText("Editar");
 		
-		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/iconosmodernos/1466476622_common-new-edit-compose-glyph.png")));
-		button_2.setToolTipText("Eliminar");
-		toolBar.add(button_2);
+		JSeparator separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		toolBar.add(separator);
+		
+		JButton btnEditaNo = new JButton("");
+		btnEditaNo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnEditaNo.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_Modify_No.png")));
+		btnEditaNo.setToolTipText("Salir de editar sin grabar");
+		toolBar.add(btnEditaNo);
+		
+		JButton btnGrabar = new JButton("");
+		btnGrabar.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnGrabar.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_Save.png")));
+		btnGrabar.setToolTipText("Grabar cambios");
+		toolBar.add(btnGrabar);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setOrientation(SwingConstants.VERTICAL);
+		toolBar.add(separator_2);
+		
+		JButton btnCopiar = new JButton("");
+		btnCopiar.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnCopiar.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_Copy.png")));
+		btnCopiar.setToolTipText("Copiar");
+		toolBar.add(btnCopiar);
+		
+		JButton btnPegar = new JButton("");
+		btnPegar.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnPegar.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_Paste.png")));
+		btnPegar.setToolTipText("Pegar");
+		toolBar.add(btnPegar);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setOrientation(SwingConstants.VERTICAL);
+		toolBar.add(separator_3);
+		
+		JButton btnInicio = new JButton("");
+		btnInicio.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnInicio.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_First.png")));
+		btnInicio.setToolTipText("Ir a 1er registro");
+		toolBar.add(btnInicio);
+		
+		JButton btnAnterior = new JButton("");
+		btnAnterior.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnAnterior.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_Back.png")));
+		btnAnterior.setToolTipText("Ir a pantalla anterior");
+		toolBar.add(btnAnterior);
+		
+		JButton btnAdelante = new JButton("");
+		btnAdelante.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnAdelante.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_Forward.png")));
+		btnAdelante.setToolTipText("Ir a siguiente pantalla");
+		toolBar.add(btnAdelante);
+		
+		JButton btnFinal = new JButton("");
+		btnFinal.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnFinal.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_Last.png")));
+		btnFinal.setToolTipText("Ir a ultimo registro");
+		toolBar.add(btnFinal);
 		
 		modelo.addColumn("Codigo");
 		modelo.addColumn("Descripcion");
 		
 		
-		separator = new JSeparator();
-		separator.setBounds(726, 132, 0, 2);
-		tapacanto.add(separator);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 174, 496, 417);
-		tapacanto.add(scrollPane);		
-		
-		
 		
 		tbMarcas = new JTable();
-		tbTablero = new JTable(){
-			public boolean isCellEditable(int rowIndex, int colIndex){
-				return false;
-			}
-		};
-
-		scrollPane.setViewportView(tbTablero);
-		tbTablero.setModel(modelo);
 		
 		label = new JLabel("");
 		label.setBounds(0, 33, 1194, 65);
 		label.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/gui/img/banners/Tapacantos.jpg")));
 		tapacanto.add(label);
 		
-		separator_1 = new JSeparator();
-		separator_1.setBounds(10, 106, 1354, 8);
-		tapacanto.add(separator_1);
-		
-		lblListaDeMarcas = new JLabel("Lista de Tapacantos:");
-		lblListaDeMarcas.setBounds(57, 153, 153, 20);
-		lblListaDeMarcas.setFont(new Font("Tahoma", Font.BOLD, 12));
-		tapacanto.add(lblListaDeMarcas);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(627, 132, 109, 44);
-		panel.setBorder(new TitledBorder(null, "Codigo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		tapacanto.add(panel);
-		panel.setLayout(null);
-		
-		textField_2 = new JTextField();
-		textField_2.setText("");
-		textField_2.setColumns(10);
-		textField_2.setBounds(10, 18, 86, 20);
-		panel.add(textField_2);
-		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(627, 175, 332, 73);
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Descripci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_1.setBorder(new TitledBorder(null, "Tapa Cantos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(20, 112, 1113, 495);
 		tapacanto.add(panel_1);
 		panel_1.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setText("");
-		textField.setBounds(68, 19, 228, 20);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setSize(496, 417);
+		scrollPane.setLocation(10, 33);
+		panel_1.add(scrollPane);
+		tbCantos = new JTable(){
+			public boolean isCellEditable(int rowIndex, int colIndex){
+				return false;
+			}
+		};
 		
-		textField_1 = new JTextField();
-		textField_1.setText("");
-		textField_1.setColumns(10);
-		textField_1.setBounds(68, 42, 228, 20);
-		panel_1.add(textField_1);
+				scrollPane.setViewportView(tbCantos);
+				tbCantos.setModel(modelo);
+				
+				tbCantos.requestFocus();
+				tbCantos.changeSelection(0,0,true, false);
 		
-		JLabel lblNewLabel = new JLabel("LP:");
-		lblNewLabel.setBounds(38, 22, 26, 14);
-		panel_1.add(lblNewLabel);
+		JLabel lblCodigo = new JLabel("Codigo : ");
+		lblCodigo.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblCodigo.setBounds(599, 31, 85, 20);
+		panel_1.add(lblCodigo);
 		
-		JLabel lblEtiqueta = new JLabel("Etiqueta:");
-		lblEtiqueta.setBounds(10, 45, 54, 14);
-		panel_1.add(lblEtiqueta);
+		vrbCodigo = new JTextField();
+		vrbCodigo.setColumns(10);
+		vrbCodigo.setBounds(690, 31, 122, 20);
+		panel_1.add(vrbCodigo);
 		
-		chckbxServPrimeun = new JCheckBox("Modifica Descripcion en LP");
-		chckbxServPrimeun.setBounds(762, 153, 193, 23);
-		tapacanto.add(chckbxServPrimeun);
+		JLabel lblDescripcion = new JLabel("Descripcion : ");
+		lblDescripcion.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblDescripcion.setBounds(599, 57, 85, 20);
+		panel_1.add(lblDescripcion);
 		
-		chckbxRotacion = new JCheckBox("Activo");
-		chckbxRotacion.setBounds(762, 135, 94, 20);
-		tapacanto.add(chckbxRotacion);
+		vrbDescripcion = new JTextField();
+		vrbDescripcion.setColumns(10);
+		vrbDescripcion.setBounds(690, 57, 319, 20);
+		panel_1.add(vrbDescripcion);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(762, 262, 193, 20);
-		tapacanto.add(comboBox);
+		chbxActivo = new JCheckBox("Activo");
+		chbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxActivo.setBounds(950, 31, 64, 20);
+		panel_1.add(chbxActivo);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(762, 286, 193, 20);
-		tapacanto.add(comboBox_1);
+		JLabel lblMaterial = new JLabel("Material : ");
+		lblMaterial.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblMaterial.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblMaterial.setBounds(599, 114, 85, 20);
+		panel_1.add(lblMaterial);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(762, 310, 193, 20);
-		tapacanto.add(comboBox_2);
+		JComboBox cmBxMaterial = new JComboBox();
+		cmBxMaterial.setBounds(690, 114, 319, 20);
+		panel_1.add(cmBxMaterial);
 		
-		JLabel lblMarca = new JLabel(" Color Generico:");
-		lblMarca.setBounds(660, 289, 94, 14);
-		tapacanto.add(lblMarca);
+		JLabel lblColor1 = new JLabel("Color Especifico : ");
+		lblColor1.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblColor1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblColor1.setBounds(599, 140, 85, 20);
+		panel_1.add(lblColor1);
 		
-		JLabel lblMaterial = new JLabel("Material:");
-		lblMaterial.setBounds(704, 265, 46, 14);
-		tapacanto.add(lblMaterial);
+		JComboBox cmBxColor1 = new JComboBox();
+		cmBxColor1.setBounds(690, 140, 319, 20);
+		panel_1.add(cmBxColor1);
 		
-		JLabel lblEspesor = new JLabel(" Color Especifico:");
-		lblEspesor.setBounds(660, 313, 102, 14);
-		tapacanto.add(lblEspesor);
+		JLabel lblColor2 = new JLabel("Color Adicional : ");
+		lblColor2.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblColor2.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblColor2.setBounds(599, 166, 85, 20);
+		panel_1.add(lblColor2);
+		
+		JComboBox cmBxColor2 = new JComboBox();
+		cmBxColor2.setBounds(690, 166, 319, 20);
+		panel_1.add(cmBxColor2);
+		
+		JLabel lblEspCanto = new JLabel("Espesor Canto : ");
+		lblEspCanto.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblEspCanto.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblEspCanto.setBounds(599, 192, 85, 20);
+		panel_1.add(lblEspCanto);
+		
+		JComboBox cmBxEspCanto = new JComboBox();
+		cmBxEspCanto.setBounds(690, 192, 64, 20);
+		panel_1.add(cmBxEspCanto);
+		
+		JLabel lblEspTabl = new JLabel("Espesor Min. Tablero : ");
+		lblEspTabl.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblEspTabl.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblEspTabl.setBounds(815, 192, 120, 20);
+		panel_1.add(lblEspTabl);
+		
+		JCheckBox chbxVerTodos = new JCheckBox("Ver Todos (Act./Inact.)");
+		chbxVerTodos.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxVerTodos.setBounds(10, 457, 177, 23);
+		panel_1.add(chbxVerTodos);
+		
+		JComboBox cmBxEspTabl = new JComboBox();
+		cmBxEspTabl.setBounds(945, 192, 64, 20);
+		panel_1.add(cmBxEspTabl);
+		
+		JLabel lblAncCanto = new JLabel("Ancho Canto : ");
+		lblAncCanto.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblAncCanto.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblAncCanto.setBounds(599, 218, 85, 20);
+		panel_1.add(lblAncCanto);
+		
+		JComboBox cmBxAncCanto = new JComboBox();
+		cmBxAncCanto.setBounds(690, 218, 64, 20);
+		panel_1.add(cmBxAncCanto);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(665, 338, 131, 44);
-		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Ancho", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		tapacanto.add(panel_2);
 		panel_2.setLayout(null);
+		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Match Con Tablero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_2.setBounds(599, 285, 410, 164);
+		panel_1.add(panel_2);
 		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(72, 13, 49, 20);
-		panel_2.add(comboBox_3);
+		tbMatch = new JTable();
+		tbMatch.setBounds(10, 40, 390, 113);
+		panel_2.add(tbMatch);
 		
-		JLabel label_1 = new JLabel("Canto:");
-		label_1.setBounds(27, 16, 38, 14);
-		panel_2.add(label_1);
+		JButton btnNewMatch = new JButton("");
+		btnNewMatch.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_New_document.png")));
+		btnNewMatch.setToolTipText("Nuevo Match");
+		btnNewMatch.setBorder(null);
+		btnNewMatch.setBounds(8, 14, 23, 23);
+		panel_2.add(btnNewMatch);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(806, 338, 153, 73);
-		panel_3.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Espesor", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		tapacanto.add(panel_3);
-		panel_3.setLayout(null);
-		
-		JComboBox comboBox_5 = new JComboBox();
-		comboBox_5.setBounds(94, 19, 49, 20);
-		panel_3.add(comboBox_5);
-		
-		JComboBox comboBox_6 = new JComboBox();
-		comboBox_6.setBounds(94, 42, 49, 20);
-		panel_3.add(comboBox_6);
-		
-		JLabel lblCanto = new JLabel("Canto:");
-		lblCanto.setBounds(46, 22, 38, 14);
-		panel_3.add(lblCanto);
-		
-		JLabel lblMin = new JLabel("Min. Tablero:");
-		lblMin.setBounds(10, 45, 85, 14);
-		panel_3.add(lblMin);
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(703, 409, 256, 172);
-		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Match Tablero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		tapacanto.add(panel_4);
-		panel_4.setLayout(null);
-		
-		table = new JTable();
-		table.setBounds(10, 23, 236, 120);
-		panel_4.add(table);
-		
-		JLabel lblins = new JLabel("[INS]Nuevo [DEL]Borrar");
-		lblins.setBounds(125, 147, 121, 14);
-		panel_4.add(lblins);
-		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Ver Todos (Act./Inact.)");
-		chckbxNewCheckBox_1.setBounds(506, 588, 177, 23);
-		tapacanto.add(chckbxNewCheckBox_1);
-		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/iconosmodernos/1466475388_save.png")));
-		button.setToolTipText("Eliminar");
-		button.setBounds(57, 119, 23, 23);
-		tapacanto.add(button);
-		
-		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/iconosmodernos/1466476618_File.png")));
-		button_1.setToolTipText("Eliminar");
-		button_1.setBounds(83, 119, 23, 23);
-		tapacanto.add(button_1);
+		JButton btnElimMatch = new JButton("");
+		btnElimMatch.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_Erase.png")));
+		btnElimMatch.setToolTipText("Elimina Match");
+		btnElimMatch.setBorder(null);
+		btnElimMatch.setBounds(32, 14, 23, 23);
+		panel_2.add(btnElimMatch);
 		
 		
 		int fila=0;
-		
-		tbTablero.requestFocus();
-		tbTablero.changeSelection(0,0,true, false);
 		
 		tamañoTablas();
 	
