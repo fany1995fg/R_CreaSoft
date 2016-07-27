@@ -30,6 +30,8 @@ import javax.swing.table.DefaultTableModel;
 import com.placamas.beans.LocalBean;
 import com.placamas.beans.MarcasBean;
 import com.placamas.controlador.LocalesControlador;
+import javax.swing.border.TitledBorder;
+import javax.swing.SwingConstants;
 
 public class FrmLocales extends JInternalFrame implements ActionListener {
 
@@ -49,6 +51,10 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 	private JToolBar toolBar;
 	private JLabel label_1;
 	JPanel locales;
+	private JPanel panel;
+	private JButton btnEditar;
+	private JButton btnEditarNo;
+	private JSeparator separator;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -77,28 +83,96 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		Listar();
 		
 		toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 1194, 35);
+		toolBar.setBounds(0, 0, 135, 30);
 		locales.add(toolBar);
 		
 		btnNuevo = new JButton("");
 		toolBar.add(btnNuevo);
-		btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466476618_File.png")));
+		btnNuevo.setIcon(new ImageIcon(FrmLocales.class.getResource("/Iconos_PlacaMas/_New_document.png")));
+		
+		btnEditar = new JButton("");
+		btnEditar.setIcon(new ImageIcon(FrmLocales.class.getResource("/Iconos_PlacaMas/_Modify.png")));
+		toolBar.add(btnEditar);
+		
+				btnEliminar = new JButton("");
+				toolBar.add(btnEliminar);
+				btnEliminar.setIcon(new ImageIcon(FrmLocales.class.getResource("/Iconos_PlacaMas/_Erase.png")));
+				
+				btnEliminar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						btnEliminarActionPerformed(arg0);
+					}
+				});
+		
+		separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		toolBar.add(separator);
+		
+		btnEditarNo = new JButton("");
+		btnEditarNo.setIcon(new ImageIcon(FrmLocales.class.getResource("/Iconos_PlacaMas/_Editar_No.png")));
+		toolBar.add(btnEditarNo);
 		
 		btnGrabar = new JButton("");
 		toolBar.add(btnGrabar);
-		btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475388_save.png")));
-
-		btnEliminar = new JButton("");
-		toolBar.add(btnEliminar);
-		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
+		btnGrabar.setIcon(new ImageIcon(FrmLocales.class.getResource("/Iconos_PlacaMas/_Save.png")));
 		
 		label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(FrmLocales.class.getResource("/gui/img/banners/loca3.png")));
 		label_1.setBounds(10, 24, 598, 108);
 		getContentPane().add(label_1);
+		locales.setLayout(null);
+		locales.add(toolBar);
+		
+		JLabel lblBanner = new JLabel("");
+		lblBanner.setBounds(0, 33, 1194, 65);
+		lblBanner.setIcon(new ImageIcon(FrmLocales.class.getResource("/gui/img/banners/BanColor.png")));
+		locales.add(lblBanner);
+		
+		panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Listado de Locales", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(20, 121, 1113, 495);
+		locales.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblIdLocal = new JLabel("C\u00F3digo de Local :");
+		lblIdLocal.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblIdLocal.setBounds(47, 40, 115, 20);
+		panel.add(lblIdLocal);
+		lblIdLocal.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		txtIdLocal = new JTextField();
+		txtIdLocal.setBounds(172, 41, 115, 20);
+		panel.add(txtIdLocal);
+		txtIdLocal.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				
+				char c=evt.getKeyChar();
+				if(Character.isLowerCase(c)){
+					String cad=(""+c).toUpperCase();
+					c=cad.charAt(0);
+					evt.setKeyChar(c);
+				}
+			}
+		});
+		txtIdLocal.setToolTipText("Escribe un id para el Local");
+		txtIdLocal.setColumns(10);
+		
+		JLabel lblLoc_Nomb = new JLabel("Nombre del Local:");
+		lblLoc_Nomb.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblLoc_Nomb.setBounds(47, 72, 115, 20);
+		panel.add(lblLoc_Nomb);
+		lblLoc_Nomb.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		txtLoc_Nomb = new JTextField();
+		txtLoc_Nomb.setBounds(172, 73, 178, 20);
+		panel.add(txtLoc_Nomb);
+		txtLoc_Nomb.setToolTipText("Escribe una descripción para el Local");
+		txtLoc_Nomb.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 342, 327, 220);
+		scrollPane.setBounds(35, 136, 327, 300);
+		panel.add(scrollPane);
 		
 		tbLocales = new JTable();
 		tbLocales.addKeyListener(new KeyAdapter() {
@@ -116,63 +190,6 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		});
 		scrollPane.setViewportView(tbLocales);
 		tbLocales.setModel(modelo);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 162, 1194, 11);
-		
-		JLabel lblListaDeLocales = new JLabel("Lista de Locales:");
-		lblListaDeLocales.setBounds(57, 316, 153, 20);
-		lblListaDeLocales.setFont(new Font("Tahoma", Font.BOLD, 12));
-		locales.setLayout(null);
-		locales.add(toolBar);
-		
-		JLabel lblBanner = new JLabel("");
-		lblBanner.setBounds(0, 30, 1194, 121);
-		lblBanner.setIcon(new ImageIcon(FrmLocales.class.getResource("/gui/img/banners/BanColor.png")));
-		locales.add(lblBanner);
-		locales.add(separator);
-		
-		JLabel lblIdLocal = new JLabel("C\u00F3digo de Local :");
-		lblIdLocal.setBounds(57, 231, 115, 20);
-		lblIdLocal.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		locales.add(lblIdLocal);
-		
-		txtIdLocal = new JTextField();
-		txtIdLocal.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent evt) {
-				
-				char c=evt.getKeyChar();
-				if(Character.isLowerCase(c)){
-					String cad=(""+c).toUpperCase();
-					c=cad.charAt(0);
-					evt.setKeyChar(c);
-				}
-			}
-		});
-		txtIdLocal.setBounds(190, 232, 127, 20);
-		txtIdLocal.setToolTipText("Escribe un id para el Local");
-		txtIdLocal.setColumns(10);
-		locales.add(txtIdLocal);
-		
-		JLabel lblLoc_Nomb = new JLabel("Nombre del Local:");
-		lblLoc_Nomb.setBounds(57, 263, 115, 20);
-		lblLoc_Nomb.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		locales.add(lblLoc_Nomb);
-		
-		txtLoc_Nomb = new JTextField();
-		txtLoc_Nomb.setBounds(190, 264, 194, 20);
-		txtLoc_Nomb.setToolTipText("Escribe una descripción para el Local");
-		txtLoc_Nomb.setColumns(10);
-		locales.add(txtLoc_Nomb);
-		locales.add(lblListaDeLocales);
-		locales.add(scrollPane);
-		
-		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnEliminarActionPerformed(arg0);
-			}
-		});
 		btnGrabar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnGrabarActionPerformed(arg0);

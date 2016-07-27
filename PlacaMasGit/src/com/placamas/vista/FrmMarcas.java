@@ -28,6 +28,8 @@ import javax.swing.table.DefaultTableModel;
 
 import com.placamas.beans.MarcasBean;
 import com.placamas.controlador.MarcasControlador;
+import javax.swing.border.TitledBorder;
+import javax.swing.SwingConstants;
 
 public class FrmMarcas extends JInternalFrame implements ActionListener {
 
@@ -46,11 +48,11 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 	private JButton btnEliminar;
 	private JButton btnNuevo;
 	private JToolBar toolBar;
-	private JSeparator separator;
 	JPanel marcas;
 	private JLabel label;
-	private JSeparator separator_1;
-	private JLabel lblListaDeMarcas;
+	private JButton btnEditar;
+	private JButton btnEditarNo;
+	private JSeparator separator;
 
 
 	public static void main(String[] args) {
@@ -75,21 +77,22 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 		marcas.setLayout(null);
 		
 		toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 1194, 35);
+		toolBar.setBounds(0, 0, 135, 30);
 		marcas.add(toolBar);
 		
 		
 		btnNuevo = new JButton("");
 		toolBar.add(btnNuevo);
-		btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466476618_File.png")));
+		btnNuevo.setIcon(new ImageIcon(FrmMarcas.class.getResource("/Iconos_PlacaMas/_New_document.png")));
 		
-		btnGrabar = new JButton("");
-		toolBar.add(btnGrabar);
-		btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475388_save.png")));
+		btnEditar = new JButton("");
+		btnEditar.setIcon(new ImageIcon(FrmMarcas.class.getResource("/Iconos_PlacaMas/_Modify.png")));
+		btnEditar.setToolTipText("Eliminar");
+		toolBar.add(btnEditar);
 
 		btnEliminar = new JButton("");
 		toolBar.add(btnEliminar);
-		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
+		btnEliminar.setIcon(new ImageIcon(FrmMarcas.class.getResource("/Iconos_PlacaMas/_Erase.png")));
 		
 		
 		
@@ -100,27 +103,64 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 				btnEliminarActionPerformed(arg0);
 			}
 		});
+		btnNuevo.addActionListener(this);
+		
+		
+		btnNuevo.setToolTipText("Nuevo Registro");
+		btnEliminar.setToolTipText("Eliminar");
+		
+		separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		toolBar.add(separator);
+		
+		btnEditarNo = new JButton("");
+		btnEditarNo.setIcon(new ImageIcon(FrmMarcas.class.getResource("/Iconos_PlacaMas/_Editar_No.png")));
+		btnEditarNo.setToolTipText("Eliminar");
+		toolBar.add(btnEditarNo);
+		
+		btnGrabar = new JButton("");
+		toolBar.add(btnGrabar);
+		btnGrabar.setIcon(new ImageIcon(FrmMarcas.class.getResource("/Iconos_PlacaMas/_Save.png")));
 		btnGrabar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnGrabarActionPerformed(arg0);
 			}
 		});
-		btnNuevo.addActionListener(this);
+		btnGrabar.setToolTipText("Grabar");
+		
+		modelo.addColumn("Codigo");
+		modelo.addColumn("Descripcion");
+		Listar();
+		
+		
+		
+		tbMarcas = new JTable();
+		
+		label = new JLabel("");
+		label.setIcon(new ImageIcon(FrmMarcas.class.getResource("/gui/img/banners/Marquitas.png")));
+		label.setBounds(0, 33, 1194, 65);
+		marcas.add(label);
+		Listar();
+		
+		
+		int fila=0;
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Listado de Marcas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(20, 121, 1113, 495);
+		marcas.add(panel);
+		panel.setLayout(null);
 		
 		JLabel lblIdMarca = new JLabel("C\u00F3digo de Marca:");
+		lblIdMarca.setBounds(47, 40, 115, 20);
+		panel.add(lblIdMarca);
 		lblIdMarca.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblIdMarca.setBounds(63, 204, 118, 20);
-		marcas.add(lblIdMarca);
-		
-		JLabel lblDescripcion = new JLabel("Descripcion:");
-		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDescripcion.setBounds(63, 245, 81, 20);
-		
-		marcas.add(lblDescripcion);
 		
 		
 
 		txtIdMarca = new JTextField();
+		txtIdMarca.setBounds(172, 41, 115, 20);
+		panel.add(txtIdMarca);
 		txtIdMarca.setDocument(new LimiteJTextField(3));
 		txtIdMarca.addKeyListener(new KeyAdapter() {
 			@Override
@@ -134,38 +174,24 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 				}
 			}
 		});
-		txtIdMarca.setBounds(221, 206, 81, 20);
 		txtIdMarca.setToolTipText("Escribe el Codigo de la Marca (3 Car)");
-		marcas.add(txtIdMarca);
+		
+		
+		JLabel lblDescripcion = new JLabel("Descripcion:");
+		lblDescripcion.setBounds(47, 72, 115, 20);
+		panel.add(lblDescripcion);
+		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
 		
 		txtDescripcion = new JTextField();
-		txtDescripcion.setBounds(221, 247, 198, 20);
+		txtDescripcion.setBounds(172, 73, 178, 20);
+		panel.add(txtDescripcion);
 		txtDescripcion.setColumns(10);
 		txtDescripcion.setToolTipText("Escribe una Descripción para la marca");
-		marcas.add(txtDescripcion);
-		
-		
-		btnNuevo.setToolTipText("Nuevo Registro");
-		btnEliminar.setToolTipText("Eliminar");
-		btnGrabar.setToolTipText("Grabar");
-		
-		modelo.addColumn("Codigo");
-		modelo.addColumn("Descripcion");
-		Listar();
-		
-		
-		separator = new JSeparator();
-		separator.setBounds(726, 132, 0, 2);
-		marcas.add(separator);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 342, 362, 222);
-		marcas.add(scrollPane);		
-		
-		
-		
-		tbMarcas = new JTable();
+		scrollPane.setBounds(35, 136, 362, 300);
+		panel.add(scrollPane);
 		tbMarcas = new JTable(){
 			public boolean isCellEditable(int rowIndex, int colIndex){
 				return false;
@@ -187,26 +213,6 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 		});
 		scrollPane.setViewportView(tbMarcas);
 		tbMarcas.setModel(modelo);
-		
-		label = new JLabel("");
-		label.setIcon(new ImageIcon(FrmMarcas.class.getResource("/gui/img/banners/Marquitas.png")));
-		label.setBounds(0, 33, 1364, 116);
-		marcas.add(label);
-		
-		separator_1 = new JSeparator();
-		separator_1.setBounds(0, 173, 1354, 20);
-		marcas.add(separator_1);
-		
-		lblListaDeMarcas = new JLabel("Lista de Marcas:");
-		lblListaDeMarcas.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblListaDeMarcas.setBounds(57, 316, 153, 20);
-		marcas.add(lblListaDeMarcas);
-		Listar();
-		
-		
-		int fila=0;
-		txtIdMarca.setText(""+tbMarcas.getValueAt(fila, 0));
-		txtDescripcion.setText(""+tbMarcas.getValueAt(fila, 1));
 		
 		tbMarcas.requestFocus();
 		tbMarcas.changeSelection(0,0,true, false);

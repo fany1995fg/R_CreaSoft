@@ -27,6 +27,10 @@ import javax.swing.table.DefaultTableModel;
 import com.placamas.beans.MarcasBean;
 import com.placamas.beans.TexturaBean;
 import com.placamas.controlador.TexturaControlador;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
+import javax.swing.UIManager;
+import java.awt.Color;
 
 public class FrmTextura extends JInternalFrame implements ActionListener{
 
@@ -43,11 +47,12 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 	private JButton btnEliminar;
 	private JButton btnNuevo;
 	private JToolBar toolBar;
-	private JLabel lblNewLabel;
-	private JSeparator separator;
+	private JLabel lblBanner;
 	JPanel textura;
-	private JLabel label;
-	private JLabel lblListaDeTexturas;
+	private JPanel panel;
+	private JSeparator separator;
+	private JButton btnEditarNo;
+	private JButton btnEditar;
 
 
 	public static void main(String[] args) {
@@ -71,17 +76,82 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 		textura = new JPanel();
 		textura.setLayout(null);
 		
-		JLabel lblIdTextura = new JLabel("C\u00F3digo de Textura");
-		lblIdTextura.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblIdTextura.setBounds(92, 195, 146, 19);
-		textura.add(lblIdTextura);
+		toolBar = new JToolBar();
+		toolBar.setBounds(0, 0, 135, 30);
+		textura.add(toolBar);
 		
-		JLabel lblDescripcion = new JLabel("Descripcion");
-		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDescripcion.setBounds(92, 226, 137, 15);
-		textura.add(lblDescripcion);
+		btnNuevo = new JButton("");
+		toolBar.add(btnNuevo);
+		btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/Iconos_PlacaMas/_New_document.png")));
+				
+				btnEditar = new JButton("");
+				btnEditar.setIcon(new ImageIcon(FrmTextura.class.getResource("/Iconos_PlacaMas/_Modify.png")));
+				btnEditar.setToolTipText("Grabar");
+				toolBar.add(btnEditar);
+		
+				btnEliminar = new JButton("");
+				toolBar.add(btnEliminar);
+				btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/Iconos_PlacaMas/_Erase.png")));
+				btnEliminar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						btnEliminarActionPerformed(arg0);
+					}
+				});
+				btnNuevo.addActionListener(this);
+				
+				btnNuevo.setToolTipText("Nuevo Registro");
+				btnEliminar.setToolTipText("Eliminar");
+				
+				separator = new JSeparator();
+				separator.setOrientation(SwingConstants.VERTICAL);
+				toolBar.add(separator);
+				
+				btnEditarNo = new JButton("");
+				btnEditarNo.setIcon(new ImageIcon(FrmTextura.class.getResource("/Iconos_PlacaMas/_Editar_No.png")));
+				btnEditarNo.setToolTipText("Grabar");
+				toolBar.add(btnEditarNo);
+				
+				btnGrabar = new JButton("");
+				toolBar.add(btnGrabar);
+				btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/Iconos_PlacaMas/_Save.png")));
+				btnGrabar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						btnGrabarActionPerformed(arg0);
+					}
+				});
+				btnGrabar.setToolTipText("Grabar");
+		
+		lblBanner = new JLabel("");
+		lblBanner.setIcon(new ImageIcon(FrmTextura.class.getResource("/gui/img/banners/Textura.jpg")));
+		lblBanner.setBounds(0, 33, 1194, 65);
+		textura.add(lblBanner);
+		
+		tbTextura = new JTable();
+
+
+		modelo.addColumn("Codigo");
+		modelo.addColumn("Descripcion");
+		Listar();
+		setDefaultCloseOperation(HIDE_ON_CLOSE); //Se oculte al cerrara
+		Listar();
+		
+		int fila=0;
+		
+		panel = new JPanel();
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado de Textura", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(20, 121, 1113, 495);
+		textura.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblIdTextura = new JLabel("C\u00F3digo de Textura:");
+		lblIdTextura.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblIdTextura.setBounds(47, 40, 115, 20);
+		panel.add(lblIdTextura);
+		lblIdTextura.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
 		txtIdTextura = new JTextField();
+		txtIdTextura.setBounds(172, 41, 115, 20);
+		panel.add(txtIdTextura);
 		txtIdTextura.setDocument(new LimiteJTextField(2));
 		txtIdTextura.addKeyListener(new KeyAdapter() {
 			@Override
@@ -95,24 +165,26 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 				}
 			}
 		});
-		txtIdTextura.setBounds(270, 194, 100, 19);
 		txtIdTextura.setToolTipText("Escribe el Codigo de la Marca (2 Car)");
-		textura.add(txtIdTextura);
 		txtIdTextura.setColumns(10);
 		
+		JLabel lblDescripcion = new JLabel("Descripcion:");
+		lblDescripcion.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblDescripcion.setBounds(47, 72, 115, 20);
+		panel.add(lblDescripcion);
+		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
 		txtDescripcion = new JTextField();
-		txtDescripcion.setBounds(270, 225, 146, 19);
+		txtDescripcion.setBounds(172, 73, 178, 20);
+		panel.add(txtDescripcion);
 		txtDescripcion.setToolTipText("Escribe una Descripción para el textura");
-		textura.add(txtDescripcion);
 		
 	
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 347, 359, 224);
-		textura.add(scrollPane);
-		
-		tbTextura = new JTable();
+		scrollPane.setBounds(35, 136, 452, 300);
+		panel.add(scrollPane);
 		tbTextura = new JTable(){
 			public boolean isCellEditable(int rowIndex, int colIndex){
 				return false;
@@ -132,71 +204,10 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 			}
 		});
 		scrollPane.setViewportView(tbTextura);
-
-
-		modelo.addColumn("Codigo");
-		modelo.addColumn("Descripcion");
 		tbTextura.setModel(modelo);
-		Listar();
-		setDefaultCloseOperation(HIDE_ON_CLOSE); //Se oculte al cerrara
-		
-		toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 1194, 35);
-		textura.add(toolBar);
-		
-		btnNuevo = new JButton("");
-		toolBar.add(btnNuevo);
-		btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466476618_File.png")));
-		
-		btnGrabar = new JButton("");
-		toolBar.add(btnGrabar);
-		btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475388_save.png")));
-
-		btnEliminar = new JButton("");
-		toolBar.add(btnEliminar);
-		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
-		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(FrmTextura.class.getResource("/gui/img/banners/Textura.jpg")));
-		lblNewLabel.setBounds(0, 41, 1024, 120);
-		textura.add(lblNewLabel);
-		
-		separator = new JSeparator();
-		separator.setBounds(0, 173, 1194, 14);
-		textura.add(separator);
-		
-		label = new JLabel("");
-		label.setIcon(new ImageIcon(FrmTextura.class.getResource("/gui/img/banners/Textura.jpg")));
-		label.setBounds(170, 32, 1024, 120);
-		textura.add(label);
-		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnEliminarActionPerformed(arg0);
-			}
-		});
-		btnGrabar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnGrabarActionPerformed(arg0);
-			}
-		});
-		btnNuevo.addActionListener(this);
-		Listar();
-		
-		btnNuevo.setToolTipText("Nuevo Registro");
-		btnEliminar.setToolTipText("Eliminar");
-		btnGrabar.setToolTipText("Grabar");
 		
 		tbTextura.requestFocus();
 		tbTextura.changeSelection(0,0,true, false);
-		
-		int fila=0;
-		txtIdTextura.setText(""+tbTextura.getValueAt(fila, 0));
-		txtDescripcion.setText(""+tbTextura.getValueAt(fila, 1));
-		
-		lblListaDeTexturas = new JLabel("Lista de Texturas:");
-		lblListaDeTexturas.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblListaDeTexturas.setBounds(57, 316, 153, 20);
-		textura.add(lblListaDeTexturas);
 		
 		tamañoTablas();
 	}

@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 
 	import com.placamas.beans.RutasBean;
 import com.placamas.controlador.RutasControlador;
+import javax.swing.SwingConstants;
 public class FrmRutas extends JInternalFrame implements ActionListener {
 
 		
@@ -46,11 +47,8 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 		private JButton btnEliminar;
 		private JButton btnNuevo;
 		private JToolBar toolBar;
-		private JSeparator separator;
 		JPanel rutas;
 		private JLabel label;
-		private JSeparator separator_1;
-		private JLabel lblListaDeRutas;
 		private JButton btnAbrir;
 
 
@@ -77,21 +75,22 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			rutas.setLayout(null);
 			
 			toolBar = new JToolBar();
-			toolBar.setBounds(0, 0, 1194, 35);
+			toolBar.setBounds(0, 0, 135, 30);
 			rutas.add(toolBar);
 			
 			
 			btnNuevo = new JButton("");
 			toolBar.add(btnNuevo);
-			btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466476618_File.png")));
+			btnNuevo.setIcon(new ImageIcon(FrmRutas.class.getResource("/Iconos_PlacaMas/_New_document.png")));
 			
-			btnGrabar = new JButton("");
-			toolBar.add(btnGrabar);
-			btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475388_save.png")));
+			btnEditar = new JButton("");
+			btnEditar.setIcon(new ImageIcon(FrmRutas.class.getResource("/Iconos_PlacaMas/_Modify.png")));
+			btnEditar.setToolTipText("Nuevo Registro");
+			toolBar.add(btnEditar);
 
 			btnEliminar = new JButton("");
 			toolBar.add(btnEliminar);
-			btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
+			btnEliminar.setIcon(new ImageIcon(FrmRutas.class.getResource("/Iconos_PlacaMas/_Erase.png")));
 			
 			
 			
@@ -102,27 +101,69 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 					btnEliminarActionPerformed(arg0);
 				}
 			});
+			btnNuevo.addActionListener(this);
+			
+			label = new JLabel("");
+			label.setIcon(new ImageIcon(FrmMarcas.class.getResource("/gui/img/banners/Marquitas.png")));
+			label.setBounds(0, 33, 1194, 65);
+			rutas.add(label);
+			
+			
+			
+			
+			
+			btnNuevo.setToolTipText("Nuevo Registro");
+			btnEliminar.setToolTipText("Eliminar");
+			
+			separator_1 = new JSeparator();
+			separator_1.setOrientation(SwingConstants.VERTICAL);
+			toolBar.add(separator_1);
+			
+			btnEditarNo = new JButton("");
+			btnEditarNo.setIcon(new ImageIcon(FrmRutas.class.getResource("/Iconos_PlacaMas/_Editar_No.png")));
+			btnEditarNo.setToolTipText("Nuevo Registro");
+			toolBar.add(btnEditarNo);
+			
+			btnGrabar = new JButton("");
+			toolBar.add(btnGrabar);
+			btnGrabar.setIcon(new ImageIcon(FrmRutas.class.getResource("/Iconos_PlacaMas/_Save.png")));
 			btnGrabar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					btnGrabarActionPerformed(arg0);
 				}
 			});
-			btnNuevo.addActionListener(this);
+			btnGrabar.setToolTipText("Grabar");
+			
+			modelo.addColumn("codigo");
+			modelo.addColumn("Ruta dada");
+			Listar();
+			
+			
+			
+			tbRutas = new JTable();
+			Listar();
+			
+			
+			
+			
+			
+			int fila=0;
+			
+			panel = new JPanel();
+			panel.setBounds(20, 121, 1113, 495);
+			rutas.add(panel);
+			panel.setLayout(null);
 			
 			JLabel lblIdMarca = new JLabel("C\u00F3digo de Ruta:");
+			lblIdMarca.setBounds(47, 40, 115, 20);
+			panel.add(lblIdMarca);
 			lblIdMarca.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblIdMarca.setBounds(63, 204, 118, 20);
-			rutas.add(lblIdMarca);
-			
-			JLabel lblDescripcion = new JLabel("Ruta:");
-			lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			lblDescripcion.setBounds(63, 245, 81, 20);
-			
-			rutas.add(lblDescripcion);
 			
 			
 
 			txtIdRuta = new JTextField();
+			txtIdRuta.setBounds(172, 41, 115, 20);
+			panel.add(txtIdRuta);
 			txtIdRuta.setDocument(new LimiteJTextField(8));
 			txtIdRuta.addKeyListener(new KeyAdapter() {
 				@Override
@@ -136,41 +177,22 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 					}
 				}
 			});
-			txtIdRuta.setBounds(221, 206, 143, 20);
 			txtIdRuta.setToolTipText("Escribe el Codigo de la Ruta( max. 8 car)");
-			rutas.add(txtIdRuta);
+			
+			JLabel lblDescripcion = new JLabel("Ruta:");
+			lblDescripcion.setBounds(47, 72, 115, 20);
+			panel.add(lblDescripcion);
+			lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			
 			
 			txtRuta = new JTextField();
-			txtRuta.setBounds(221, 247, 317, 20);
+			txtRuta.setBounds(172, 73, 178, 20);
+			panel.add(txtRuta);
 			txtRuta.setToolTipText("Escribe una Descripción para la ruta");
-			rutas.add(txtRuta);
-			
-			
-			
-			
-			
-			btnNuevo.setToolTipText("Nuevo Registro");
-			btnEliminar.setToolTipText("Eliminar");
-			btnGrabar.setToolTipText("Grabar");
-			
-			modelo.addColumn("codigo");
-			modelo.addColumn("Ruta dada");
-			Listar();
-			
-			//setDefaultCloseOperation(DISPOSE_ON_CLOSE ); //Se oculte al cerrara
-			
-			separator = new JSeparator();
-			separator.setBounds(726, 132, 0, 2);
-			rutas.add(separator);
 			
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(57, 342, 675, 220);
-			rutas.add(scrollPane);		
-			
-			
-			
-			tbRutas = new JTable();
+			scrollPane.setBounds(35, 136, 464, 300);
+			panel.add(scrollPane);
 			
 			tbRutas = new JTable(){
 				public boolean isCellEditable(int rowIndex, int colIndex){
@@ -193,39 +215,18 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			});
 			scrollPane.setViewportView(tbRutas);
 			tbRutas.setModel(modelo);
-			
-			label = new JLabel("");
-			label.setIcon(new ImageIcon(FrmMarcas.class.getResource("/gui/img/banners/Marquitas.png")));
-			label.setBounds(0, 33, 1364, 116);
-			rutas.add(label);
-			
-			separator_1 = new JSeparator();
-			separator_1.setBounds(0, 173, 1354, 20);
-			rutas.add(separator_1);
-			
-			lblListaDeRutas = new JLabel("Lista de Marcas:");
-			lblListaDeRutas.setFont(new Font("Tahoma", Font.BOLD, 12));
-			lblListaDeRutas.setBounds(57, 316, 153, 20);
-			rutas.add(lblListaDeRutas);
-			Listar();
+			txtIdRuta.setText(""+tbRutas.getValueAt(fila, 0));
+			txtRuta.setText(""+tbRutas.getValueAt(fila, 1));
 			
 			btnAbrir = new JButton("...");
+			btnAbrir.setBounds(382, 73, 89, 20);
+			panel.add(btnAbrir);
 			btnAbrir.setToolTipText("selecionar una ubicacion");
 			btnAbrir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					btnEscogerActionPerformed(arg0);
 				}
 			});
-			btnAbrir.setBounds(579, 245, 89, 23);
-			rutas.add(btnAbrir);
-			
-			
-			
-			
-			
-			int fila=0;
-			txtIdRuta.setText(""+tbRutas.getValueAt(fila, 0));
-			txtRuta.setText(""+tbRutas.getValueAt(fila, 1));
 			
 			tbRutas.requestFocus();
 			tbRutas.changeSelection(0,0,true, false);
@@ -322,6 +323,10 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 		}
 
 	String archivo ="";
+	private JSeparator separator_1;
+	private JButton btnEditar;
+	private JButton btnEditarNo;
+	private JPanel panel;
 	@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if (arg0.getSource() == btnNuevo) {

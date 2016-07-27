@@ -40,6 +40,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import javax.swing.border.TitledBorder;
+import javax.swing.UIManager;
 
 public class FrmColores extends JInternalFrame implements ActionListener {
 
@@ -62,6 +63,9 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 	private JToolBar toolBar;
 	private JLabel label_1;
 	JPanel colores;
+	private JButton btnEditar;
+	private JButton btnEditarNo;
+	private JSeparator separator;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -92,20 +96,21 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		Listar();
 		
 		toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 1194, 35);
+		toolBar.setBounds(0, 0, 135, 30);
 		colores.add(toolBar);
 		
 		btnNuevo = new JButton("");
 		toolBar.add(btnNuevo);
-		btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466476618_File.png")));
+		btnNuevo.setIcon(new ImageIcon(FrmColores.class.getResource("/Iconos_PlacaMas/_New_document.png")));
 		
-		btnGrabar = new JButton("");
-		toolBar.add(btnGrabar);
-		btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475388_save.png")));
+		btnEditar = new JButton("");
+		btnEditar.setIcon(new ImageIcon(FrmColores.class.getResource("/Iconos_PlacaMas/_Modify.png")));
+		btnEditar.setToolTipText("Eliminar");
+		toolBar.add(btnEditar);
 
 		btnEliminar = new JButton("");
 		toolBar.add(btnEliminar);
-		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
+		btnEliminar.setIcon(new ImageIcon(FrmColores.class.getResource("/Iconos_PlacaMas/_Erase.png")));
 		
         ///QUITANDOLE LOS BORDES A LOS BOTONES
 		/*
@@ -115,7 +120,6 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		
 		btnNuevo.setToolTipText("Nuevo Registro");
 		btnEliminar.setToolTipText("Eliminar");
-		btnGrabar.setToolTipText("Grabar");
 		
 		label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(FrmColores.class.getResource("/gui/img/banners/BanColor.png")));
@@ -127,13 +131,38 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		lblBanner.setIcon(new ImageIcon(FrmColores.class.getResource("/gui/img/banners/BanColor.png")));
 		colores.setLayout(null);
 		colores.add(toolBar);
+		
+		separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		toolBar.add(separator);
+		
+		btnEditarNo = new JButton("");
+		btnEditarNo.setIcon(new ImageIcon(FrmColores.class.getResource("/Iconos_PlacaMas/_Editar_No.png")));
+		btnEditarNo.setToolTipText("Eliminar");
+		toolBar.add(btnEditarNo);
+		
+		btnGrabar = new JButton("");
+		toolBar.add(btnGrabar);
+		btnGrabar.setIcon(new ImageIcon(FrmColores.class.getResource("/Iconos_PlacaMas/_Save.png")));
+		btnGrabar.setToolTipText("Grabar");
+		btnGrabar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnGrabarActionPerformed(arg0);
+			}
+		});
 		colores.add(lblBanner);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "Listado Colores", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado de Colores", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBounds(20, 121, 1113, 495);
 		colores.add(panel_1);
 		panel_1.setLayout(null);
+		
+		JLabel lblICodColor = new JLabel("C\u00F3digo de Color :");
+		lblICodColor.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblICodColor.setBounds(47, 40, 115, 20);
+		panel_1.add(lblICodColor);
+		lblICodColor.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
 		txtIdColor = new JTextField();
 		txtIdColor.setBounds(172, 41, 115, 20);
@@ -153,13 +182,9 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		txtIdColor.setToolTipText("Escribe un id para el Color");
 		txtIdColor.setColumns(10);
 		
-		JLabel lblICodColor = new JLabel("C\u00F3digo de Color :");
-		lblICodColor.setBounds(47, 40, 115, 20);
-		panel_1.add(lblICodColor);
-		lblICodColor.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
 		JLabel lblDescripcion = new JLabel("Descripci\u00F3n:");
-		lblDescripcion.setBounds(75, 72, 87, 20);
+		lblDescripcion.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblDescripcion.setBounds(47, 72, 115, 20);
 		panel_1.add(lblDescripcion);
 		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
@@ -168,27 +193,6 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		panel_1.add(txtDescripcion);
 		txtDescripcion.setToolTipText("Escribe una descripción para el Color");
 		txtDescripcion.setColumns(10);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(35, 136, 414, 299);
-		panel_1.add(scrollPane);
-		
-		tbColores = new JTable();
-		tbColores.addKeyListener(new KeyAdapter() {
-			@Override
-			//DISEÑO CLIC DERECHO EN EL SCROL / EVENT /KEY/ KEYRELEASED
-			public void keyReleased(KeyEvent arg0) {
-				Mostrar();
-			}
-		});
-		tbColores.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				Mostrar();
-			}
-		});
-		scrollPane.setViewportView(tbColores);
-		tbColores.setModel(modelo);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(413, 23, 166, 78);
@@ -209,15 +213,31 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		chckboxtap = new JCheckBox("Tapacanto",false);
 		chckboxtap.setBounds(18, 48, 97, 20);
 		panel.add(chckboxtap);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(35, 136, 414, 300);
+		panel_1.add(scrollPane);
+		
+		tbColores = new JTable();
+		tbColores.addKeyListener(new KeyAdapter() {
+			@Override
+			//DISEÑO CLIC DERECHO EN EL SCROL / EVENT /KEY/ KEYRELEASED
+			public void keyReleased(KeyEvent arg0) {
+				Mostrar();
+			}
+		});
+		tbColores.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				Mostrar();
+			}
+		});
+		scrollPane.setViewportView(tbColores);
+		tbColores.setModel(modelo);
 			
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnEliminarActionPerformed(arg0);
-			}
-		});
-		btnGrabar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnGrabarActionPerformed(arg0);
 			}
 		});
 		btnNuevo.addActionListener(this);

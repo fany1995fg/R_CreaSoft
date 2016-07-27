@@ -31,6 +31,8 @@ import com.placamas.beans.MedidasBean;
 import com.placamas.controlador.MedidasControlador;
 
 import javax.swing.JCheckBox;
+import javax.swing.border.TitledBorder;
+import javax.swing.SwingConstants;
 
 public class FrmMedidas extends JInternalFrame implements ActionListener {
 
@@ -49,8 +51,11 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 	private JButton btnNuevo;
 	private JToolBar toolBar;
 	private JLabel lblNewLabel;
-	private JSeparator separator;
 	JPanel medidas;
+	private JPanel panel;
+	private JPanel panel_1;
+	private JButton btnEditar;
+	private JButton btnEditarNo;
 
 
 	public static void main(String[] args) {
@@ -74,17 +79,84 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 		medidas = new JPanel();
 		medidas.setLayout(null);
 		
-		JLabel lblIdMedidas = new JLabel("C\u00F3digo de Medidas:");
-		lblIdMedidas.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblIdMedidas.setBounds(57, 207, 146, 18);
-		medidas.add(lblIdMedidas);
+		toolBar = new JToolBar();
+		toolBar.setBounds(0, 0, 135, 30);
+		medidas.add(toolBar);
 		
-		JLabel lblMedidas = new JLabel("Medida:");
-		lblMedidas.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblMedidas.setBounds(57, 254, 137, 15);
-		medidas.add(lblMedidas);
+		btnNuevo = new JButton("");
+		toolBar.add(btnNuevo);
+		btnNuevo.setIcon(new ImageIcon(FrmMedidas.class.getResource("/Iconos_PlacaMas/_New_document.png")));
+		
+		btnEditar = new JButton("");
+		btnEditar.setIcon(new ImageIcon(FrmMedidas.class.getResource("/Iconos_PlacaMas/_Modify.png")));
+		btnEditar.setToolTipText("Eliminar");
+		toolBar.add(btnEditar);
+		
+				btnEliminar = new JButton("");
+				toolBar.add(btnEliminar);
+				btnEliminar.setIcon(new ImageIcon(FrmMedidas.class.getResource("/Iconos_PlacaMas/_Erase.png")));
+				
+				btnNuevo.setToolTipText("Nuevo Registro");
+				btnEliminar.setToolTipText("Eliminar");
+				
+				JSeparator separator = new JSeparator();
+				separator.setOrientation(SwingConstants.VERTICAL);
+				toolBar.add(separator);
+				
+				btnEditarNo = new JButton("");
+				btnEditarNo.setIcon(new ImageIcon(FrmMedidas.class.getResource("/Iconos_PlacaMas/_Editar_No.png")));
+				btnEditarNo.setToolTipText("Eliminar");
+				toolBar.add(btnEditarNo);
+				
+				btnGrabar = new JButton("");
+				toolBar.add(btnGrabar);
+				btnGrabar.setIcon(new ImageIcon(FrmMedidas.class.getResource("/Iconos_PlacaMas/_Save.png")));
+				btnGrabar.setToolTipText("Grabar");
+				btnGrabar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						btnGrabarActionPerformed(arg0);
+					}
+				});
+				
+				btnEliminar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						btnEliminarActionPerformed(arg0);
+					}
+				});
+				btnNuevo.addActionListener(this);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(FrmMedidas.class.getResource("/gui/img/banners/medidas.jpg")));
+		lblNewLabel.setBounds(0, 33, 1194, 65);
+		medidas.add(lblNewLabel);
+		
+		modelo.addColumn("Tipo");
+		modelo.addColumn("Medida");
+		modelo.addColumn("Tablero");
+		modelo.addColumn("Tapa Cantos");
+		Listar();
+		
+		setDefaultCloseOperation(HIDE_ON_CLOSE); //Se oculte al cerrara
+		Listar();
+		
+		Listar();
+		
+		int fila=0;
+		
+		panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Listado de Medidas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(20, 121, 1113, 495);
+		medidas.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblIdMedidas = new JLabel("C\u00F3digo de Medidas:");
+		lblIdMedidas.setBounds(47, 40, 115, 20);
+		panel.add(lblIdMedidas);
+		lblIdMedidas.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
 		txtIdMedidas= new JTextField();
+		txtIdMedidas.setBounds(172, 41, 115, 20);
+		panel.add(txtIdMedidas);
 		txtIdMedidas.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent evt) {
@@ -97,42 +169,39 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 				}
 			}
 		});
-		txtIdMedidas.setBounds(213, 207, 80, 19);
 		txtIdMedidas.setColumns(10);
 		txtIdMedidas.setToolTipText("Escribe el Codigo de la Medida");
-		medidas.add(txtIdMedidas);
+		
+		JLabel lblMedidas = new JLabel("Medida:");
+		lblMedidas.setBounds(47, 72, 115, 20);
+		panel.add(lblMedidas);
+		lblMedidas.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
 		txtMedidas = new JTextField();
-		txtMedidas.setBounds(213, 252, 80, 19);
+		txtMedidas.setBounds(172, 73, 178, 20);
+		panel.add(txtMedidas);
 		txtMedidas.setColumns(10);
 		txtMedidas.setToolTipText("Escribe una Descripción para la medida");
-		medidas.add(txtMedidas);
+		
+		panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(null, "Pertenece a:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(413, 23, 166, 78);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JCheckBox checkBox = new JCheckBox("Tapacanto", false);
+		checkBox.setBounds(18, 22, 97, 20);
+		panel_1.add(checkBox);
+		
+		JCheckBox checkBox_1 = new JCheckBox("Tablero");
+		checkBox_1.setBounds(18, 48, 97, 20);
+		panel_1.add(checkBox_1);
+		checkBox_1.setSelected(false);
+		checkBox_1.setMnemonic(KeyEvent.VK_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(77, 342, 323, 224);
-		medidas.add(scrollPane);		
-		
-		modelo.addColumn("Tipo");
-		modelo.addColumn("Medida");
-		modelo.addColumn("Tablero");
-		modelo.addColumn("Tapa Cantos");
-		Listar();
-		
-		toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 1194, 35);
-		medidas.add(toolBar);
-		
-		btnNuevo = new JButton("");
-		toolBar.add(btnNuevo);
-		btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466476618_File.png")));
-		
-		btnGrabar = new JButton("");
-		toolBar.add(btnGrabar);
-		btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475388_save.png")));
-
-		btnEliminar = new JButton("");
-		toolBar.add(btnEliminar);
-		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
+		scrollPane.setBounds(35, 136, 323, 300);
+		panel.add(scrollPane);
 		
 		tbMedidas = new JTable();
 		tbMedidas.addKeyListener(new KeyAdapter() {
@@ -151,62 +220,6 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 		});
 		scrollPane.setViewportView(tbMedidas);
 		tbMedidas.setModel(modelo);
-		
-		setDefaultCloseOperation(HIDE_ON_CLOSE); //Se oculte al cerrara
-		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(FrmMedidas.class.getResource("/gui/img/banners/medidas.jpg")));
-
-		lblNewLabel.setBounds(0, 36, 1205, 115);
-		medidas.add(lblNewLabel);
-		
-		btnNuevo.setToolTipText("Nuevo Registro");
-		btnEliminar.setToolTipText("Eliminar");
-		btnGrabar.setToolTipText("Grabar");
-		
-		separator = new JSeparator();
-		separator.setBounds(10, 162, 1195, 14);
-		medidas.add(separator);
-		
-		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnEliminarActionPerformed(arg0);
-			}
-		});
-		btnGrabar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnGrabarActionPerformed(arg0);
-			}
-		});
-		btnNuevo.addActionListener(this);
-		Listar();
-		
-		
-		JLabel lblListaDeMedidas = new JLabel("Lista de Medidas:");
-		lblListaDeMedidas.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblListaDeMedidas.setBounds(77, 316, 153, 20);
-		medidas.add(lblListaDeMedidas);
-		
-		JCheckBox checkBox = new JCheckBox("Tapacanto", false);
-		checkBox.setBounds(362, 246, 97, 23);
-		medidas.add(checkBox);
-		
-		JCheckBox checkBox_1 = new JCheckBox("Tablero");
-		checkBox_1.setSelected(false);
-		checkBox_1.setMnemonic(KeyEvent.VK_1);
-		checkBox_1.setBounds(362, 214, 97, 23);
-		medidas.add(checkBox_1);
-		
-		JLabel label = new JLabel("Pertenece a :");
-		label.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label.setBounds(352, 186, 153, 20);
-		medidas.add(label);
-		
-		Listar();
-		
-		int fila=0;
-		txtIdMedidas.setText(""+tbMedidas.getValueAt(fila, 0));
-		txtMedidas.setText(""+tbMedidas.getValueAt(fila, 1));
 			
 		
 		tamañoTablas();

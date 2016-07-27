@@ -30,6 +30,7 @@ import javax.swing.JSeparator;
 import com.placamas.beans.MarcasBean;
 import com.placamas.beans.MaterialBean;
 import com.placamas.controlador.MaterialControlador;
+import javax.swing.border.TitledBorder;
 
 public class FrmMaterial extends JInternalFrame implements ActionListener {
 
@@ -50,9 +51,11 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 	private JButton btnNuevo;
 	private JToolBar toolBar;
 	private JLabel lblNewLabel;
-	private JSeparator separator;
 	JPanel material;
-	private JLabel lblListaDeMateriales;
+	private JPanel panel;
+	private JButton btnEditar;
+	private JButton btnEditarNo;
+	private JSeparator separator;
 
 
 	public static void main(String[] args) {
@@ -75,131 +78,138 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 		
 		material = new JPanel();
 		material.setLayout(null);
-
-		
-		JLabel lblIdMaterial = new JLabel("C\u00F3digo de Material:");
-		lblIdMaterial.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblIdMaterial.setBounds(86, 209, 146, 18);
-		material.add(lblIdMaterial);
-		
-		JLabel lblDescripcion = new JLabel("Descripci\u00F3n:");
-		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDescripcion.setBounds(86, 239, 137, 15);
-		material.add(lblDescripcion);
-		
-		txtIdMaterial = new JTextField();
-		txtIdMaterial.setDocument(new LimiteJTextField(3));
-		txtIdMaterial.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent evt) {
 				
-				char c=evt.getKeyChar();
-				if(Character.isLowerCase(c)){
-					String cad=(""+c).toUpperCase();
-					c=cad.charAt(0);
-					evt.setKeyChar(c);
-				}
-			}
-		});
-		txtIdMaterial.setBounds(264, 208, 128, 19);
-		txtIdMaterial.setToolTipText("Escribe el Codigo de la Marca (3 Car)");
-		material.add(txtIdMaterial);
-		txtIdMaterial.setColumns(10);
+				toolBar = new JToolBar();
+				toolBar.setBounds(0, 0, 135, 30);
+				material.add(toolBar);
+				
+				btnNuevo = new JButton("");
+				toolBar.add(btnNuevo);
+				btnNuevo.setIcon(new ImageIcon(FrmMaterial.class.getResource("/Iconos_PlacaMas/_New_document.png")));
+				
+				btnEditar = new JButton("");
+				btnEditar.setIcon(new ImageIcon(FrmMaterial.class.getResource("/Iconos_PlacaMas/_Modify.png")));
+				btnEditar.setToolTipText("Eliminar");
+				toolBar.add(btnEditar);
+				
+						btnEliminar = new JButton("");
+						toolBar.add(btnEliminar);
+						btnEliminar.setIcon(new ImageIcon(FrmMaterial.class.getResource("/Iconos_PlacaMas/_Erase.png")));
+						btnEliminar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								btnEliminarActionPerformed(arg0);
+							}
+						});
+						btnNuevo.addActionListener(this);
+						
+						
+						btnNuevo.setToolTipText("Nuevo Registro");
+						btnEliminar.setToolTipText("Eliminar");
+						
+						separator = new JSeparator();
+						separator.setOrientation(SwingConstants.VERTICAL);
+						toolBar.add(separator);
+						
+						btnEditarNo = new JButton("");
+						btnEditarNo.setIcon(new ImageIcon(FrmMaterial.class.getResource("/Iconos_PlacaMas/_Editar_No.png")));
+						btnEditarNo.setToolTipText("Grabar");
+						toolBar.add(btnEditarNo);
+						
+						btnGrabar = new JButton("");
+						toolBar.add(btnGrabar);
+						btnGrabar.setIcon(new ImageIcon(FrmMaterial.class.getResource("/Iconos_PlacaMas/_Save.png")));
+						btnGrabar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								btnGrabarActionPerformed(arg0);
+							}
+						});
+						btnGrabar.setToolTipText("Grabar");
 		
-		txtDescripcion = new JTextField();
-		txtDescripcion.setBounds(264, 238, 253, 19);
-		txtDescripcion.setToolTipText("Escribe una Descripción para el material");
-		material.add(txtDescripcion);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 347, 411, 220);
-		material.add(scrollPane);
+				lblNewLabel = new JLabel("");
+				lblNewLabel.setIcon(new ImageIcon(FrmMaterial.class.getResource("/gui/img/banners/BannerMateriales.png")));
+				lblNewLabel.setBounds(0, 33, 1194, 65);
+				material.add(lblNewLabel);
 		
 		tbMaterial = new JTable();
-		tbMaterial = new JTable(){
-			public boolean isCellEditable(int rowIndex, int colIndex){
-				return false;
-			}
-		};
-		tbMaterial.addKeyListener(new KeyAdapter() {
-			@Override
-			//DISEÑO CLIC DERECHO EN EL SCROL / EVENT /KEY/ KEYRELEASED
-			public void keyReleased(KeyEvent arg0) {
-				Mostrar();
-			}
-		});
-		tbMaterial.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				Mostrar();
-			}
-		});
-		scrollPane.setViewportView(tbMaterial);
 
 
 		modelo.addColumn("Codigo");
 		modelo.addColumn("Descripcion");
-		tbMaterial.setModel(modelo);
 		Listar();
 		setDefaultCloseOperation(HIDE_ON_CLOSE); //Se oculte al cerrara
-		
-		toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 1194, 35);
-		material.add(toolBar);
-		
-		btnNuevo = new JButton("");
-		toolBar.add(btnNuevo);
-		btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466476618_File.png")));
-		
-		btnGrabar = new JButton("");
-		toolBar.add(btnGrabar);
-		btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475388_save.png")));
-
-		btnEliminar = new JButton("");
-		toolBar.add(btnEliminar);
-		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
-
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(FrmMaterial.class.getResource("/gui/img/banners/BannerMateriales.png")));
-
-		lblNewLabel.setBounds(0, 36, 1194, 115);
-		material.add(lblNewLabel);
-		
-		
-		
-		separator = new JSeparator();
-		separator.setBounds(0, 173, 1184, 14);
-		material.add(separator);
-		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnEliminarActionPerformed(arg0);
-			}
-		});
-		btnGrabar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnGrabarActionPerformed(arg0);
-			}
-		});
-		btnNuevo.addActionListener(this);
 		Listar();
-		
-		lblListaDeMateriales = new JLabel("Lista de Materiales:");
-		lblListaDeMateriales.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblListaDeMateriales.setBounds(57, 316, 153, 20);
-		material.add(lblListaDeMateriales);
 		
 		
 		int fila=0;
-		txtIdMaterial.setText(""+tbMaterial.getValueAt(fila, 0));
-		txtDescripcion.setText(""+tbMaterial.getValueAt(fila, 1));
+		
+		panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Listado de Material", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(20, 121, 1113, 495);
+		material.add(panel);
+		panel.setLayout(null);
+		
+				
+				JLabel lblIdMaterial = new JLabel("C\u00F3digo de Material:");
+				lblIdMaterial.setBounds(47, 40, 115, 20);
+				panel.add(lblIdMaterial);
+				lblIdMaterial.setFont(new Font("Tahoma", Font.PLAIN, 13));
+				
+				JLabel lblDescripcion = new JLabel("Descripci\u00F3n:");
+				lblDescripcion.setBounds(47, 72, 115, 20);
+				panel.add(lblDescripcion);
+				lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+				
+				txtIdMaterial = new JTextField();
+				txtIdMaterial.setBounds(172, 41, 115, 20);
+				panel.add(txtIdMaterial);
+				txtIdMaterial.setDocument(new LimiteJTextField(3));
+				txtIdMaterial.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent evt) {
+						
+						char c=evt.getKeyChar();
+						if(Character.isLowerCase(c)){
+							String cad=(""+c).toUpperCase();
+							c=cad.charAt(0);
+							evt.setKeyChar(c);
+						}
+					}
+				});
+				txtIdMaterial.setToolTipText("Escribe el Codigo de la Marca (3 Car)");
+				txtIdMaterial.setColumns(10);
+				
+				txtDescripcion = new JTextField();
+				txtDescripcion.setBounds(172, 73, 178, 20);
+				panel.add(txtDescripcion);
+				txtDescripcion.setToolTipText("Escribe una Descripción para el material");
+				
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(35, 136, 411, 300);
+				panel.add(scrollPane);
+				tbMaterial = new JTable(){
+					public boolean isCellEditable(int rowIndex, int colIndex){
+						return false;
+					}
+				};
+				tbMaterial.addKeyListener(new KeyAdapter() {
+					@Override
+					//DISEÑO CLIC DERECHO EN EL SCROL / EVENT /KEY/ KEYRELEASED
+					public void keyReleased(KeyEvent arg0) {
+						Mostrar();
+					}
+				});
+				tbMaterial.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseReleased(MouseEvent arg0) {
+						Mostrar();
+					}
+				});
+				scrollPane.setViewportView(tbMaterial);
+				tbMaterial.setModel(modelo);
+				txtIdMaterial.setText(""+tbMaterial.getValueAt(fila, 0));
 		
 		tbMaterial.requestFocus();
 		tbMaterial.changeSelection(0,0,true, false);
-		
-		
-		btnNuevo.setToolTipText("Nuevo Registro");
-		btnEliminar.setToolTipText("Eliminar");
-		btnGrabar.setToolTipText("Grabar");
 		
 		tamañoTablas();
 	
