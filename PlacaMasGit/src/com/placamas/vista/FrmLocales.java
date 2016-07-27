@@ -70,36 +70,6 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		
 		locales = new JPanel();
 		locales.setLayout(null);
-		
-		JLabel lblIdLocal = new JLabel("C\u00F3digo de Local :");
-		lblIdLocal.setBounds(57, 231, 115, 20);
-		lblIdLocal.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
-		JLabel lblLoc_Nomb = new JLabel("Nombre del Local:");
-		lblLoc_Nomb.setBounds(57, 263, 115, 20);
-		lblLoc_Nomb.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
-		txtIdLocal = new JTextField();
-		txtIdLocal.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent evt) {
-				
-				char c=evt.getKeyChar();
-				if(Character.isLowerCase(c)){
-					String cad=(""+c).toUpperCase();
-					c=cad.charAt(0);
-					evt.setKeyChar(c);
-				}
-			}
-		});
-		txtIdLocal.setBounds(190, 232, 127, 20);
-		txtIdLocal.setToolTipText("Escribe un id para el Local");
-		txtIdLocal.setColumns(10);
-		
-		txtLoc_Nomb = new JTextField();
-		txtLoc_Nomb.setBounds(190, 264, 194, 20);
-		txtLoc_Nomb.setToolTipText("Escribe una descripción para el Local");
-		txtLoc_Nomb.setColumns(10);
 
 
 		modelo.addColumn("codigo");
@@ -147,10 +117,6 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		scrollPane.setViewportView(tbLocales);
 		tbLocales.setModel(modelo);
 		
-		JLabel label = new JLabel("");
-		label.setBounds(0, 30, 1194, 121);
-		label.setIcon(new ImageIcon(FrmLocales.class.getResource("/gui/img/banners/BanColor.png")));
-		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(0, 162, 1194, 11);
 		
@@ -159,14 +125,48 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		lblListaDeLocales.setFont(new Font("Tahoma", Font.BOLD, 12));
 		locales.setLayout(null);
 		locales.add(toolBar);
+		
+		JLabel lblBanner = new JLabel("");
+		lblBanner.setBounds(0, 30, 1194, 121);
+		lblBanner.setIcon(new ImageIcon(FrmLocales.class.getResource("/gui/img/banners/BanColor.png")));
+		locales.add(lblBanner);
 		locales.add(separator);
-		locales.add(label);
+		
+		JLabel lblIdLocal = new JLabel("C\u00F3digo de Local :");
+		lblIdLocal.setBounds(57, 231, 115, 20);
+		lblIdLocal.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		locales.add(lblIdLocal);
+		
+		txtIdLocal = new JTextField();
+		txtIdLocal.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				
+				char c=evt.getKeyChar();
+				if(Character.isLowerCase(c)){
+					String cad=(""+c).toUpperCase();
+					c=cad.charAt(0);
+					evt.setKeyChar(c);
+				}
+			}
+		});
+		txtIdLocal.setBounds(190, 232, 127, 20);
+		txtIdLocal.setToolTipText("Escribe un id para el Local");
+		txtIdLocal.setColumns(10);
+		locales.add(txtIdLocal);
+		
+		JLabel lblLoc_Nomb = new JLabel("Nombre del Local:");
+		lblLoc_Nomb.setBounds(57, 263, 115, 20);
+		lblLoc_Nomb.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		locales.add(lblLoc_Nomb);
+		
+		txtLoc_Nomb = new JTextField();
+		txtLoc_Nomb.setBounds(190, 264, 194, 20);
+		txtLoc_Nomb.setToolTipText("Escribe una descripción para el Local");
+		txtLoc_Nomb.setColumns(10);
+		locales.add(txtLoc_Nomb);
 		locales.add(lblListaDeLocales);
 		locales.add(scrollPane);
-		locales.add(lblLoc_Nomb);
-		locales.add(txtLoc_Nomb);
-		locales.add(lblIdLocal);
-		locales.add(txtIdLocal);
 		
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -184,8 +184,6 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		Listar();
 		
 		int fila=0;
-		txtIdLocal.setText(""+tbLocales.getValueAt(fila, 0));
-		txtLoc_Nomb.setText(""+tbLocales.getValueAt(fila, 1));
 		
 		
 		tamañoTablas();

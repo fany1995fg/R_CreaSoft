@@ -39,6 +39,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
+import javax.swing.border.TitledBorder;
 
 public class FrmColores extends JInternalFrame implements ActionListener {
 
@@ -48,10 +49,10 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 
 	DefaultTableModel modelo=new DefaultTableModel();
 	
-	JCheckBox cb1, cb2;
+	JCheckBox chckboxtab, chckboxtap;
 	int tab=0,tap=0;
 	String math_tab,math_can;
-	private JTextField txtIdColores;
+	private JTextField txtIdColor;
 	private JTextField txtDescripcion;
 	JTable tbColores;
 	private JButton btnGrabar;
@@ -82,36 +83,6 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		
 		colores = new JPanel();
 		colores.setLayout(null);
-		
-		JLabel lblIdMarca = new JLabel("C\u00F3digo de Color :");
-		lblIdMarca.setBounds(57, 231, 115, 20);
-		lblIdMarca.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
-		JLabel lblDescripcion = new JLabel("Descripci\u00F3n:");
-		lblDescripcion.setBounds(57, 263, 87, 20);
-		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
-		txtIdColores = new JTextField();
-		txtIdColores.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent evt) {
-				
-				char c=evt.getKeyChar();
-				if(Character.isLowerCase(c)){
-					String cad=(""+c).toUpperCase();
-					c=cad.charAt(0);
-					evt.setKeyChar(c);
-				}
-			}
-		});
-		txtIdColores.setBounds(190, 232, 115, 20);
-		txtIdColores.setToolTipText("Escribe un id para el Color");
-		txtIdColores.setColumns(10);
-		
-		txtDescripcion = new JTextField();
-		txtDescripcion.setBounds(190, 264, 178, 20);
-		txtDescripcion.setToolTipText("Escribe una descripción para el Color");
-		txtDescripcion.setColumns(10);
 
 
 		modelo.addColumn("Codigo");
@@ -151,8 +122,56 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		label_1.setBounds(10, 24, 598, 108);
 		getContentPane().add(label_1);
 		
+		JLabel lblBanner = new JLabel("");
+		lblBanner.setBounds(0, 33, 1194, 65);
+		lblBanner.setIcon(new ImageIcon(FrmColores.class.getResource("/gui/img/banners/BanColor.png")));
+		colores.setLayout(null);
+		colores.add(toolBar);
+		colores.add(lblBanner);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(null, "Listado Colores", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(20, 121, 1113, 495);
+		colores.add(panel_1);
+		panel_1.setLayout(null);
+		
+		txtIdColor = new JTextField();
+		txtIdColor.setBounds(172, 41, 115, 20);
+		panel_1.add(txtIdColor);
+		txtIdColor.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent evt) {
+				
+				char c=evt.getKeyChar();
+				if(Character.isLowerCase(c)){
+					String cad=(""+c).toUpperCase();
+					c=cad.charAt(0);
+					evt.setKeyChar(c);
+				}
+			}
+		});
+		txtIdColor.setToolTipText("Escribe un id para el Color");
+		txtIdColor.setColumns(10);
+		
+		JLabel lblICodColor = new JLabel("C\u00F3digo de Color :");
+		lblICodColor.setBounds(47, 40, 115, 20);
+		panel_1.add(lblICodColor);
+		lblICodColor.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		JLabel lblDescripcion = new JLabel("Descripci\u00F3n:");
+		lblDescripcion.setBounds(75, 72, 87, 20);
+		panel_1.add(lblDescripcion);
+		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		txtDescripcion = new JTextField();
+		txtDescripcion.setBounds(172, 73, 178, 20);
+		panel_1.add(txtDescripcion);
+		txtDescripcion.setToolTipText("Escribe una descripción para el Color");
+		txtDescripcion.setColumns(10);
+		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 342, 414, 217);
+		scrollPane.setBounds(35, 136, 414, 299);
+		panel_1.add(scrollPane);
 		
 		tbColores = new JTable();
 		tbColores.addKeyListener(new KeyAdapter() {
@@ -171,45 +190,25 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		scrollPane.setViewportView(tbColores);
 		tbColores.setModel(modelo);
 		
-		JLabel label = new JLabel("");
-		label.setBounds(0, 30, 1194, 121);
-		label.setIcon(new ImageIcon(FrmColores.class.getResource("/gui/img/banners/BanColor.png")));
+		JPanel panel = new JPanel();
+		panel.setBounds(413, 23, 166, 78);
+		panel_1.add(panel);
+		panel.setBorder(new TitledBorder(null, "Pertenece a:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setLayout(null);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 162, 1194, 11);
-		
-		JLabel lblListaDeColores = new JLabel("Lista de Colores:");
-		lblListaDeColores.setBounds(57, 316, 153, 20);
-		lblListaDeColores.setFont(new Font("Tahoma", Font.BOLD, 12));
-		colores.setLayout(null);
-		colores.add(toolBar);
-		colores.add(separator);
-		colores.add(label);
-		colores.add(lblListaDeColores);
-		colores.add(scrollPane);
-		colores.add(lblDescripcion);
-		colores.add(txtDescripcion);
-		colores.add(lblIdMarca);
-		colores.add(txtIdColores);
-		
-		JLabel lblEligeUnaOpcin = new JLabel("Pertenece a :");
-		lblEligeUnaOpcin.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEligeUnaOpcin.setBounds(519, 203, 153, 20);
-		colores.add(lblEligeUnaOpcin);
-		
-		cb1= new JCheckBox("Tablero");
-		cb1.setBounds(529, 231, 97, 23);
-		cb1.setMnemonic(KeyEvent.VK_1);
-		cb1.setSelected(false);
-		colores.add(cb1);
+		chckboxtab= new JCheckBox("Tablero");
+		chckboxtab.setBounds(18, 22, 97, 20);
+		panel.add(chckboxtab);
+		chckboxtab.setMnemonic(KeyEvent.VK_1);
+		chckboxtab.setSelected(false);
+		chckboxtab.setMnemonic(KeyEvent.VK_1);
+		chckboxtab.setSelected(false);
 		
 		//String numCadena= Integer.toString(numEntero);
 				
-		cb2 = new JCheckBox("Tapacanto",false);
-		cb2.setBounds(529, 263, 97, 23);
-		cb1.setMnemonic(KeyEvent.VK_1);
-		cb1.setSelected(false);
-		colores.add(cb2);
+		chckboxtap = new JCheckBox("Tapacanto",false);
+		chckboxtap.setBounds(18, 48, 97, 20);
+		panel.add(chckboxtap);
 			
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -228,8 +227,6 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		
 		
 		int fila=0;
-		txtIdColores.setText(""+tbColores.getValueAt(fila, 0));
-		txtDescripcion.setText(""+tbColores.getValueAt(fila, 1));
 		
 		
 		tamañoTablas();
@@ -252,7 +249,7 @@ void mensaje(String m){
 }	
 	
 	 public void itemStateChanged(ItemEvent e) {
-		 if(cb1.isSelected()){
+		 if(chckboxtab.isSelected()){
 			 
 			 tab=1;
 			 mensaje(""+tab);
@@ -261,7 +258,7 @@ void mensaje(String m){
 			 mensaje(""+tab);
 		 }
 		 
-		 if(cb2.isSelected()){
+		 if(chckboxtap.isSelected()){
 			 
 			 tap=1;
 			 mensaje(""+tap);
@@ -280,7 +277,7 @@ protected void btnGrabarActionPerformed(ActionEvent arg0) {
 	
 	
 	
-	String texto=txtIdColores.getText();
+	String texto=txtIdColor.getText();
     texto=texto.replaceAll(" ", "");
     if(texto.length()==0){
     	
@@ -297,12 +294,12 @@ protected void btnGrabarActionPerformed(ActionEvent arg0) {
     if(texto.length()==3){
     	estado=true;
     if(estado==true){ 	
-	ColoresBean l=new ColoresBean(txtIdColores.getText(), txtDescripcion.getText(), math_tab.toString(), math_can.toString());
+	ColoresBean l=new ColoresBean(txtIdColor.getText(), txtDescripcion.getText(), math_tab.toString(), math_can.toString());
 	int valor=obj.registrarColores(l);
 	if(valor==1){
 		mensaje("Registro Exitoso de Colores");
 		Listar();
-		txtIdColores.setText("");
+		txtIdColor.setText("");
 		txtDescripcion.setText("");
 		math_tab.toString();
 		math_can.toString();
@@ -321,14 +318,14 @@ protected void btnEliminarActionPerformed(ActionEvent arg0) {
 
 	if(descicion==JOptionPane.YES_OPTION){
 		
-		int valor=obj.eliminarColores(txtIdColores.getText());
+		int valor=obj.eliminarColores(txtIdColor.getText());
 		
 		 if(valor==1){
 			 if(tbColores.getSelectedRow() >=0 ){					 
 				 ((DefaultTableModel)tbColores.getModel()).removeRow(tbColores.getSelectedRow());
 			 }
 				mensaje("Registro Eliminado");
-				txtIdColores.setText("");
+				txtIdColor.setText("");
 				txtDescripcion.setText("");
 		 }
 		 else
@@ -353,7 +350,7 @@ protected void btnEliminarActionPerformed(ActionEvent arg0) {
 	
 
 	protected void btnNuevoActionPerformed(ActionEvent arg0) {
-		txtIdColores.setText("");
+		txtIdColor.setText("");
 		txtDescripcion.setText("");
 		txtDescripcion.requestFocus();
 		estado=true;
@@ -374,7 +371,7 @@ protected void btnEliminarActionPerformed(ActionEvent arg0) {
 	void Mostrar(){
 	
 		int fila=tbColores.getSelectedRow();
-		txtIdColores.setText(""+tbColores.getValueAt(fila, 0));
+		txtIdColor.setText(""+tbColores.getValueAt(fila, 0));
 		txtDescripcion.setText(""+tbColores.getValueAt(fila, 1));
 		
 	}

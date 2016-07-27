@@ -30,6 +30,7 @@ import java.awt.Component;
 
 public class FrmTapacantos extends JInternalFrame implements ActionListener{
 	DefaultTableModel modelo=new DefaultTableModel();
+	DefaultTableModel model=new DefaultTableModel();
 	Boolean estado=false;
 	JTable tbMarcas;
 	private JTable tbCantos;
@@ -41,8 +42,8 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 	public JPanel tapacanto;
 	private JLabel label;
 	private JCheckBox chbxActivo;
-	private JTextField vrbCodigo;
-	private JTextField vrbDescripcion;
+	private JTextField txtCodigo;
+	private JTextField txtDescripcion;
 	private JTable tbMatch;
 
 
@@ -155,9 +156,12 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		modelo.addColumn("Codigo");
 		modelo.addColumn("Descripcion");
 		
+		model.addColumn("Codigo");
+		model.addColumn("Marca");
 		
 		
-		tbMarcas = new JTable();
+		
+		
 		
 		label = new JLabel("");
 		label.setBounds(0, 33, 1194, 65);
@@ -192,10 +196,10 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		lblCodigo.setBounds(599, 31, 85, 20);
 		panel_1.add(lblCodigo);
 		
-		vrbCodigo = new JTextField();
-		vrbCodigo.setColumns(10);
-		vrbCodigo.setBounds(690, 31, 122, 20);
-		panel_1.add(vrbCodigo);
+		txtCodigo = new JTextField();
+		txtCodigo.setColumns(10);
+		txtCodigo.setBounds(690, 31, 122, 20);
+		panel_1.add(txtCodigo);
 		
 		JLabel lblDescripcion = new JLabel("Descripcion : ");
 		lblDescripcion.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -203,10 +207,10 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		lblDescripcion.setBounds(599, 57, 85, 20);
 		panel_1.add(lblDescripcion);
 		
-		vrbDescripcion = new JTextField();
-		vrbDescripcion.setColumns(10);
-		vrbDescripcion.setBounds(690, 57, 319, 20);
-		panel_1.add(vrbDescripcion);
+		txtDescripcion = new JTextField();
+		txtDescripcion.setColumns(10);
+		txtDescripcion.setBounds(690, 57, 319, 20);
+		panel_1.add(txtDescripcion);
 		
 		chbxActivo = new JCheckBox("Activo");
 		chbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -284,9 +288,23 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		panel_2.setBounds(599, 285, 410, 164);
 		panel_1.add(panel_2);
 		
-		tbMatch = new JTable();
-		tbMatch.setBounds(10, 40, 390, 113);
-		panel_2.add(tbMatch);
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 40, 390, 113);
+		panel_2.add(scrollPane_1);
+		
+		
+		tbMatch = new JTable(){
+			public boolean isCellEditable(int rowIndex, int colIndex){
+			return false;
+			}
+		};
+	
+			scrollPane_1.setViewportView(tbMatch);
+			
+			tbMatch.setModel(model);
+			
+			tbMatch.requestFocus();
+			tbMatch.changeSelection(0,0,true, false);
 		
 		JButton btnNewMatch = new JButton("");
 		btnNewMatch.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_New_document.png")));
@@ -313,8 +331,12 @@ private void tamañoTablas() {
 		
 		int [] anchos = {30, 200, 50};
 		
-		for (int i = 0; i < tbMarcas.getColumnCount(); i++) {
-			tbMarcas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+		for (int i = 0; i < tbCantos.getColumnCount(); i++) {
+			tbCantos.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+		}
+		
+		for (int i = 0; i < tbMatch.getColumnCount(); i++) {
+			tbMatch.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
 		}
 				
 	}

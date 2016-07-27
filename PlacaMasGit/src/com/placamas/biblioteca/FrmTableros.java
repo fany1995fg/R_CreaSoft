@@ -41,8 +41,9 @@ import javax.swing.SwingConstants;
 public class FrmTableros extends JInternalFrame implements ActionListener{
 
 	DefaultTableModel modelo=new DefaultTableModel();
+	DefaultTableModel model=new DefaultTableModel();
 	Boolean estado=false;
-	JTable tbMarcas;
+	
 	private JTable tbTablero;
 	private JButton btnEditar;
 	private JButton btnCerrar;
@@ -54,10 +55,10 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 	private JCheckBox chbxActivo;
 	private JCheckBox chbxRotacion;
 	private JCheckBox chbxVeta;
-	private JTextField vrbPila;
+	private JTextField txtPila;
 	private JTable tbFormato;
-	private JTextField vrbCodigo;
-	private JTextField vrbDescripcion;
+	private JTextField txtCodigo;
+	private JTextField txtDescripcion;
 
 
 	public static void main(String[] args) {
@@ -176,18 +177,24 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		modelo.addColumn("Codigo");
 		modelo.addColumn("Descripcion");
 		
+		model.addColumn("Formato");
+		model.addColumn("Ancho");
+		model.addColumn("Largo");
+		model.addColumn("Costo");
+		model.addColumn("Factor");
+		model.addColumn("Stock");
+		model.addColumn("Medida");
+		
 		label = new JLabel("");
-		label.setBounds(0, 36, 1194, 65);
+		label.setBounds(0, 33, 1194, 65);
 		label.setIcon(new ImageIcon(FrmTableros.class.getResource("/gui/img/banners/tablero.jpg")));
 		tablero.add(label);
 		
-		
-		
-		tbMarcas = new JTable();
+
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tableros", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1.setBounds(20, 112, 1113, 495);
+		panel_1.setBounds(0, 113, 1113, 495);
 		tablero.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -212,10 +219,10 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		lblCodigo.setBounds(585, 31, 85, 20);
 		panel_1.add(lblCodigo);
 		
-		vrbCodigo = new JTextField();
-		vrbCodigo.setColumns(10);
-		vrbCodigo.setBounds(678, 31, 122, 20);
-		panel_1.add(vrbCodigo);
+		txtCodigo = new JTextField();
+		txtCodigo.setColumns(10);
+		txtCodigo.setBounds(678, 31, 122, 20);
+		panel_1.add(txtCodigo);
 		
 		JLabel lblDescripcion = new JLabel("Descripcion : ");
 		lblDescripcion.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -223,10 +230,10 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		lblDescripcion.setBounds(585, 57, 85, 20);
 		panel_1.add(lblDescripcion);
 		
-		vrbDescripcion = new JTextField();
-		vrbDescripcion.setColumns(10);
-		vrbDescripcion.setBounds(678, 57, 350, 20);
-		panel_1.add(vrbDescripcion);
+		txtDescripcion = new JTextField();
+		txtDescripcion.setColumns(10);
+		txtDescripcion.setBounds(678, 57, 350, 20);
+		panel_1.add(txtDescripcion);
 		
 		chbxActivo = new JCheckBox("Activo");
 		chbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -284,10 +291,10 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		lblPila.setBounds(836, 166, 122, 20);
 		panel_1.add(lblPila);
 		
-		vrbPila = new JTextField();
-		vrbPila.setBounds(964, 166, 64, 20);
-		panel_1.add(vrbPila);
-		vrbPila.setColumns(10);
+		txtPila = new JTextField();
+		txtPila.setBounds(964, 166, 64, 20);
+		panel_1.add(txtPila);
+		txtPila.setColumns(10);
 		
 		JLabel lblColor = new JLabel("Color : ");
 		lblColor.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -340,10 +347,6 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		panel_4.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Formato", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_4.setLayout(null);
 		
-		tbFormato = new JTable();
-		tbFormato.setBounds(10, 40, 408, 122);
-		panel_4.add(tbFormato);
-		
 		JButton btnNewForm = new JButton("");
 		btnNewForm.setIcon(new ImageIcon(FrmTableros.class.getResource("/Iconos_PlacaMas/_New_document.png")));
 		btnNewForm.setToolTipText("Nuevo Formato");
@@ -358,6 +361,21 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		btnElimForm.setBounds(32, 14, 23, 23);
 		panel_4.add(btnElimForm);
 		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 40, 408, 122);
+		panel_4.add(scrollPane_1);
+		
+		tbFormato = new JTable(){
+			public boolean isCellEditable(int rowIndex, int colIndex){
+				return false;
+			}
+		};
+		
+				scrollPane_1.setViewportView(tbFormato);
+				tbFormato.setModel(model);
+				
+				tbFormato.requestFocus();
+				tbFormato.changeSelection(0,0,true, false);
 		
 		int fila=0;
 		
@@ -368,9 +386,14 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 private void tamañoTablas() {
 		
 		int [] anchos = {30, 200, 50};
+		int [] form = {200, 60, 60,60,60,60,70};
 		
-		for (int i = 0; i < tbMarcas.getColumnCount(); i++) {
-			tbMarcas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+		for (int i = 0; i < tbTablero.getColumnCount(); i++) {
+			tbTablero.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+		}
+		
+		for (int i = 0; i < tbFormato.getColumnCount(); i++) {
+			tbFormato.getColumnModel().getColumn(i).setPreferredWidth(form[i]);
 		}
 				
 	}

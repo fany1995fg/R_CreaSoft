@@ -39,10 +39,10 @@ public class FrmRanuras extends JInternalFrame implements ActionListener{
 	private JToolBar toolBar;
 	public JPanel ranura;
 	private JLabel label;
-	private JTextField vrbCodigo;
-	private JTextField vrbEsp;
-	private JTextField vrbDBL;
-	private JTextField vrbPRF;
+	private JTextField txtCodigo;
+	private JTextField txtEsp;
+	private JTextField txtDBL;
+	private JTextField txtPRF;
 	private JButton btnFinal;
 	private JSeparator separator_1;
 	private JButton btnGrabar;
@@ -190,65 +190,65 @@ public class FrmRanuras extends JInternalFrame implements ActionListener{
 		JLabel lblCodigo = new JLabel("Codigo : ");
 		lblCodigo.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblCodigo.setBounds(599, 31, 140, 20);
+		lblCodigo.setBounds(550, 31, 140, 20);
 		panel_1.add(lblCodigo);
 		
-		vrbCodigo = new JTextField();
-		vrbCodigo.setText("");
-		vrbCodigo.setBounds(750, 31, 122, 20);
-		panel_1.add(vrbCodigo);
-		vrbCodigo.setColumns(10);
+		txtCodigo = new JTextField();
+		txtCodigo.setText("");
+		txtCodigo.setBounds(696, 31, 122, 20);
+		panel_1.add(txtCodigo);
+		txtCodigo.setColumns(10);
 		
 		JCheckBox chbxActivo = new JCheckBox("Activo");
 		chbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chbxActivo.setBounds(950, 31, 64, 20);
+		chbxActivo.setBounds(900, 31, 64, 20);
 		panel_1.add(chbxActivo);
 		
 		JLabel lblESP = new JLabel("Espesor (ESP) : ");
 		lblESP.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblESP.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblESP.setBounds(599, 57, 140, 20);
+		lblESP.setBounds(550, 57, 140, 20);
 		panel_1.add(lblESP);
 		
-		vrbEsp = new JTextField();
-		vrbEsp.setText("");
-		vrbEsp.setColumns(10);
-		vrbEsp.setBounds(750, 57, 40, 20);
-		panel_1.add(vrbEsp);
+		txtEsp = new JTextField();
+		txtEsp.setText("");
+		txtEsp.setColumns(10);
+		txtEsp.setBounds(696, 57, 40, 20);
+		panel_1.add(txtEsp);
 		
 		JCheckBox chbxEditar = new JCheckBox("Editar en LP");
 		chbxEditar.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chbxEditar.setBounds(950, 57, 90, 20);
+		chbxEditar.setBounds(900, 57, 90, 20);
 		panel_1.add(chbxEditar);
 		
 		JLabel lblDBL = new JLabel("Distancia Borde Lateral (DBL) : ");
 		lblDBL.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblDBL.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblDBL.setBounds(599, 83, 140, 20);
+		lblDBL.setBounds(550, 83, 140, 20);
 		panel_1.add(lblDBL);
 		
-		vrbDBL = new JTextField();
-		vrbDBL.setText("");
-		vrbDBL.setColumns(10);
-		vrbDBL.setBounds(750, 83, 40, 20);
-		panel_1.add(vrbDBL);
+		txtDBL = new JTextField();
+		txtDBL.setText("");
+		txtDBL.setColumns(10);
+		txtDBL.setBounds(695, 83, 40, 20);
+		panel_1.add(txtDBL);
 		
 		JCheckBox chbxComun = new JCheckBox("Mas Usado");
 		chbxComun.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chbxComun.setBounds(950, 83, 120, 20);
+		chbxComun.setBounds(900, 83, 120, 20);
 		panel_1.add(chbxComun);
 		
 		JLabel lblPRF = new JLabel("Profundidad (PRF) : ");
 		lblPRF.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblPRF.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblPRF.setBounds(599, 109, 140, 20);
+		lblPRF.setBounds(550, 109, 140, 20);
 		panel_1.add(lblPRF);
 		
-		vrbPRF = new JTextField();
-		vrbPRF.setText("");
-		vrbPRF.setColumns(10);
-		vrbPRF.setBounds(750, 109, 40, 20);
-		panel_1.add(vrbPRF);
+		txtPRF = new JTextField();
+		txtPRF.setText("");
+		txtPRF.setColumns(10);
+		txtPRF.setBounds(695, 109, 40, 20);
+		panel_1.add(txtPRF);
 		
 		JCheckBox chBxVerTodos = new JCheckBox("Ver Todos (Act./Inact.)");
 		chBxVerTodos.setFont(new Font("Tahoma", Font.PLAIN, 10));

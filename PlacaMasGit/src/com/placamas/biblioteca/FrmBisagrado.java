@@ -32,21 +32,20 @@ public class FrmBisagrado extends JInternalFrame implements ActionListener{
 	JTable tbMarcas;
 	private JTable tbBisagra;
 	private JButton btnEditar;
-	private JButton btnCerrar;
 	private JButton btnEliminar;
 	private JButton btnNuevo;
 	private JToolBar toolBar;
 	public JPanel bisagrado;
 	private JLabel label;
-	private JTextField vrdCodigo;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField txtCodigo;
+	private JTextField txtDMT;
+	private JTextField txtDBL;
+	private JTextField txtPRF;
 	private JButton btnFinal;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JLabel lblDistanciaBordeSuperiordbs;
-	private JLabel lblDistanciaBordeInferiordbi;
+	private JTextField txtDBS;
+	private JTextField txtDBI;
+	private JLabel lblDBS;
+	private JLabel lblDBI;
 	private JSeparator separator_1;
 	private JButton btnEditarNo;
 	private JButton btnCopiar;
@@ -177,7 +176,7 @@ public class FrmBisagrado extends JInternalFrame implements ActionListener{
 		bisagrado.add(label);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(29, 113, 1113, 495);
+		panel_1.setBounds(20, 121, 1113, 495);
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Bisagrado", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		bisagrado.add(panel_1);
 		panel_1.setLayout(null);
@@ -200,82 +199,94 @@ public class FrmBisagrado extends JInternalFrame implements ActionListener{
 		JLabel lblCodigo = new JLabel("Codigo : ");
 		lblCodigo.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblCodigo.setBounds(599, 31, 140, 20);
+		lblCodigo.setBounds(530, 31, 160, 20);
 		panel_1.add(lblCodigo);
 		
-		vrdCodigo = new JTextField();
-		vrdCodigo.setText("");
-		vrdCodigo.setBounds(750, 31, 122, 20);
-		panel_1.add(vrdCodigo);
-		vrdCodigo.setColumns(10);
+		txtCodigo = new JTextField();
+		txtCodigo.setText("");
+		txtCodigo.setBounds(696, 31, 122, 20);
+		panel_1.add(txtCodigo);
+		txtCodigo.setColumns(10);
 		
 		JCheckBox chbxActivo = new JCheckBox("Activo");
 		chbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chbxActivo.setBounds(950, 31, 64, 20);
+		chbxActivo.setBounds(900, 31, 90, 20);
 		panel_1.add(chbxActivo);
 		
-		JLabel lblDistancia = new JLabel("Distancia Borde Lateral(DBL):");
-		lblDistancia.setBounds(552, 170, 169, 14);
-		panel_1.add(lblDistancia);
+		JLabel lblDMT = new JLabel("Diametro (DMT) : ");
+		lblDMT.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblDMT.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblDMT.setBounds(530, 57, 160, 20);
+		panel_1.add(lblDMT);
 		
-		JLabel lblEspesoresp = new JLabel("Diametro(DMT):");
-		lblEspesoresp.setBounds(542, 147, 83, 14);
-		panel_1.add(lblEspesoresp);
+		txtDMT = new JTextField();
+		txtDMT.setText("");
+		txtDMT.setColumns(10);
+		txtDMT.setBounds(696, 57, 40, 20);
+		panel_1.add(txtDMT);
 		
-		textField_2 = new JTextField();
-		textField_2.setText("");
-		textField_2.setColumns(10);
-		textField_2.setBounds(637, 144, 38, 20);
-		panel_1.add(textField_2);
+		JCheckBox chbxEditarLp = new JCheckBox("Editar en LP");
+		chbxEditarLp.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxEditarLp.setBounds(900, 57, 90, 20);
+		panel_1.add(chbxEditarLp);
 		
-		textField_3 = new JTextField();
-		textField_3.setText("");
-		textField_3.setColumns(10);
-		textField_3.setBounds(727, 167, 38, 20);
-		panel_1.add(textField_3);
+		JLabel lblDBL = new JLabel("Distancia Borde Lateral (DBL) : ");
+		lblDBL.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblDBL.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblDBL.setBounds(530, 83, 160, 20);
+		panel_1.add(lblDBL);
 		
-		textField_4 = new JTextField();
-		textField_4.setText("");
-		textField_4.setColumns(10);
-		textField_4.setBounds(727, 189, 38, 20);
-		panel_1.add(textField_4);
+		txtDBL = new JTextField();
+		txtDBL.setText("");
+		txtDBL.setColumns(10);
+		txtDBL.setBounds(696, 83, 40, 20);
+		panel_1.add(txtDBL);
 		
-		JLabel lblProfundidad = new JLabel("Profundidad(PRF):");
-		lblProfundidad.setBounds(614, 192, 103, 14);
-		panel_1.add(lblProfundidad);
+		JCheckBox chbxDBL = new JCheckBox("Mas Usado");
+		chbxDBL.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxDBL.setBounds(900, 83, 90, 20);
+		panel_1.add(chbxDBL);
 		
-		JCheckBox chckbxDistanciaBordeLateral = new JCheckBox("Comun");
-		chckbxDistanciaBordeLateral.setBounds(731, 145, 190, 20);
-		panel_1.add(chckbxDistanciaBordeLateral);
+		JLabel lblPRF = new JLabel("Profundidad (PRF) : ");
+		lblPRF.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblPRF.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblPRF.setBounds(530, 109, 160, 20);
+		panel_1.add(lblPRF);
 		
-		JCheckBox chckbxEditarEnLp = new JCheckBox("Editar en LP");
-		chckbxEditarEnLp.setBounds(731, 122, 133, 20);
-		panel_1.add(chckbxEditarEnLp);
+		txtPRF = new JTextField();
+		txtPRF.setText("");
+		txtPRF.setColumns(10);
+		txtPRF.setBounds(696, 109, 40, 20);
+		panel_1.add(txtPRF);
 		
-		textField_5 = new JTextField();
-		textField_5.setText("");
-		textField_5.setColumns(10);
-		textField_5.setBounds(727, 233, 38, 20);
-		panel_1.add(textField_5);
+		lblDBS = new JLabel("Distancia Borde Superior (DBS) : ");
+		lblDBS.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblDBS.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblDBS.setBounds(530, 135, 160, 20);
+		panel_1.add(lblDBS);
 		
-		textField_6 = new JTextField();
-		textField_6.setText("");
-		textField_6.setColumns(10);
-		textField_6.setBounds(727, 211, 38, 20);
-		panel_1.add(textField_6);
+		txtDBS = new JTextField();
+		txtDBS.setText("");
+		txtDBS.setColumns(10);
+		txtDBS.setBounds(696, 135, 40, 20);
+		panel_1.add(txtDBS);
 		
-		lblDistanciaBordeSuperiordbs = new JLabel("Distancia Borde Superior(DBS):");
-		lblDistanciaBordeSuperiordbs.setBounds(552, 214, 169, 14);
-		panel_1.add(lblDistanciaBordeSuperiordbs);
+		lblDBI = new JLabel("Distancia Borde Inferior (DBI) : ");
+		lblDBI.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblDBI.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblDBI.setBounds(530, 161, 160, 20);
+		panel_1.add(lblDBI);
 		
-		lblDistanciaBordeInferiordbi = new JLabel("Distancia Borde Inferior(DBI):");
-		lblDistanciaBordeInferiordbi.setBounds(552, 236, 169, 14);
-		panel_1.add(lblDistanciaBordeInferiordbi);
+		txtDBI = new JTextField();
+		txtDBI.setText("");
+		txtDBI.setColumns(10);
+		txtDBI.setBounds(696, 161, 38, 20);
+		panel_1.add(txtDBI);
 		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Ver Todos (Act./Inact.)");
-		chckbxNewCheckBox_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chckbxNewCheckBox_1.setBounds(10, 457, 177, 23);
-		panel_1.add(chckbxNewCheckBox_1);
+		JCheckBox chbxVerTodos = new JCheckBox("Ver Todos (Act./Inact.)");
+		chbxVerTodos.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxVerTodos.setBounds(10, 457, 177, 23);
+		panel_1.add(chbxVerTodos);
 		
 		
 		int fila=0;
