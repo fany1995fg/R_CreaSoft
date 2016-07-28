@@ -331,7 +331,7 @@ private void tamañoTablas() {
 		
 		int [] anchos = {30, 200, 50};
 		
-		for (int i = 0; i < tbCantos.getColumnCount(); i++) {
+		for (int i  = 0; i < tbCantos.getColumnCount(); i++) {
 			tbCantos.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
 		}
 		
