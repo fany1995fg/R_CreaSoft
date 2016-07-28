@@ -175,13 +175,13 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		
 		JLabel lblCodigo = new JLabel("Codigo:");
 		lblCodigo.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblCodigo.setBounds(32, 41, 48, 20);
+		lblCodigo.setBounds(22, 42, 48, 20);
 		panel_1.add(lblCodigo);
 		lblCodigo.setFont(new Font("Dialog", Font.PLAIN, 11));
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNombre.setBounds(215, 42, 54, 20);
+		lblNombre.setBounds(212, 42, 54, 20);
 		panel_1.add(lblNombre);
 		lblNombre.setFont(new Font("Dialog", Font.PLAIN, 11));
 		
@@ -193,13 +193,13 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		
 		txtIdUser = new JTextField();
 		//txtIdUser.setEnabled(false);
-		txtIdUser.setBounds(90, 41, 115, 20);
+		txtIdUser.setBounds(80, 42, 115, 20);
 		panel_1.add(txtIdUser);
 		txtIdUser.setColumns(10);
 		
 		txtNomb_User = new JTextField();
 		//txtNombre.setEnabled(false);
-		txtNomb_User.setBounds(275, 42, 180, 20);
+		txtNomb_User.setBounds(272, 42, 180, 20);
 		panel_1.add(txtNomb_User);
 		txtNomb_User.setColumns(10);
 		
@@ -510,8 +510,8 @@ protected void btnGrabarActionPerformed(ActionEvent arg0) {
 			if (modelo1.getValueAt(i,0).equals(modelo2.getValueAt(i, 0))){				
 				JOptionPane.showMessageDialog(null, "El DATO ya esta Seleccionado");
 			} else {
-				row[0] = modelo1.getValueAt(indexs[i], 0);
-				row[1] = modelo1.getValueAt(indexs[i], 1);
+				//row[0] = modelo1.getValueAt(indexs[i], 0);
+				//row[1] = modelo1.getValueAt(indexs[i], 1);
 				modelo1.addRow(row);
 			}	
 		}
