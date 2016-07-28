@@ -150,14 +150,16 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 		
 				
 				JLabel lblIdMaterial = new JLabel("C\u00F3digo de Material:");
+				lblIdMaterial.setHorizontalAlignment(SwingConstants.TRAILING);
 				lblIdMaterial.setBounds(47, 40, 115, 20);
 				panel.add(lblIdMaterial);
-				lblIdMaterial.setFont(new Font("Tahoma", Font.PLAIN, 13));
+				lblIdMaterial.setFont(new Font("Dialog", Font.PLAIN, 11));
 				
 				JLabel lblDescripcion = new JLabel("Descripci\u00F3n:");
+				lblDescripcion.setHorizontalAlignment(SwingConstants.TRAILING);
 				lblDescripcion.setBounds(47, 72, 115, 20);
 				panel.add(lblDescripcion);
-				lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+				lblDescripcion.setFont(new Font("Dialog", Font.PLAIN, 11));
 				
 				txtIdMaterial = new JTextField();
 				txtIdMaterial.setBounds(172, 41, 115, 20);
@@ -179,7 +181,7 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 				txtIdMaterial.setColumns(10);
 				
 				txtDescripcion = new JTextField();
-				txtDescripcion.setBounds(172, 73, 178, 20);
+				txtDescripcion.setBounds(172, 73, 200, 20);
 				panel.add(txtDescripcion);
 				txtDescripcion.setToolTipText("Escribe una Descripción para el material");
 				
@@ -205,8 +207,10 @@ public class FrmMaterial extends JInternalFrame implements ActionListener {
 					}
 				});
 				scrollPane.setViewportView(tbMaterial);
+				
 				tbMaterial.setModel(modelo);
 				txtIdMaterial.setText(""+tbMaterial.getValueAt(fila, 0));
+				txtDescripcion.setText(""+tbMaterial.getValueAt(fila, 1));
 		
 		tbMaterial.requestFocus();
 		tbMaterial.changeSelection(0,0,true, false);

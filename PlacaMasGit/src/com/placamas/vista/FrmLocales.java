@@ -78,8 +78,8 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		locales.setLayout(null);
 
 
-		modelo.addColumn("codigo");
-		modelo.addColumn("nombre");
+		modelo.addColumn("Codigo");
+		modelo.addColumn("Nombre");
 		Listar();
 		
 		toolBar = new JToolBar();
@@ -138,7 +138,7 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		lblIdLocal.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblIdLocal.setBounds(47, 40, 115, 20);
 		panel.add(lblIdLocal);
-		lblIdLocal.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblIdLocal.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		txtIdLocal = new JTextField();
 		txtIdLocal.setBounds(172, 41, 115, 20);
@@ -162,7 +162,7 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		lblLoc_Nomb.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblLoc_Nomb.setBounds(47, 72, 115, 20);
 		panel.add(lblLoc_Nomb);
-		lblLoc_Nomb.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblLoc_Nomb.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		txtLoc_Nomb = new JTextField();
 		txtLoc_Nomb.setBounds(172, 73, 178, 20);
@@ -200,8 +200,13 @@ public class FrmLocales extends JInternalFrame implements ActionListener {
 		setDefaultCloseOperation(HIDE_ON_CLOSE); //Se oculte al cerrara
 		Listar();
 		
-		int fila=0;
 		
+		int fila=0;
+		txtIdLocal.setText(""+tbLocales.getValueAt(fila, 0));
+		txtLoc_Nomb.setText(""+tbLocales.getValueAt(fila, 1));
+		
+		tbLocales.requestFocus();
+		tbLocales.changeSelection(0,0,true, false);
 		
 		tamañoTablas();
 	

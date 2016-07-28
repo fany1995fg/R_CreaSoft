@@ -170,7 +170,7 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Tapa Cantos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(20, 112, 1113, 495);
+		panel_1.setBounds(20, 121, 1113, 495);
 		tapacanto.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -192,7 +192,7 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		
 		JLabel lblCodigo = new JLabel("Codigo : ");
 		lblCodigo.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblCodigo.setBounds(599, 31, 85, 20);
 		panel_1.add(lblCodigo);
 		
@@ -203,7 +203,7 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		
 		JLabel lblDescripcion = new JLabel("Descripcion : ");
 		lblDescripcion.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblDescripcion.setBounds(599, 57, 85, 20);
 		panel_1.add(lblDescripcion);
 		
@@ -213,13 +213,13 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		panel_1.add(txtDescripcion);
 		
 		chbxActivo = new JCheckBox("Activo");
-		chbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		chbxActivo.setBounds(950, 31, 64, 20);
 		panel_1.add(chbxActivo);
 		
 		JLabel lblMaterial = new JLabel("Material : ");
 		lblMaterial.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblMaterial.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblMaterial.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblMaterial.setBounds(599, 114, 85, 20);
 		panel_1.add(lblMaterial);
 		
@@ -229,7 +229,7 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		
 		JLabel lblColor1 = new JLabel("Color Especifico : ");
 		lblColor1.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblColor1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblColor1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblColor1.setBounds(599, 140, 85, 20);
 		panel_1.add(lblColor1);
 		
@@ -239,7 +239,7 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		
 		JLabel lblColor2 = new JLabel("Color Adicional : ");
 		lblColor2.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblColor2.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblColor2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblColor2.setBounds(599, 166, 85, 20);
 		panel_1.add(lblColor2);
 		
@@ -249,7 +249,7 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		
 		JLabel lblEspCanto = new JLabel("Espesor Canto : ");
 		lblEspCanto.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblEspCanto.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblEspCanto.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblEspCanto.setBounds(599, 192, 85, 20);
 		panel_1.add(lblEspCanto);
 		
@@ -259,12 +259,12 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		
 		JLabel lblEspTabl = new JLabel("Espesor Min. Tablero : ");
 		lblEspTabl.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblEspTabl.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblEspTabl.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblEspTabl.setBounds(815, 192, 120, 20);
 		panel_1.add(lblEspTabl);
 		
 		JCheckBox chbxVerTodos = new JCheckBox("Ver Todos (Act./Inact.)");
-		chbxVerTodos.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxVerTodos.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		chbxVerTodos.setBounds(10, 457, 177, 23);
 		panel_1.add(chbxVerTodos);
 		
@@ -274,7 +274,7 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		
 		JLabel lblAncCanto = new JLabel("Ancho Canto : ");
 		lblAncCanto.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblAncCanto.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblAncCanto.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblAncCanto.setBounds(599, 218, 85, 20);
 		panel_1.add(lblAncCanto);
 		
@@ -285,7 +285,7 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Match Con Tablero", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_2.setBounds(599, 285, 410, 164);
+		panel_2.setBounds(599, 277, 429, 174);
 		panel_1.add(panel_2);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();

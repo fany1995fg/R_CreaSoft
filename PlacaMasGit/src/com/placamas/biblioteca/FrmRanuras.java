@@ -167,7 +167,7 @@ public class FrmRanuras extends JInternalFrame implements ActionListener{
 		ranura.add(label);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(20, 112, 1113, 495);
+		panel_1.setBounds(20, 121, 1113, 495);
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Ranura", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		ranura.add(panel_1);
 		panel_1.setLayout(null);
@@ -189,8 +189,8 @@ public class FrmRanuras extends JInternalFrame implements ActionListener{
 		
 		JLabel lblCodigo = new JLabel("Codigo : ");
 		lblCodigo.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblCodigo.setBounds(550, 31, 140, 20);
+		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblCodigo.setBounds(510, 31, 180, 20);
 		panel_1.add(lblCodigo);
 		
 		txtCodigo = new JTextField();
@@ -200,14 +200,14 @@ public class FrmRanuras extends JInternalFrame implements ActionListener{
 		txtCodigo.setColumns(10);
 		
 		JCheckBox chbxActivo = new JCheckBox("Activo");
-		chbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chbxActivo.setBounds(900, 31, 64, 20);
+		chbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		chbxActivo.setBounds(900, 31, 100, 20);
 		panel_1.add(chbxActivo);
 		
 		JLabel lblESP = new JLabel("Espesor (ESP) : ");
 		lblESP.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblESP.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblESP.setBounds(550, 57, 140, 20);
+		lblESP.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblESP.setBounds(510, 57, 180, 20);
 		panel_1.add(lblESP);
 		
 		txtEsp = new JTextField();
@@ -217,14 +217,14 @@ public class FrmRanuras extends JInternalFrame implements ActionListener{
 		panel_1.add(txtEsp);
 		
 		JCheckBox chbxEditar = new JCheckBox("Editar en LP");
-		chbxEditar.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chbxEditar.setBounds(900, 57, 90, 20);
+		chbxEditar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		chbxEditar.setBounds(900, 57, 100, 20);
 		panel_1.add(chbxEditar);
 		
 		JLabel lblDBL = new JLabel("Distancia Borde Lateral (DBL) : ");
 		lblDBL.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDBL.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblDBL.setBounds(550, 83, 140, 20);
+		lblDBL.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblDBL.setBounds(510, 83, 180, 20);
 		panel_1.add(lblDBL);
 		
 		txtDBL = new JTextField();
@@ -234,14 +234,14 @@ public class FrmRanuras extends JInternalFrame implements ActionListener{
 		panel_1.add(txtDBL);
 		
 		JCheckBox chbxComun = new JCheckBox("Mas Usado");
-		chbxComun.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chbxComun.setBounds(900, 83, 120, 20);
+		chbxComun.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		chbxComun.setBounds(900, 83, 100, 20);
 		panel_1.add(chbxComun);
 		
 		JLabel lblPRF = new JLabel("Profundidad (PRF) : ");
 		lblPRF.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblPRF.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblPRF.setBounds(550, 109, 140, 20);
+		lblPRF.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblPRF.setBounds(510, 109, 180, 20);
 		panel_1.add(lblPRF);
 		
 		txtPRF = new JTextField();
@@ -251,7 +251,7 @@ public class FrmRanuras extends JInternalFrame implements ActionListener{
 		panel_1.add(txtPRF);
 		
 		JCheckBox chBxVerTodos = new JCheckBox("Ver Todos (Act./Inact.)");
-		chBxVerTodos.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chBxVerTodos.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		chBxVerTodos.setBounds(10, 457, 177, 23);
 		panel_1.add(chBxVerTodos);
 		

@@ -198,7 +198,7 @@ public class FrmBisagrado extends JInternalFrame implements ActionListener{
 		
 		JLabel lblCodigo = new JLabel("Codigo : ");
 		lblCodigo.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblCodigo.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblCodigo.setBounds(530, 31, 160, 20);
 		panel_1.add(lblCodigo);
 		
@@ -209,12 +209,12 @@ public class FrmBisagrado extends JInternalFrame implements ActionListener{
 		txtCodigo.setColumns(10);
 		
 		JCheckBox chbxActivo = new JCheckBox("Activo");
-		chbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chbxActivo.setBounds(900, 31, 90, 20);
+		chbxActivo.setFont(new Font("Dialog", Font.PLAIN, 11));
+		chbxActivo.setBounds(900, 31, 110, 20);
 		panel_1.add(chbxActivo);
 		
 		JLabel lblDMT = new JLabel("Diametro (DMT) : ");
-		lblDMT.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblDMT.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblDMT.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblDMT.setBounds(530, 57, 160, 20);
 		panel_1.add(lblDMT);
@@ -226,14 +226,14 @@ public class FrmBisagrado extends JInternalFrame implements ActionListener{
 		panel_1.add(txtDMT);
 		
 		JCheckBox chbxEditarLp = new JCheckBox("Editar en LP");
-		chbxEditarLp.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chbxEditarLp.setBounds(900, 57, 90, 20);
+		chbxEditarLp.setFont(new Font("Dialog", Font.PLAIN, 11));
+		chbxEditarLp.setBounds(900, 57, 110, 20);
 		panel_1.add(chbxEditarLp);
 		
 		JLabel lblDBL = new JLabel("Distancia Borde Lateral (DBL) : ");
 		lblDBL.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDBL.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblDBL.setBounds(530, 83, 160, 20);
+		lblDBL.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblDBL.setBounds(510, 82, 180, 20);
 		panel_1.add(lblDBL);
 		
 		txtDBL = new JTextField();
@@ -243,13 +243,13 @@ public class FrmBisagrado extends JInternalFrame implements ActionListener{
 		panel_1.add(txtDBL);
 		
 		JCheckBox chbxDBL = new JCheckBox("Mas Usado");
-		chbxDBL.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chbxDBL.setBounds(900, 83, 90, 20);
+		chbxDBL.setFont(new Font("Dialog", Font.PLAIN, 11));
+		chbxDBL.setBounds(900, 83, 110, 20);
 		panel_1.add(chbxDBL);
 		
 		JLabel lblPRF = new JLabel("Profundidad (PRF) : ");
 		lblPRF.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblPRF.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblPRF.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblPRF.setBounds(530, 109, 160, 20);
 		panel_1.add(lblPRF);
 		
@@ -260,9 +260,9 @@ public class FrmBisagrado extends JInternalFrame implements ActionListener{
 		panel_1.add(txtPRF);
 		
 		lblDBS = new JLabel("Distancia Borde Superior (DBS) : ");
-		lblDBS.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblDBS.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblDBS.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDBS.setBounds(530, 135, 160, 20);
+		lblDBS.setBounds(510, 134, 180, 20);
 		panel_1.add(lblDBS);
 		
 		txtDBS = new JTextField();
@@ -273,8 +273,8 @@ public class FrmBisagrado extends JInternalFrame implements ActionListener{
 		
 		lblDBI = new JLabel("Distancia Borde Inferior (DBI) : ");
 		lblDBI.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDBI.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblDBI.setBounds(530, 161, 160, 20);
+		lblDBI.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblDBI.setBounds(510, 160, 180, 20);
 		panel_1.add(lblDBI);
 		
 		txtDBI = new JTextField();
@@ -284,7 +284,7 @@ public class FrmBisagrado extends JInternalFrame implements ActionListener{
 		panel_1.add(txtDBI);
 		
 		JCheckBox chbxVerTodos = new JCheckBox("Ver Todos (Act./Inact.)");
-		chbxVerTodos.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxVerTodos.setFont(new Font("Dialog", Font.PLAIN, 11));
 		chbxVerTodos.setBounds(10, 457, 177, 23);
 		panel_1.add(chbxVerTodos);
 		

@@ -194,7 +194,7 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tableros", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1.setBounds(0, 113, 1113, 495);
+		panel_1.setBounds(20, 121, 1113, 495);
 		tablero.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -215,7 +215,7 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		
 		JLabel lblCodigo = new JLabel("Codigo : ");
 		lblCodigo.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblCodigo.setBounds(585, 31, 85, 20);
 		panel_1.add(lblCodigo);
 		
@@ -226,7 +226,7 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		
 		JLabel lblDescripcion = new JLabel("Descripcion : ");
 		lblDescripcion.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblDescripcion.setBounds(585, 57, 85, 20);
 		panel_1.add(lblDescripcion);
 		
@@ -236,28 +236,31 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		panel_1.add(txtDescripcion);
 		
 		chbxActivo = new JCheckBox("Activo");
-		chbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		chbxActivo.setBounds(964, 31, 64, 20);
 		panel_1.add(chbxActivo);
 		
 		chbxVeta = new JCheckBox("Con Veta");
-		chbxVeta.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxVeta.setHorizontalAlignment(SwingConstants.LEFT);
+		chbxVeta.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		chbxVeta.setBounds(678, 84, 77, 20);
 		panel_1.add(chbxVeta);
 		
 		chbxRotacion = new JCheckBox("Permite Rotacion");
-		chbxRotacion.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chbxRotacion.setBounds(780, 84, 107, 20);
+		chbxRotacion.setHorizontalAlignment(SwingConstants.LEFT);
+		chbxRotacion.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		chbxRotacion.setBounds(757, 84, 121, 20);
 		panel_1.add(chbxRotacion);
 		
 		JCheckBox chbxSiCanto = new JCheckBox("Permite Colocar Canto");
-		chbxSiCanto.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		chbxSiCanto.setBounds(901, 84, 127, 23);
+		chbxSiCanto.setHorizontalAlignment(SwingConstants.LEFT);
+		chbxSiCanto.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		chbxSiCanto.setBounds(888, 84, 140, 23);
 		panel_1.add(chbxSiCanto);
 		
 		JLabel lblMaterial = new JLabel("Material : ");
 		lblMaterial.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblMaterial.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblMaterial.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblMaterial.setBounds(585, 114, 85, 20);
 		panel_1.add(lblMaterial);
 		
@@ -267,7 +270,7 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		
 		JLabel lblMarca = new JLabel("Marca : ");
 		lblMarca.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblMarca.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblMarca.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblMarca.setBounds(585, 140, 85, 20);
 		panel_1.add(lblMarca);
 		
@@ -277,7 +280,7 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		
 		JLabel lblEspesor = new JLabel("Espesor : ");
 		lblEspesor.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblEspesor.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblEspesor.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblEspesor.setBounds(585, 166, 85, 20);
 		panel_1.add(lblEspesor);
 		
@@ -287,8 +290,8 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		
 		JLabel lblPila = new JLabel("Cantidad de Pieza x Pila : ");
 		lblPila.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblPila.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblPila.setBounds(836, 166, 122, 20);
+		lblPila.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblPila.setBounds(814, 166, 144, 20);
 		panel_1.add(lblPila);
 		
 		txtPila = new JTextField();
@@ -298,13 +301,13 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		
 		JLabel lblColor = new JLabel("Color : ");
 		lblColor.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblColor.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblColor.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblColor.setBounds(585, 216, 85, 20);
 		panel_1.add(lblColor);
 		
 		JLabel lblTextura = new JLabel("Textura : ");
 		lblTextura.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblTextura.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblTextura.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblTextura.setBounds(585, 237, 85, 20);
 		panel_1.add(lblTextura);
 		
@@ -337,7 +340,7 @@ public class FrmTableros extends JInternalFrame implements ActionListener{
 		panel_3.add(cmBxTexturaC2);
 		
 		JCheckBox chbxVerTodos = new JCheckBox("Ver Todos (Act./Inact.)");
-		chbxVerTodos.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chbxVerTodos.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		chbxVerTodos.setBounds(10, 453, 177, 23);
 		panel_1.add(chbxVerTodos);
 		

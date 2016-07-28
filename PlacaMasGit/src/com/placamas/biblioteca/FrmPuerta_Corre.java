@@ -213,7 +213,7 @@ public class FrmPuerta_Corre extends JInternalFrame implements ActionListener{
 		
 		JLabel lblCodigo = new JLabel("Codigo : ");
 		lblCodigo.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblCodigo.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblCodigo.setBounds(530, 31, 160, 20);
 		panel_Ranuras.add(lblCodigo);
 		
@@ -225,7 +225,7 @@ public class FrmPuerta_Corre extends JInternalFrame implements ActionListener{
 		
 		JLabel lblESP = new JLabel("Espesor (ESP) : ");
 		lblESP.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblESP.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblESP.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblESP.setBounds(520, 57, 170, 20);
 		panel_Ranuras.add(lblESP);
 		
@@ -237,8 +237,8 @@ public class FrmPuerta_Corre extends JInternalFrame implements ActionListener{
 		
 		lblDBL1 = new JLabel("Distancia Borde Lateral 1 (DBL1) : ");
 		lblDBL1.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDBL1.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblDBL1.setBounds(520, 83, 170, 20);
+		lblDBL1.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblDBL1.setBounds(490, 82, 200, 20);
 		panel_Ranuras.add(lblDBL1);
 		
 		txtDBL1 = new JTextField();
@@ -249,8 +249,8 @@ public class FrmPuerta_Corre extends JInternalFrame implements ActionListener{
 		
 		lblDBL2 = new JLabel("Distancia Borde Lateral 2 (DBL2) : ");
 		lblDBL2.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDBL2.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblDBL2.setBounds(520, 109, 170, 20);
+		lblDBL2.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblDBL2.setBounds(490, 108, 200, 20);
 		panel_Ranuras.add(lblDBL2);
 		
 		txtDBL2 = new JTextField();
@@ -261,7 +261,7 @@ public class FrmPuerta_Corre extends JInternalFrame implements ActionListener{
 		
 		lblPRF = new JLabel("Profundidad (PRF) : ");
 		lblPRF.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblPRF.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblPRF.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblPRF.setBounds(520, 136, 170, 20);
 		panel_Ranuras.add(lblPRF);
 		
@@ -272,7 +272,7 @@ public class FrmPuerta_Corre extends JInternalFrame implements ActionListener{
 		panel_Ranuras.add(txtPRF);
 		
 		JCheckBox chckbxActivo = new JCheckBox("Activo");
-		chckbxActivo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chckbxActivo.setFont(new Font("Dialog", Font.PLAIN, 11));
 		chckbxActivo.setBounds(900, 31, 90, 20);
 		panel_Ranuras.add(chckbxActivo);
 		
@@ -294,6 +294,7 @@ public class FrmPuerta_Corre extends JInternalFrame implements ActionListener{
 				tbRanura.changeSelection(0,0,true, false);
 		
 		JCheckBox chckbxVerTodos = new JCheckBox("Ver Todos (Act./Inact.)");
+		chckbxVerTodos.setFont(new Font("Dialog", Font.PLAIN, 11));
 		chckbxVerTodos.setBounds(10, 222, 177, 23);
 		panel_Ranuras.add(chckbxVerTodos);
 		
@@ -364,7 +365,7 @@ public class FrmPuerta_Corre extends JInternalFrame implements ActionListener{
 		
 		JLabel lblPerCodigoRapido = new JLabel("Codigo Rapido:");
 		lblPerCodigoRapido.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblPerCodigoRapido.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblPerCodigoRapido.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblPerCodigoRapido.setBounds(530, 31, 160, 20);
 		panel_Perforaciones.add(lblPerCodigoRapido);
 		
@@ -376,7 +377,7 @@ public class FrmPuerta_Corre extends JInternalFrame implements ActionListener{
 		
 		JLabel lblPerCodigoLarg = new JLabel("Codigo Largo:");
 		lblPerCodigoLarg.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblPerCodigoLarg.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblPerCodigoLarg.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblPerCodigoLarg.setBounds(520, 57, 170, 20);
 		panel_Perforaciones.add(lblPerCodigoLarg);
 		
@@ -388,7 +389,7 @@ public class FrmPuerta_Corre extends JInternalFrame implements ActionListener{
 		
 		JLabel lblDMT = new JLabel("Diametro(DMT):");
 		lblDMT.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblDMT.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblDMT.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblDMT.setBounds(520, 83, 170, 20);
 		panel_Perforaciones.add(lblDMT);
 		
@@ -399,7 +400,7 @@ public class FrmPuerta_Corre extends JInternalFrame implements ActionListener{
 		panel_Perforaciones.add(txtDiametro);
 		
 		JCheckBox chckbxPerActivo = new JCheckBox("Activo");
-		chckbxPerActivo.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		chckbxPerActivo.setFont(new Font("Dialog", Font.PLAIN, 11));
 		chckbxPerActivo.setBounds(900, 31, 90, 20);
 		panel_Perforaciones.add(chckbxPerActivo);
 		
@@ -422,6 +423,7 @@ public class FrmPuerta_Corre extends JInternalFrame implements ActionListener{
 				tbPerforaciones.changeSelection(0,0,true, false);
 		
 		JCheckBox chckbxPerVerTodos = new JCheckBox("Ver Todos (Act./Inact.)");
+		chckbxPerVerTodos.setFont(new Font("Dialog", Font.PLAIN, 11));
 		chckbxPerVerTodos.setBounds(10, 222, 177, 23);
 		panel_Perforaciones.add(chckbxPerVerTodos);
 		

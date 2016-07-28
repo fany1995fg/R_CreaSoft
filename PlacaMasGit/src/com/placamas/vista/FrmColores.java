@@ -57,7 +57,6 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 	private JTextField txtDescripcion;
 	JTable tbColores;
 	private JButton btnGrabar;
-	//private JButton btnCerrar;
 	private JButton btnEliminar;
 	private JButton btnNuevo;
 	private JToolBar toolBar;
@@ -112,12 +111,6 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		toolBar.add(btnEliminar);
 		btnEliminar.setIcon(new ImageIcon(FrmColores.class.getResource("/Iconos_PlacaMas/_Erase.png")));
 		
-        ///QUITANDOLE LOS BORDES A LOS BOTONES
-		/*
-		btnNuevo.setBorder(null);
-		btnEliminar.setBorder(null);
-		btnGrabar.setBorder(null);*/
-		
 		btnNuevo.setToolTipText("Nuevo Registro");
 		btnEliminar.setToolTipText("Eliminar");
 		
@@ -152,6 +145,7 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		});
 		colores.add(lblBanner);
 		
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado de Colores", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_1.setBounds(20, 121, 1113, 495);
@@ -162,7 +156,7 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		lblICodColor.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblICodColor.setBounds(47, 40, 115, 20);
 		panel_1.add(lblICodColor);
-		lblICodColor.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblICodColor.setFont(new Font("Dialog", Font.PLAIN, 11));
 		
 		txtIdColor = new JTextField();
 		txtIdColor.setBounds(172, 41, 115, 20);
@@ -186,7 +180,7 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		lblDescripcion.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblDescripcion.setBounds(47, 72, 115, 20);
 		panel_1.add(lblDescripcion);
-		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDescripcion.setFont(new Font("Dialog", Font.PLAIN, 11));
 		
 		txtDescripcion = new JTextField();
 		txtDescripcion.setBounds(172, 73, 178, 20);
@@ -201,6 +195,7 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		panel.setLayout(null);
 		
 		chckboxtab= new JCheckBox("Tablero");
+		chckboxtab.setFont(new Font("Dialog", Font.PLAIN, 11));
 		chckboxtab.setBounds(18, 22, 97, 20);
 		panel.add(chckboxtab);
 		chckboxtab.setMnemonic(KeyEvent.VK_1);
@@ -211,6 +206,7 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		//String numCadena= Integer.toString(numEntero);
 				
 		chckboxtap = new JCheckBox("Tapacanto",false);
+		chckboxtap.setFont(new Font("Dialog", Font.PLAIN, 11));
 		chckboxtap.setBounds(18, 48, 97, 20);
 		panel.add(chckboxtap);
 		
@@ -245,9 +241,12 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 		setDefaultCloseOperation(HIDE_ON_CLOSE); //Se oculte al cerrara
 		Listar();
 		
-		
 		int fila=0;
+		txtIdColor.setText(""+tbColores.getValueAt(fila, 0));
+		txtDescripcion.setText(""+tbColores.getValueAt(fila, 1));
 		
+		tbColores.requestFocus();
+		tbColores.changeSelection(0,0,true, false);
 		
 		tamañoTablas();
 	
@@ -255,7 +254,7 @@ public class FrmColores extends JInternalFrame implements ActionListener {
 	
 private void tamañoTablas() {
 		
-		int [] anchos = {40, 200, 20, 20};
+		int [] anchos = {40, 200, 40, 40};
 		
 		for (int i = 0; i < tbColores.getColumnCount(); i++) {
 			tbColores.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);

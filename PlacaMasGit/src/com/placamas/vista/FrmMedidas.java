@@ -46,7 +46,6 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 	private JTextField txtMedidas;
 	JTable tbMedidas;
 	private JButton btnGrabar;
-	private JButton btnCerrar;
 	private JButton btnEliminar;
 	private JButton btnNuevo;
 	private JToolBar toolBar;
@@ -150,9 +149,10 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 		panel.setLayout(null);
 		
 		JLabel lblIdMedidas = new JLabel("C\u00F3digo de Medidas:");
+		lblIdMedidas.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblIdMedidas.setBounds(47, 40, 115, 20);
 		panel.add(lblIdMedidas);
-		lblIdMedidas.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblIdMedidas.setFont(new Font("Dialog", Font.PLAIN, 11));
 		
 		txtIdMedidas= new JTextField();
 		txtIdMedidas.setBounds(172, 41, 115, 20);
@@ -173,9 +173,10 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 		txtIdMedidas.setToolTipText("Escribe el Codigo de la Medida");
 		
 		JLabel lblMedidas = new JLabel("Medida:");
+		lblMedidas.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblMedidas.setBounds(47, 72, 115, 20);
 		panel.add(lblMedidas);
-		lblMedidas.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblMedidas.setFont(new Font("Dialog", Font.PLAIN, 11));
 		
 		txtMedidas = new JTextField();
 		txtMedidas.setBounds(172, 73, 178, 20);
@@ -190,10 +191,12 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 		panel_1.setLayout(null);
 		
 		JCheckBox checkBox = new JCheckBox("Tapacanto", false);
+		checkBox.setFont(new Font("Dialog", Font.PLAIN, 11));
 		checkBox.setBounds(18, 22, 97, 20);
 		panel_1.add(checkBox);
 		
 		JCheckBox checkBox_1 = new JCheckBox("Tablero");
+		checkBox_1.setFont(new Font("Dialog", Font.PLAIN, 11));
 		checkBox_1.setBounds(18, 48, 97, 20);
 		panel_1.add(checkBox_1);
 		checkBox_1.setSelected(false);
@@ -202,6 +205,9 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(35, 136, 323, 300);
 		panel.add(scrollPane);
+		
+	
+		
 		
 		tbMedidas = new JTable();
 		tbMedidas.addKeyListener(new KeyAdapter() {
@@ -218,9 +224,15 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 				Mostrar();
 			}
 		});
+		
 		scrollPane.setViewportView(tbMedidas);
 		tbMedidas.setModel(modelo);
-			
+		txtIdMedidas.setText(""+tbMedidas.getValueAt(fila, 0));
+		txtMedidas.setText(""+tbMedidas.getValueAt(fila, 1));
+		
+		tbMedidas.requestFocus();
+		tbMedidas.changeSelection(0,0,true, false);
+					
 		
 		tamañoTablas();
 	
@@ -228,7 +240,7 @@ public class FrmMedidas extends JInternalFrame implements ActionListener {
 	
 private void tamañoTablas() {
 		
-		int [] anchos = {40, 30, 20, 20};
+		int [] anchos = {40, 30, 20, 30};
 		
 		for (int i = 0; i < tbMedidas.getColumnCount(); i++) {
 			tbMedidas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);

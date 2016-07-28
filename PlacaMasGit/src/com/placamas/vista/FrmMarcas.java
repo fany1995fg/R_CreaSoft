@@ -152,9 +152,10 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 		panel.setLayout(null);
 		
 		JLabel lblIdMarca = new JLabel("C\u00F3digo de Marca:");
+		lblIdMarca.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblIdMarca.setBounds(47, 40, 115, 20);
 		panel.add(lblIdMarca);
-		lblIdMarca.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblIdMarca.setFont(new Font("Dialog", Font.PLAIN, 11));
 		
 		
 
@@ -178,9 +179,10 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 		
 		
 		JLabel lblDescripcion = new JLabel("Descripcion:");
+		lblDescripcion.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblDescripcion.setBounds(47, 72, 115, 20);
 		panel.add(lblDescripcion);
-		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDescripcion.setFont(new Font("Dialog", Font.PLAIN, 11));
 		
 		
 		txtDescripcion = new JTextField();
@@ -213,6 +215,10 @@ public class FrmMarcas extends JInternalFrame implements ActionListener {
 		});
 		scrollPane.setViewportView(tbMarcas);
 		tbMarcas.setModel(modelo);
+		
+		
+		txtIdMarca.setText(""+tbMarcas.getValueAt(fila, 0));
+		txtDescripcion.setText(""+tbMarcas.getValueAt(fila, 1));
 		
 		tbMarcas.requestFocus();
 		tbMarcas.changeSelection(0,0,true, false);

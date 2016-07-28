@@ -147,7 +147,7 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 		lblIdTextura.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblIdTextura.setBounds(47, 40, 115, 20);
 		panel.add(lblIdTextura);
-		lblIdTextura.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblIdTextura.setFont(new Font("Dialog", Font.PLAIN, 11));
 		
 		txtIdTextura = new JTextField();
 		txtIdTextura.setBounds(172, 41, 115, 20);
@@ -172,7 +172,7 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 		lblDescripcion.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblDescripcion.setBounds(47, 72, 115, 20);
 		panel.add(lblDescripcion);
-		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDescripcion.setFont(new Font("Dialog", Font.PLAIN, 11));
 		
 		txtDescripcion = new JTextField();
 		txtDescripcion.setBounds(172, 73, 178, 20);
@@ -205,6 +205,9 @@ public class FrmTextura extends JInternalFrame implements ActionListener{
 		});
 		scrollPane.setViewportView(tbTextura);
 		tbTextura.setModel(modelo);
+		
+		txtIdTextura.setText(""+tbTextura.getValueAt(fila, 0));
+		txtDescripcion.setText(""+tbTextura.getValueAt(fila, 1));
 		
 		tbTextura.requestFocus();
 		tbTextura.changeSelection(0,0,true, false);

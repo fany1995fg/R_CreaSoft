@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 
 	import com.placamas.beans.RutasBean;
 import com.placamas.controlador.RutasControlador;
+
 import javax.swing.SwingConstants;
 public class FrmRutas extends JInternalFrame implements ActionListener {
 
@@ -134,8 +135,8 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			});
 			btnGrabar.setToolTipText("Grabar");
 			
-			modelo.addColumn("codigo");
-			modelo.addColumn("Ruta dada");
+			modelo.addColumn("Codigo");
+			modelo.addColumn("Ruta Data");
 			Listar();
 			
 			
@@ -155,9 +156,10 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			panel.setLayout(null);
 			
 			JLabel lblIdMarca = new JLabel("C\u00F3digo de Ruta:");
+			lblIdMarca.setHorizontalAlignment(SwingConstants.TRAILING);
 			lblIdMarca.setBounds(47, 40, 115, 20);
 			panel.add(lblIdMarca);
-			lblIdMarca.setFont(new Font("Tahoma", Font.PLAIN, 13));
+			lblIdMarca.setFont(new Font("Dialog", Font.PLAIN, 11));
 			
 			
 
@@ -180,9 +182,10 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			txtIdRuta.setToolTipText("Escribe el Codigo de la Ruta( max. 8 car)");
 			
 			JLabel lblDescripcion = new JLabel("Ruta:");
+			lblDescripcion.setHorizontalAlignment(SwingConstants.TRAILING);
 			lblDescripcion.setBounds(47, 72, 115, 20);
 			panel.add(lblDescripcion);
-			lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+			lblDescripcion.setFont(new Font("Dialog", Font.PLAIN, 11));
 			
 			
 			txtRuta = new JTextField();
@@ -215,6 +218,7 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			});
 			scrollPane.setViewportView(tbRutas);
 			tbRutas.setModel(modelo);
+			
 			txtIdRuta.setText(""+tbRutas.getValueAt(fila, 0));
 			txtRuta.setText(""+tbRutas.getValueAt(fila, 1));
 			
@@ -231,11 +235,20 @@ public class FrmRutas extends JInternalFrame implements ActionListener {
 			tbRutas.requestFocus();
 			tbRutas.changeSelection(0,0,true, false);
 			
-		
+			tamañoTablas();
 	}
 		
-		
-		
+		private void tamañoTablas() {
+			
+			int [] anchos = {30, 200, 50};
+			
+			for (int i = 0; i < tbRutas.getColumnCount(); i++) {
+				tbRutas.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+			}
+					
+		}
+
+	
 		void mensaje(String m){
 			JOptionPane.showMessageDialog(null, m);
 	}	
