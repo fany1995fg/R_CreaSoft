@@ -179,23 +179,17 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		panel_1.add(lblCodigo);
 		lblCodigo.setFont(new Font("Dialog", Font.PLAIN, 11));
 		
-		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNombre.setBounds(212, 42, 54, 20);
-		panel_1.add(lblNombre);
-		lblNombre.setFont(new Font("Dialog", Font.PLAIN, 11));
-		
-		JLabel lblEmail = new JLabel("Email:");
-		lblEmail.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblEmail.setBounds(475, 41, 36, 20);
-		panel_1.add(lblEmail);
-		lblEmail.setFont(new Font("Dialog", Font.PLAIN, 11));
-		
 		txtIdUser = new JTextField();
 		//txtIdUser.setEnabled(false);
 		txtIdUser.setBounds(80, 42, 115, 20);
 		panel_1.add(txtIdUser);
 		txtIdUser.setColumns(10);
+		
+		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblNombre.setBounds(212, 42, 54, 20);
+		panel_1.add(lblNombre);
+		lblNombre.setFont(new Font("Dialog", Font.PLAIN, 11));
 		
 		txtNomb_User = new JTextField();
 		//txtNombre.setEnabled(false);
@@ -203,11 +197,83 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 		panel_1.add(txtNomb_User);
 		txtNomb_User.setColumns(10);
 		
+		JLabel lblEmail = new JLabel("Email:");
+		lblEmail.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblEmail.setBounds(475, 41, 36, 20);
+		panel_1.add(lblEmail);
+		lblEmail.setFont(new Font("Dialog", Font.PLAIN, 11));
+		
 		txtEmail = new JTextField();
 		//txtEmail.setEnabled(false);
 		txtEmail.setBounds(521, 42, 200, 20);
 		panel_1.add(txtEmail);
 		txtEmail.setColumns(10);
+		
+		JPanel panel_Privilegios = new JPanel();
+		panel_Privilegios.setBorder(new TitledBorder(null, "Privilegios de Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_Privilegios.setBounds(10, 82, 735, 150);
+		panel_1.add(panel_Privilegios);
+		panel_Privilegios.setLayout(null);
+		
+		JCheckBox checkBox_3 = new JCheckBox("Aprobar/Desaprobar Produccion");
+		checkBox_3.setBounds(25, 105, 209, 20);
+		panel_Privilegios.add(checkBox_3);
+		checkBox_3.setFont(new Font("Dialog", Font.PLAIN, 11));
+		
+		JCheckBox checkBox_2 = new JCheckBox("Desbloquear LP");
+		checkBox_2.setBounds(25, 82, 113, 20);
+		panel_Privilegios.add(checkBox_2);
+		checkBox_2.setFont(new Font("Dialog", Font.PLAIN, 11));
+		
+		JCheckBox checkBox_1 = new JCheckBox("Anular LP");
+		checkBox_1.setBounds(25, 59, 79, 20);
+		panel_Privilegios.add(checkBox_1);
+		checkBox_1.setFont(new Font("Dialog", Font.PLAIN, 11));
+		
+		JCheckBox checkBox_5 = new JCheckBox("Incluir Lista de Optimizadores");
+		checkBox_5.setBounds(25, 36, 195, 20);
+		panel_Privilegios.add(checkBox_5);
+		checkBox_5.setFont(new Font("Dialog", Font.PLAIN, 11));
+		
+		JCheckBox checkBox_12 = new JCheckBox("Importar desde Servidor FTP");
+		checkBox_12.setBounds(267, 36, 191, 20);
+		panel_Privilegios.add(checkBox_12);
+		checkBox_12.setFont(new Font("Dialog", Font.PLAIN, 11));
+		
+		JCheckBox checkBox_4 = new JCheckBox("Incluir Lista de Digitadores");
+		checkBox_4.setBounds(267, 82, 177, 20);
+		panel_Privilegios.add(checkBox_4);
+		checkBox_4.setFont(new Font("Dialog", Font.PLAIN, 11));
+		
+		JCheckBox checkBox_7 = new JCheckBox("Editar Optimizador");
+		checkBox_7.setBounds(267, 105, 131, 20);
+		panel_Privilegios.add(checkBox_7);
+		checkBox_7.setFont(new Font("Dialog", Font.PLAIN, 11));
+		
+		JCheckBox checkBox_13 = new JCheckBox("Administrar Usuarios");
+		checkBox_13.setBounds(502, 105, 145, 20);
+		panel_Privilegios.add(checkBox_13);
+		checkBox_13.setFont(new Font("Dialog", Font.PLAIN, 11));
+		
+		JCheckBox checkBox_10 = new JCheckBox("Editar Documentos de Venta");
+		checkBox_10.setBounds(502, 82, 187, 20);
+		panel_Privilegios.add(checkBox_10);
+		checkBox_10.setFont(new Font("Dialog", Font.PLAIN, 11));
+		
+		JCheckBox checkBox_9 = new JCheckBox("Editar Tiempo de Entrega");
+		checkBox_9.setBounds(502, 59, 171, 20);
+		panel_Privilegios.add(checkBox_9);
+		checkBox_9.setFont(new Font("Dialog", Font.PLAIN, 11));
+		
+		JCheckBox checkBox_8 = new JCheckBox("Editar Vendedor");
+		checkBox_8.setBounds(502, 36, 117, 20);
+		panel_Privilegios.add(checkBox_8);
+		checkBox_8.setFont(new Font("Dialog", Font.PLAIN, 11));
+		
+		JCheckBox checkBox_11 = new JCheckBox("Exportar hacia Servidor FTP");
+		checkBox_11.setBounds(267, 59, 185, 20);
+		panel_Privilegios.add(checkBox_11);
+		checkBox_11.setFont(new Font("Dialog", Font.PLAIN, 11));
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new TitledBorder(null, "Locales x Usuarios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -259,83 +325,17 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 			}
 		));
 		
-		JButton btnA = new JButton("");
-		btnA.setBounds(340, 29, 57, 33);
-		panel_3.add(btnA);
-		btnA.setContentAreaFilled(false);
-		btnA.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconos/Right.gif")));
+		JButton btnQuitLocal = new JButton("");
+		btnQuitLocal.setBounds(340, 62, 57, 33);
+		panel_3.add(btnQuitLocal);
+		btnQuitLocal.setContentAreaFilled(false);
+		btnQuitLocal.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/Iconos_PlacaMas/_Forward.png")));
 		
-		JButton btnB = new JButton("");
-		btnB.setBounds(340, 73, 57, 33);
-		panel_3.add(btnB);
-		btnB.setContentAreaFilled(false);
-		btnB.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconos/Left.gif")));
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new TitledBorder(null, "Privilegios de Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_4.setBounds(10, 82, 735, 150);
-		panel_1.add(panel_4);
-		panel_4.setLayout(null);
-		
-		JCheckBox checkBox_3 = new JCheckBox("Aprobar/Desaprobar Produccion");
-		checkBox_3.setBounds(25, 105, 209, 20);
-		panel_4.add(checkBox_3);
-		checkBox_3.setFont(new Font("Dialog", Font.PLAIN, 11));
-		
-		JCheckBox checkBox_2 = new JCheckBox("Desbloquear LP");
-		checkBox_2.setBounds(25, 82, 113, 20);
-		panel_4.add(checkBox_2);
-		checkBox_2.setFont(new Font("Dialog", Font.PLAIN, 11));
-		
-		JCheckBox checkBox_1 = new JCheckBox("Anular LP");
-		checkBox_1.setBounds(25, 59, 79, 20);
-		panel_4.add(checkBox_1);
-		checkBox_1.setFont(new Font("Dialog", Font.PLAIN, 11));
-		
-		JCheckBox checkBox_5 = new JCheckBox("Incluir Lista de Optimizadores");
-		checkBox_5.setBounds(25, 36, 195, 20);
-		panel_4.add(checkBox_5);
-		checkBox_5.setFont(new Font("Dialog", Font.PLAIN, 11));
-		
-		JCheckBox checkBox_12 = new JCheckBox("Importar desde Servidor FTP");
-		checkBox_12.setBounds(267, 36, 191, 20);
-		panel_4.add(checkBox_12);
-		checkBox_12.setFont(new Font("Dialog", Font.PLAIN, 11));
-		
-		JCheckBox checkBox_4 = new JCheckBox("Incluir Lista de Digitadores");
-		checkBox_4.setBounds(267, 82, 177, 20);
-		panel_4.add(checkBox_4);
-		checkBox_4.setFont(new Font("Dialog", Font.PLAIN, 11));
-		
-		JCheckBox checkBox_7 = new JCheckBox("Editar Optimizador");
-		checkBox_7.setBounds(267, 105, 131, 20);
-		panel_4.add(checkBox_7);
-		checkBox_7.setFont(new Font("Dialog", Font.PLAIN, 11));
-		
-		JCheckBox checkBox_13 = new JCheckBox("Administrar Usuarios");
-		checkBox_13.setBounds(502, 105, 145, 20);
-		panel_4.add(checkBox_13);
-		checkBox_13.setFont(new Font("Dialog", Font.PLAIN, 11));
-		
-		JCheckBox checkBox_10 = new JCheckBox("Editar Documentos de Venta");
-		checkBox_10.setBounds(502, 82, 187, 20);
-		panel_4.add(checkBox_10);
-		checkBox_10.setFont(new Font("Dialog", Font.PLAIN, 11));
-		
-		JCheckBox checkBox_9 = new JCheckBox("Editar Tiempo de Entrega");
-		checkBox_9.setBounds(502, 59, 171, 20);
-		panel_4.add(checkBox_9);
-		checkBox_9.setFont(new Font("Dialog", Font.PLAIN, 11));
-		
-		JCheckBox checkBox_8 = new JCheckBox("Editar Vendedor");
-		checkBox_8.setBounds(502, 36, 117, 20);
-		panel_4.add(checkBox_8);
-		checkBox_8.setFont(new Font("Dialog", Font.PLAIN, 11));
-		
-		JCheckBox checkBox_11 = new JCheckBox("Exportar hacia Servidor FTP");
-		checkBox_11.setBounds(267, 59, 185, 20);
-		panel_4.add(checkBox_11);
-		checkBox_11.setFont(new Font("Dialog", Font.PLAIN, 11));
+		JButton btnAgrLocal = new JButton("");
+		btnAgrLocal.setBounds(340, 106, 57, 33);
+		panel_3.add(btnAgrLocal);
+		btnAgrLocal.setContentAreaFilled(false);
+		btnAgrLocal.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/Iconos_PlacaMas/_Back.png")));
 		
 		JButton btnAadirPrivilegios = new JButton("Accesos al Sistema");
 		btnAadirPrivilegios.setBounds(72, 423, 209, 50);
@@ -347,7 +347,7 @@ public class FrmControlUsuarios extends JInternalFrame implements ActionListener
 			
 			}
 		});
-		btnAadirPrivilegios.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/iconos/Notes.gif")));
+		btnAadirPrivilegios.setIcon(new ImageIcon(FrmControlUsuarios.class.getResource("/Iconos_PlacaMas/_List.png")));
 		btnAadirPrivilegios.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnEliminar.addActionListener(this);
 		
@@ -408,7 +408,6 @@ protected void btnGrabarActionPerformed(ActionEvent arg0) {
 		UsuarioBean l=new UsuarioBean(txtIdUser.getText(), txtNomb_User.getText(),txtIdUser.getText(),txtNomb_User.getText(),txtEmail.getText());
 		int valor=obj.insertaUsuario(l);
 		if(valor==1){
-			
 			mensaje("Registro Exitoso de Usuario");
 			estado=false;
 			listaData();

@@ -338,7 +338,7 @@ public class FrmPuerta_Corre extends JInternalFrame implements ActionListener{
 		panel_Perforaciones.add(btnPerEditaNo);
 		
 		btnPerGrabar = new JButton("");
-		btnPerGrabar.setIcon(new ImageIcon(FrmPuerta_Corre.class.getResource("/iconosmodernos/1466475388_save.png")));
+		btnPerGrabar.setIcon(new ImageIcon(FrmPuerta_Corre.class.getResource("/Iconos_PlacaMas/_Save.png")));
 		btnPerGrabar.setToolTipText("Grabar cambios");
 		btnPerGrabar.setBorder(null);
 		btnPerGrabar.setBounds(109, 18, 23, 23);

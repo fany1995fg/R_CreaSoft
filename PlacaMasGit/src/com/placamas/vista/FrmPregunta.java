@@ -74,7 +74,7 @@ public class FrmPregunta extends JFrame implements ActionListener{
 		getContentPane().add(txtIdUser);
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(FrmPregunta.class.getResource("/recursos/consultar.png")));
+		button.setIcon(new ImageIcon(FrmPregunta.class.getResource("/Iconos_PlacaMas/consultar.png")));
 		button.setBounds(328, 30, 35, 35);
 		getContentPane().add(button);
 	
@@ -101,7 +101,7 @@ public class FrmPregunta extends JFrame implements ActionListener{
 		
 		btnVerificar = new JButton("Aceptar");
 		btnVerificar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnVerificar.setIcon(new ImageIcon(FrmPregunta.class.getResource("/recursos/aceptar.png")));
+		btnVerificar.setIcon(new ImageIcon(FrmPregunta.class.getResource("/Iconos_PlacaMas/aceptar.png")));
 		btnVerificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnVerificarActionPerformed(arg0);

@@ -42,7 +42,6 @@ public class FrmListado_Pieza extends JInternalFrame implements ActionListener{
 	private JButton btnEliminar;
 	private JButton btnNuevo;
 	private JToolBar toolBar;
-	private JSeparator separator;
 	public JPanel listado;
 	private JLabel label;
 	private JSeparator separator_1;
@@ -75,6 +74,15 @@ public class FrmListado_Pieza extends JInternalFrame implements ActionListener{
 		toolBar.setBounds(0, 0, 1194, 35);
 		listado.add(toolBar);
 		
+		label = new JLabel("");
+		label.setBounds(0, 33, 1194, 65);
+		label.setIcon(new ImageIcon(FrmBisagrado.class.getResource("/gui/img/banners/Bisagrado.JPG")));
+		listado.add(label);
+		
+		separator_1 = new JSeparator();
+		separator_1.setBounds(10, 106, 1354, 8);
+		listado.add(separator_1);
+		
 		
 		JPanel wim = new JPanel();
 		wim.setToolTipText("");
@@ -98,7 +106,7 @@ public class FrmListado_Pieza extends JInternalFrame implements ActionListener{
 		
 		btnNuevo = new JButton("");
 		toolBar.add(btnNuevo);
-		btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466476618_File.png")));
+		btnNuevo.setIcon(new ImageIcon(FrmListado_Pieza.class.getResource("/Iconos_PlacaMas/_New_document.png")));
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnNuevoActionPerformed(arg0);
@@ -106,51 +114,37 @@ public class FrmListado_Pieza extends JInternalFrame implements ActionListener{
 		});
 		
 		
+		btnNuevo.setToolTipText("Nuevo Registro");
+		
+		JButton button_2 = new JButton("");
+		button_2.setIcon(new ImageIcon(FrmListado_Pieza.class.getResource("/Iconos_PlacaMas/_Modify.png")));
+		button_2.setToolTipText("Eliminar");
+		toolBar.add(button_2);
+		
+				btnEliminar = new JButton("");
+				toolBar.add(btnEliminar);
+				btnEliminar.setIcon(new ImageIcon(FrmListado_Pieza.class.getResource("/Iconos_PlacaMas/_Erase.png")));
+				btnEliminar.setToolTipText("Eliminar");
+		
+		button_3 = new JButton("");
+		button_3.setIcon(new ImageIcon(FrmListado_Pieza.class.getResource("/Iconos_PlacaMas/_Editar_No.png")));
+		button_3.setToolTipText("Eliminar");
+		toolBar.add(button_3);
+		
+		
 		
 		
 		btnGrabar = new JButton("");
 		toolBar.add(btnGrabar);
-		btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475388_save.png")));
-
-		btnEliminar = new JButton("");
-		toolBar.add(btnEliminar);
-		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
-		
-		
-		btnNuevo.setToolTipText("Nuevo Registro");
-		btnEliminar.setToolTipText("Eliminar");
+		btnGrabar.setIcon(new ImageIcon(FrmListado_Pieza.class.getResource("/Iconos_PlacaMas/_Save.png")));
 		btnGrabar.setToolTipText("Grabar");
-		
-		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon(FrmTableros.class.getResource("/iconosmodernos/1466476622_common-new-edit-compose-glyph.png")));
-		button_2.setToolTipText("Eliminar");
-		toolBar.add(button_2);
-		
-		button_3 = new JButton("");
-		button_3.setIcon(new ImageIcon(FrmRanuras.class.getResource("/iconosmodernos/1466475396_Save-as.png")));
-		button_3.setToolTipText("Eliminar");
-		toolBar.add(button_3);
 		
 		modelo.addColumn("Codigo");
 		modelo.addColumn("Descripcion");
 		
 		
-		separator = new JSeparator();
-		separator.setBounds(726, 132, 0, 2);
-		listado.add(separator);
-		
-		
 		
 		tbMarcas = new JTable();
-		
-		label = new JLabel("");
-		label.setBounds(0, 33, 1194, 65);
-		label.setIcon(new ImageIcon(FrmBisagrado.class.getResource("/gui/img/banners/Bisagrado.JPG")));
-		listado.add(label);
-		
-		separator_1 = new JSeparator();
-		separator_1.setBounds(10, 106, 1354, 8);
-		listado.add(separator_1);
 		
 		
 		int fila=0;

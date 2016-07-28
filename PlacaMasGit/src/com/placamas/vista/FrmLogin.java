@@ -76,14 +76,14 @@ public class FrmLogin extends JDialog implements ActionListener{
 			
 			btnEnviar = new JButton("Aceptar");
 			btnEnviar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			btnEnviar.setIcon(new ImageIcon(FrmLogin.class.getResource("/recursos/aceptar.png")));
+			btnEnviar.setIcon(new ImageIcon(FrmLogin.class.getResource("/Iconos_PlacaMas/aceptar.png")));
 			btnEnviar.addActionListener(this);
 			btnEnviar.setBounds(217,280,129,38);
 			getContentPane().add(btnEnviar);
 			
 			btnCancelar = new JButton("Cancelar");
 			btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			btnCancelar.setIcon(new ImageIcon(FrmLogin.class.getResource("/recursos/cancelar.png")));
+			btnCancelar.setIcon(new ImageIcon(FrmLogin.class.getResource("/Iconos_PlacaMas/cancelar.png")));
 			btnCancelar.addActionListener(this);
 			btnCancelar.setBounds(356,280,129,38);
 			getContentPane().add(btnCancelar);
@@ -95,7 +95,7 @@ public class FrmLogin extends JDialog implements ActionListener{
 			getContentPane().add(lblBienvenidoAPlacamas);
 			
 			JLabel label = new JLabel("");
-			label.setIcon(new ImageIcon(FrmLogin.class.getResource("/iconos/1405731875_application-pgp-signature.png")));
+			label.setIcon(new ImageIcon(FrmLogin.class.getResource("/Iconos_PlacaMas/1405731875_application-pgp-signature.png")));
 			label.setBounds(37, 160, 145, 135);
 			getContentPane().add(label);
 			

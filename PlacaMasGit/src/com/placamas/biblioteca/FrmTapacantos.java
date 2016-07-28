@@ -99,7 +99,7 @@ public class FrmTapacantos extends JInternalFrame implements ActionListener{
 		
 		JButton btnEditaNo = new JButton("");
 		btnEditaNo.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		btnEditaNo.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_Modify_No.png")));
+		btnEditaNo.setIcon(new ImageIcon(FrmTapacantos.class.getResource("/Iconos_PlacaMas/_Editar_No.png")));
 		btnEditaNo.setToolTipText("Salir de editar sin grabar");
 		toolBar.add(btnEditaNo);
 		

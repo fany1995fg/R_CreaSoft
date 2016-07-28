@@ -153,15 +153,16 @@ public class FrmReglas extends JInternalFrame implements ActionListener{
 		
 		btnNuevo = new JButton("");
 		toolBar.add(btnNuevo);
-		btnNuevo.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466476618_File.png")));
+		btnNuevo.setIcon(new ImageIcon(FrmReglas.class.getResource("/Iconos_PlacaMas/_New_document.png")));
 		
-		btnGrabar = new JButton("");
-		toolBar.add(btnGrabar);
-		btnGrabar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475388_save.png")));
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(FrmReglas.class.getResource("/Iconos_PlacaMas/_Modify.png")));
+		button.setToolTipText("Eliminar");
+		toolBar.add(button);
 
 		btnEliminar = new JButton("");
 		toolBar.add(btnEliminar);
-		btnEliminar.setIcon(new ImageIcon(FrmTextura.class.getResource("/iconosmodernos/1466475182_TrashBin.png")));
+		btnEliminar.setIcon(new ImageIcon(FrmReglas.class.getResource("/Iconos_PlacaMas/_Erase.png")));
 		
         ///QUITANDOLE LOS BORDES A LOS BOTONES
 		/*
@@ -171,7 +172,6 @@ public class FrmReglas extends JInternalFrame implements ActionListener{
 		
 		btnNuevo.setToolTipText("Nuevo Registro");
 		btnEliminar.setToolTipText("Eliminar");
-		btnGrabar.setToolTipText("Grabar");
 		
 		label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(FrmColores.class.getResource("/gui/img/banners/BanColor.png")));
@@ -179,15 +179,25 @@ public class FrmReglas extends JInternalFrame implements ActionListener{
 		getContentPane().add(label_1);
 		reglas.setLayout(null);
 		reglas.add(toolBar);
+		
+		JButton button_1 = new JButton("");
+		button_1.setIcon(new ImageIcon(FrmReglas.class.getResource("/Iconos_PlacaMas/_Editar_No.png")));
+		button_1.setToolTipText("Eliminar");
+		toolBar.add(button_1);
+		
+		btnGrabar = new JButton("");
+		toolBar.add(btnGrabar);
+		btnGrabar.setIcon(new ImageIcon(FrmReglas.class.getResource("/Iconos_PlacaMas/_Save.png")));
+		btnGrabar.setToolTipText("Grabar");
+		btnGrabar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnGrabarActionPerformed(arg0);
+			}
+		});
 			
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnEliminarActionPerformed(arg0);
-			}
-		});
-		btnGrabar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				btnGrabarActionPerformed(arg0);
 			}
 		});
 		btnNuevo.addActionListener(this);

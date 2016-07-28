@@ -28,7 +28,7 @@ public class Iniciar extends JFrame implements WindowListener{
 	public Iniciar(String cad, int x, int y) {
 		super(cad);
 		setLocation(0, 0);
-		setIconImage(new ImageIcon(getClass().getClassLoader().getResource("iconos/Money.gif")).getImage());
+		setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Iconos_PlacaMas/Money.gif")).getImage());
 		setSize(x, y);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
